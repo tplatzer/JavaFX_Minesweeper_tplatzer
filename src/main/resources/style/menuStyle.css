@@ -1,0 +1,29 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+#beginner, #advanced, #pro
+{
+    -fx-font-size: 20px;
+}
+
+#beginner:hover, #advanced:hover, #pro:hover {
+    -fx-background-color: lightblue;
+}
+
+#difficultyButtonBox
+{
+
+}
+
+#titleText
+{
+    -fx-font-size: 40px;
+}
+
+#choiceText
+{
+    -fx-font-size: 20px;
+}

@@ -1,0 +1,33 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face
+{
+    font-family: 'ARCADE-CLASSIC';
+    src: url('/fonts/ARCADECLASSIC.TTF');
+}
+
+.button
+{
+    -fx-font-family: "ARCADE-CLASSIC";
+    -fx-font-size: 20px;
+    -fx-background-position: center;
+    -fx-background-radius: 10px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.box
+{
+    -fx-padding: 10;
+}
+
+.text
+{
+    -fx-font-family: ARCADE-CLASSIC;
+}
