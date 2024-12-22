@@ -49,7 +49,7 @@ public class GameController extends Controller
 
         setGameScene(new Scene(getRoot()));
 
-        switchScene(getStage(), getGameScene(), 900, "Bomben Räum Simulator");
+        switchScene(getStage(), getGameScene(), 900, 1200, "Bomben Räum Simulator");
     }
 
     public static int getMaxHBoxWidth()

@@ -26,4 +26,5 @@
 #choiceText
 {
     -fx-font-size: 20px;
+    -fx-text-alignment: center;
 }

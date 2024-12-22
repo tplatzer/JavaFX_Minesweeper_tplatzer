@@ -1,5 +1,6 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -14,13 +15,19 @@ public class Controller
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/img/icon.png")).toExternalForm()));
     }
 
-    protected void switchScene(Stage stage, Scene newScene, double newHeight, String title)
+    protected void switchScene(Stage stage, Scene newScene, double newHeight, double newWidth, String title)
     {
         stage.setScene(newScene);
         stage.setTitle(title);
 
-        stage.setHeight(newHeight);
-
+        if (newHeight != -1)
+        {
+            stage.setHeight(newHeight);
+        }
+        if (newWidth != -1)
+        {
+            stage.setWidth(newWidth);
+        }
         centerStage(stage);
     }
 
