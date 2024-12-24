@@ -46,12 +46,12 @@ public class Controller
 
     protected void playSoundEffect(String fileName)
     {
-        getSoundEffectPlayer().playMusicShort(fileName + ".wav");
+        getSoundEffectPlayer().playMusicShort(fileName + ".wav", -30.0f);
     }
 
     protected void playBackgroundMusic(String fileName)
     {
-        getBackgroundMusicPlayer().playMusic(fileName + ".wav");
+        getBackgroundMusicPlayer().playMusic(fileName + ".wav", -30.0f);
     }
 
     protected void stopBackgroundMusic()

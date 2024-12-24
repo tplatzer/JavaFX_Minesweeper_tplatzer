@@ -1,0 +1,61 @@
+.info-box
+{
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 5px;
+    -fx-spacing: 10px;
+
+}
+
+.info-label
+{
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+    -fx-padding: 2px;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+}
+
+.restart-button
+{
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-padding: 5px;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-alignment: center;
+}
+
+.restart-button:hover
+{
+    -fx-background-color: #d9d9d9;
+}
+
+.restart-button:pressed
+{
+    -fx-background-color: #a6a6a6;
+}
+
+.root-container
+{
+    -fx-background-color: #c0c0c0;
+    -fx-spacing: 10px;
+    -fx-padding: 10px;
+}
+
+.game-field
+{
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #808080 #ffffff #ffffff #808080;
+    -fx-border-width: 3px;
+    -fx-padding: 5px;
+    -fx-hgap: 1px;
+    -fx-vgap: 1px;
+}

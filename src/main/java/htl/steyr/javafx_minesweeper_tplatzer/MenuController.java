@@ -36,7 +36,7 @@ public class MenuController extends Controller
         setStage(stage);
         setDefaultValues();
         initializeUserElements();
-        playBackgroundMusic("menu-music");
+        //playBackgroundMusic("menu-music");
 
         initializeStage(getStage());
         initializeWindow();
