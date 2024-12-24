@@ -28,8 +28,8 @@ public class GameController extends Controller
     {
         setStage(stage);
         /*setDefaultValues();
-        initializeUserElements();
-        playBackgroundMusic();*/
+        initializeUserElements();*/
+        playBackgroundMusic("background-music");
 
         initializeWindow();
     }

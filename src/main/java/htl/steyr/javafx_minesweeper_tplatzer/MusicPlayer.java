@@ -3,13 +3,14 @@ package htl.steyr.javafx_minesweeper_tplatzer;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MusicPlayer
 {
     private Clip clip;
 
-    public void playMusic(String filePath) {
-        File audioFile = new File(filePath);
+    public void playMusic(String fileName) {
+        File audioFile = new File(Objects.requireNonNull(getClass().getResource("/sfx/" + fileName)).toExternalForm());
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
             clip = AudioSystem.getClip();
@@ -22,11 +23,11 @@ public class MusicPlayer
         }
     }
 
-    public void playMusicShort(String filePath)
+    public void playMusicShort(String fileName)
     {
         try
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(Objects.requireNonNull(getClass().getResource("/sfx/" + fileName)).toExternalForm()));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 

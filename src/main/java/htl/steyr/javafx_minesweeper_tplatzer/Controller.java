@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public class Controller
 {
+    protected MusicPlayer backgroundMusicPlayer = new MusicPlayer();
+    protected MusicPlayer soundEffectPlayer = new MusicPlayer();
+
     protected void initializeStage(Stage stage)
     {
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/img/icon.png")).toExternalForm()));
@@ -41,6 +44,21 @@ public class Controller
         return text;
     }
 
+    protected void playSoundEffect(String fileName)
+    {
+        getSoundEffectPlayer().playMusicShort(fileName + ".wav");
+    }
+
+    protected void playBackgroundMusic(String fileName)
+    {
+        getBackgroundMusicPlayer().playMusic(fileName + ".wav");
+    }
+
+    protected void stopBackgroundMusic()
+    {
+        getBackgroundMusicPlayer().stopMusic();
+    }
+
     private void centerStage(Stage stage) {
         double screenWidth = javafx.stage.Screen.getPrimary().getVisualBounds().getWidth();
         double screenHeight = javafx.stage.Screen.getPrimary().getVisualBounds().getHeight();
@@ -50,5 +68,25 @@ public class Controller
 
         stage.setX((screenWidth - stageWidth) / 2);
         stage.setY((screenHeight - stageHeight) / 2);
+    }
+
+    protected MusicPlayer getSoundEffectPlayer()
+    {
+        return soundEffectPlayer;
+    }
+
+    protected void setSoundEffectPlayer(MusicPlayer soundEffectPlayer)
+    {
+        this.soundEffectPlayer = soundEffectPlayer;
+    }
+
+    protected MusicPlayer getBackgroundMusicPlayer()
+    {
+        return backgroundMusicPlayer;
+    }
+
+    protected void setBackgroundMusicPlayer(MusicPlayer backgroundMusicPlayer)
+    {
+        this.backgroundMusicPlayer = backgroundMusicPlayer;
     }
 }

@@ -36,7 +36,7 @@ public class MenuController extends Controller
         setStage(stage);
         setDefaultValues();
         initializeUserElements();
-        playBackgroundMusic();
+        playBackgroundMusic("menu-music");
 
         initializeStage(getStage());
         initializeWindow();
@@ -44,11 +44,6 @@ public class MenuController extends Controller
     }
 
     private void setDefaultValues()
-    {
-
-    }
-
-    private void playBackgroundMusic()
     {
 
     }
@@ -72,6 +67,8 @@ public class MenuController extends Controller
 
     private void handleButtonClick(ActionEvent event)
     {
+        stopBackgroundMusic();
+
         Button clickedButton = (Button) event.getSource();
         String difficulty = clickedButton.getId();
 
