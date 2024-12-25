@@ -2,13 +2,10 @@ package htl.steyr.javafx_minesweeper_tplatzer;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -56,6 +53,8 @@ public class GameController extends Controller
     {
         setElapsedTime(0);
         setTotalMines(0);
+        setRows(0);
+        setColumns(0);
     }
 
     private void initializeWindow()
@@ -74,12 +73,7 @@ public class GameController extends Controller
 
         setGameScene(new Scene(getRoot()));
 
-        switchScene(getStage(), getGameScene(), 900, 1200, "Bomben Räum Simulator");
-    }
-
-    private void handleButtonClick(ActionEvent event)
-    {
-
+        switchScene(getStage(), getGameScene(), 1000, 1200, "Bomben Räum Simulator");
     }
 
     private void restartGame()
@@ -96,41 +90,54 @@ public class GameController extends Controller
     private void initializeGameInfoBox()
     {
         setGameInfoBox(new HBox());
+        getGameInfoBox().setAlignment(Pos.CENTER);
 
-        initializeRemainingNotMarkedBombsCounterBox();
+        Region leftSpacer = new Region();
+        Region rightSpacer = new Region();
+        HBox.setHgrow(leftSpacer, Priority.ALWAYS);
+        HBox.setHgrow(rightSpacer, Priority.ALWAYS);
+
+        initializeRemainingFlagsCounterBox();
         initializeRestartGameButton();
         initializeTimerBox();
 
-        getGameInfoBox().getChildren().addAll(getRemainingFlagCounterBox(), getRestartGameButton(), getTimerBox());
+        getGameInfoBox().getChildren().addAll(
+                getRemainingFlagCounterBox(),
+                leftSpacer,
+                getRestartGameButton(),
+                rightSpacer,
+                getTimerBox());
     }
 
-    private void initializeRemainingNotMarkedBombsCounterBox()
+    private void initializeRemainingFlagsCounterBox()
     {
         setRemainingFlagCounterBox(new HBox());
         getRemainingFlagCounterBox().setAlignment(Pos.CENTER);
         getRemainingFlagCounterBox().getStyleClass().add("info-box");
 
-        initializeRemainingNotMarkedBombsLabel();
+        initializeRemainingFlagsCounterLabel();
 
         getRemainingFlagCounterBox().getChildren().add(getRemainingFlagCounterLabel());
     }
 
-    private void initializeRemainingNotMarkedBombsLabel()
+    private void initializeRemainingFlagsCounterLabel()
     {
         setRemainingFlagCounterLabel(new Label(formatCounter(getTotalMines())));
         getRemainingFlagCounterLabel().getStyleClass().add("info-label");
     }
 
-    private void updateRemainingNotMarkedBombsCounter()
+    protected void updateRemainingFlagsCounter()
     {
-        getRemainingFlagCounterLabel().setText(formatCounter(getRemainingNotMarkedBombs()));
+        int remainingBombs = getTotalMines() - (int) getCells().stream().filter(Cell::isFlagged).count();
+
+        getRemainingFlagCounterLabel().setText(formatCounter(remainingBombs));
     }
 
     private void initializeRestartGameButton()
     {
         setRestartGameButton(new Button());
-        getRestartGameButton().getStyleClass().add("restart-button");
         getRestartGameButton().setFocusTraversable(false);
+        getRestartGameButton().getStyleClass().add("restart-button");
 
         updateRestartGameButton("neutral");
 
@@ -174,23 +181,15 @@ public class GameController extends Controller
             getTimerLabel().setText(formatTime(getElapsedTime()));
         })));
         getTimer().setCycleCount(Timeline.INDEFINITE);
-        timer.play();
+        getTimer().play();
     }
 
     private void stopTimer()
     {
-        if (timer != null)
+        if (getTimer() != null)
         {
-            timer.stop();
+            getTimer().stop();
         }
-    }
-
-    private void resetTimer()
-    {
-        stopTimer();
-        setElapsedTime(0);
-        getTimerLabel().setText(formatTime(getElapsedTime()));
-        startTimer();
     }
 
     private void initializeGameField()
@@ -198,7 +197,8 @@ public class GameController extends Controller
         int rows;
         int columns;
 
-        switch (getDifficulty()) {
+        switch (getDifficulty())
+        {
             case "beginner":
                 rows = 8;
                 columns = 8;
@@ -252,22 +252,13 @@ public class GameController extends Controller
         getGameField().getStyleClass().add("game-field");
     }
 
-    private int getRemainingNotMarkedBombs() {
-        int correctFlags = 0;
-        for (Cell cell : getCells()) {
-            if (cell.isFlagged() && cell.isBomb()) {
-                correctFlags++;
-            }
-        }
-        return getTotalMines() - correctFlags;
-    }
-
     private String formatCounter(int count)
     {
         return String.format("%03d", count);
     }
 
-    private String formatTime(int time) {
+    private String formatTime(int time)
+    {
         return String.format("%03d", time);
     }
 
