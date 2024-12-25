@@ -250,26 +250,6 @@ public class GameController extends Controller
         getGameField().getStyleClass().add("game-field");
     }
 
-    private void placeFlag(Cell cell)
-    {
-        if (!cell.isFlagged() && !cell.isRevealed())
-        {
-            cell.setFlagged(true);
-            setPlacedFlags(getPlacedFlags() + 1);
-            updateRemainingNotMarkedBombsCounter();
-        }
-    }
-
-    private void removeFlag(Cell cell)
-    {
-        if (cell.isFlagged() && !cell.isRevealed())
-        {
-            cell.setFlagged(false);
-            setPlacedFlags(getPlacedFlags() - 1);
-            updateRemainingNotMarkedBombsCounter();
-        }
-    }
-
     private int getRemainingNotMarkedBombs() {
         int correctFlags = 0;
         for (Cell cell : getCells()) {
