@@ -19,8 +19,6 @@ public class GameController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
     private static final int maxHBoxHeight = 700;
-    private static final int maxButtonWidth = 200;
-    private static final int maxButtonHeight = 100;
     private Scene gameScene;
     private VBox root = new VBox();
     private HBox gameInfoBox;
@@ -35,7 +33,6 @@ public class GameController extends Controller
     private Stage stage;
     private String difficulty;
     private int totalMines = 0;
-    private int placedFlags = 0;
     private List<Cell> cells;
 
     public GameController(String difficulty)
@@ -57,7 +54,6 @@ public class GameController extends Controller
     {
         setElapsedTime(0);
         setTotalMines(0);
-        setPlacedFlags(0);
     }
 
     private void initializeWindow()
@@ -303,16 +299,6 @@ public class GameController extends Controller
         return maxHBoxHeight;
     }
 
-    public static int getMaxButtonWidth()
-    {
-        return maxButtonWidth;
-    }
-
-    public static int getMaxButtonHeight()
-    {
-        return maxButtonHeight;
-    }
-
     public String getDifficulty()
     {
         return difficulty;
@@ -451,16 +437,6 @@ public class GameController extends Controller
     public void setTotalMines(int totalMines)
     {
         this.totalMines = totalMines;
-    }
-
-    public int getPlacedFlags()
-    {
-        return placedFlags;
-    }
-
-    public void setPlacedFlags(int placedFlags)
-    {
-        this.placedFlags = placedFlags;
     }
 
     public List<Cell> getCells()
