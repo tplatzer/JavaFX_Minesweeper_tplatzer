@@ -22,17 +22,19 @@ public class GameController extends Controller
     private Scene gameScene;
     private VBox root = new VBox();
     private HBox gameInfoBox;
-    private HBox remainingNotMarkedBombsCounterBox;
-    private Label remainingNotMarkedBombsLabel;
+    private HBox remainingFlagCounterBox;
+    private Label remainingFlagCounterLabel;
     private Button restartGameButton;
     private HBox timerBox;
     private Label timerLabel;
-    private int elapsedTime = 0;
+    private int elapsedTime;
     private Timeline timer;
     private GridPane gameField;
     private Stage stage;
     private String difficulty;
     private int totalMines = 0;
+    private int rows;
+    private int columns;
     private List<Cell> cells;
 
     public GameController(String difficulty)
@@ -99,29 +101,29 @@ public class GameController extends Controller
         initializeRestartGameButton();
         initializeTimerBox();
 
-        getGameInfoBox().getChildren().addAll(getRemainingNotMarkedBombsCounterBox(), getRestartGameButton(), getTimerBox());
+        getGameInfoBox().getChildren().addAll(getRemainingFlagCounterBox(), getRestartGameButton(), getTimerBox());
     }
 
     private void initializeRemainingNotMarkedBombsCounterBox()
     {
-        setRemainingNotMarkedBombsCounterBox(new HBox());
-        getRemainingNotMarkedBombsCounterBox().setAlignment(Pos.CENTER);
-        getRemainingNotMarkedBombsCounterBox().getStyleClass().add("info-box");
+        setRemainingFlagCounterBox(new HBox());
+        getRemainingFlagCounterBox().setAlignment(Pos.CENTER);
+        getRemainingFlagCounterBox().getStyleClass().add("info-box");
 
         initializeRemainingNotMarkedBombsLabel();
 
-        getRemainingNotMarkedBombsCounterBox().getChildren().add(getRemainingNotMarkedBombsLabel());
+        getRemainingFlagCounterBox().getChildren().add(getRemainingFlagCounterLabel());
     }
 
     private void initializeRemainingNotMarkedBombsLabel()
     {
-        setRemainingNotMarkedBombsLabel(new Label(formatCounter(getTotalMines())));
-        getRemainingNotMarkedBombsLabel().getStyleClass().add("info-label");
+        setRemainingFlagCounterLabel(new Label(formatCounter(getTotalMines())));
+        getRemainingFlagCounterLabel().getStyleClass().add("info-label");
     }
 
     private void updateRemainingNotMarkedBombsCounter()
     {
-        getRemainingNotMarkedBombsLabel().setText(formatCounter(getRemainingNotMarkedBombs()));
+        getRemainingFlagCounterLabel().setText(formatCounter(getRemainingNotMarkedBombs()));
     }
 
     private void initializeRestartGameButton()
@@ -329,14 +331,14 @@ public class GameController extends Controller
         this.gameInfoBox = gameInfoBox;
     }
 
-    public HBox getRemainingNotMarkedBombsCounterBox()
+    public HBox getRemainingFlagCounterBox()
     {
-        return remainingNotMarkedBombsCounterBox;
+        return remainingFlagCounterBox;
     }
 
-    public void setRemainingNotMarkedBombsCounterBox(HBox remainingNotMarkedBombsCounterBox)
+    public void setRemainingFlagCounterBox(HBox remainingFlagCounterBox)
     {
-        this.remainingNotMarkedBombsCounterBox = remainingNotMarkedBombsCounterBox;
+        this.remainingFlagCounterBox = remainingFlagCounterBox;
     }
 
     public HBox getTimerBox()
@@ -399,14 +401,14 @@ public class GameController extends Controller
         this.timer = timer;
     }
 
-    public Label getRemainingNotMarkedBombsLabel()
+    public Label getRemainingFlagCounterLabel()
     {
-        return remainingNotMarkedBombsLabel;
+        return remainingFlagCounterLabel;
     }
 
-    public void setRemainingNotMarkedBombsLabel(Label remainingNotMarkedBombsLabel)
+    public void setRemainingFlagCounterLabel(Label remainingFlagCounterLabel)
     {
-        this.remainingNotMarkedBombsLabel = remainingNotMarkedBombsLabel;
+        this.remainingFlagCounterLabel = remainingFlagCounterLabel;
     }
 
     public int getTotalMines()
@@ -427,5 +429,25 @@ public class GameController extends Controller
     public void setCells(List<Cell> cells)
     {
         this.cells = cells;
+    }
+
+    public int getRows()
+    {
+        return rows;
+    }
+
+    public void setRows(int rows)
+    {
+        this.rows = rows;
+    }
+
+    public int getColumns()
+    {
+        return columns;
+    }
+
+    public void setColumns(int columns)
+    {
+        this.columns = columns;
     }
 }
