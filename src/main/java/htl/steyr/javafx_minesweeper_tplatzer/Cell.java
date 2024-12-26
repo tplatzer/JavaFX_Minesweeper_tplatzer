@@ -15,14 +15,14 @@ public class Cell
     private Button button;
     private GameController controller;
     private int row;
-    private int col;
+    private int column;
 
-    public Cell (boolean isBomb, GameController controller, int row, int col)
+    public Cell (boolean isBomb, GameController controller, int row, int column)
     {
         setBomb(isBomb);
         setController(controller);
         setRow(row);
-        setCol(col);
+        setColumn(column);
 
         setFlagged(false);
         setRevealed(false);
@@ -112,9 +112,9 @@ public class Cell
     {
         for (int row = getRow() - 1; row <= getRow() + 1; row++)
         {
-            for (int col = getCol() - 1; col <= getCol() + 1; col++)
+            for (int col = getColumn() - 1; col <= getColumn() + 1; col++)
             {
-                if (getController().isInBounds(row, col) && !(row == getRow() && col == getCol()))
+                if (getController().isInBounds(row, col) && !(row == getRow() && col == getColumn()))
                 {
                     Cell neighbor = getController().getCellAt(row, col);
 
@@ -206,13 +206,13 @@ public class Cell
         this.row = row;
     }
 
-    public int getCol()
+    public int getColumn()
     {
-        return col;
+        return column;
     }
 
-    public void setCol(int col)
+    public void setColumn(int column)
     {
-        this.col = col;
+        this.column = column;
     }
 }
