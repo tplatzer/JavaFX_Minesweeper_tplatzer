@@ -13,6 +13,15 @@ import javafx.util.Duration;
 
 import java.util.*;
 
+/**
+ * @ToDo
+ *
+ * Dead Button Bug
+ * Bug:
+ * Some Buttons won't work when clicked on or when fields with 0 bombs nearby are revealed.
+ *
+ */
+
 public class GameController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
@@ -152,14 +161,11 @@ public class GameController extends Controller
 
     protected void checkWinCondition()
     {
-        boolean allBombsCorrectlyFlagged = getCells().stream()
-                .filter(Cell::isBomb)
-                .allMatch(Cell::isFlagged);
-        boolean noFalseFlags = getCells().stream()
+        boolean allNotBombCellsRevealed = getCells().stream()
                 .filter(cell -> !cell.isBomb())
-                .noneMatch(Cell::isFlagged);
+                .allMatch(Cell::isRevealed);
 
-        if (allBombsCorrectlyFlagged && noFalseFlags)
+        if (allNotBombCellsRevealed)
         {
             endGame(true);
         }
