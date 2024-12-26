@@ -13,15 +13,6 @@ import javafx.util.Duration;
 
 import java.util.*;
 
-/**
- * @ToDo
- *
- * Dead Button Bug
- * Bug:
- * Some Buttons won't work when clicked on or when fields with 0 bombs nearby are revealed.
- *
- */
-
 public class GameController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
@@ -97,7 +88,7 @@ public class GameController extends Controller
         stopBackgroundMusic();
 
         getRestartGameButton().setDisable(true);
-        for (Cell cell: getCells())
+        for (Cell cell : getCells())
         {
             cell.getButton().setDisable(true);
         }
@@ -235,17 +226,13 @@ public class GameController extends Controller
         getRestartGameButton().setOnAction(event -> restartGame());
     }
 
-    /**
-     * @ToDo
-     *
-     * Switch Ascii/UTF-8 Smiley with Graphics
-     */
     private void updateRestartGameButton(String status)
     {
         switch (status)
         {
             case "win" -> getRestartGameButton().setText("😎");
             case "lose" -> getRestartGameButton().setText("😵");
+            case "nervous" -> getRestartGameButton().setText("😯");
             default -> getRestartGameButton().setText("🙂");
         }
     }
@@ -315,6 +302,22 @@ public class GameController extends Controller
         }
 
         initializeField(rows, columns);
+
+        getGameField().setOnMousePressed(event ->
+        {
+            if (event.isPrimaryButtonDown() || event.isSecondaryButtonDown())
+            {
+                updateRestartGameButton("nervous");
+            }
+        });
+
+        getGameField().setOnMousePressed(event ->
+        {
+            if (!event.isPrimaryButtonDown() || !event.isSecondaryButtonDown())
+            {
+                updateRestartGameButton("neutral");
+            }
+        });
     }
 
     private void initializeField(int rows, int columns)
@@ -334,6 +337,23 @@ public class GameController extends Controller
                 Cell cell = new Cell(false, this, row, col);
                 cell.getButton().setPrefWidth(buttonWidth);
                 cell.getButton().setPrefHeight(buttonHeight);
+
+                cell.getButton().setOnMousePressed(event ->
+                {
+                    if (event.isPrimaryButtonDown() || event.isSecondaryButtonDown())
+                    {
+                        updateRestartGameButton("nervous");
+                    }
+                });
+
+                cell.getButton().setOnMouseReleased(event ->
+                {
+                    if (!event.isPrimaryButtonDown() || !event.isSecondaryButtonDown())
+                    {
+                        updateRestartGameButton("neutral");
+                    }
+                });
+
                 getCells().add(cell);
             }
         }

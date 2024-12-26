@@ -13,9 +13,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 /**
- * @ToDo
- *
- * Anzeige der besten Zeit für jeden Spielmodus unter dem jeweiligen Spielmodus
+ * @ToDo Anzeige der besten Zeit für jeden Spielmodus unter dem jeweiligen Spielmodus
  */
 
 public class MenuController extends Controller
@@ -158,9 +156,15 @@ public class MenuController extends Controller
         return maxButtonHeight;
     }
 
-    public static int getMaxVBoxWidth() {return maxVBoxWidth;}
+    public static int getMaxVBoxWidth()
+    {
+        return maxVBoxWidth;
+    }
 
-    public static int getMaxVBoxHeight() {return maxVBoxHeight;}
+    public static int getMaxVBoxHeight()
+    {
+        return maxVBoxHeight;
+    }
 
     public Stage getStage()
     {
