@@ -80,7 +80,8 @@ public class GameController extends Controller
 
     private void restartGame()
     {
-
+        stopBackgroundMusic();
+        new GameController(getDifficulty()).start(getStage());
     }
 
     protected void endGame(boolean won)
