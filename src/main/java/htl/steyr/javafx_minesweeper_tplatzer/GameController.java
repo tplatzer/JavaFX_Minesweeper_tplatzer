@@ -354,6 +354,21 @@ public class GameController extends Controller
         return String.format("%03d", time);
     }
 
+    private String getRandomWinJingle()
+    {
+        return "win-jingle-" + (Math.random() < 0.5 ? "1" : "2");
+    }
+
+    private String getRandomLoseJingle()
+    {
+        return "lose-jingle-" + (Math.random() < 0.5 ? "1" : "2");
+    }
+
+    private String getRandomBombExplosion()
+    {
+        return "bomb-explosion-" + (Math.random() < 0.5 ? "1" : "2");
+    }
+
     public static int getMaxHBoxWidth()
     {
         return maxHBoxWidth;
