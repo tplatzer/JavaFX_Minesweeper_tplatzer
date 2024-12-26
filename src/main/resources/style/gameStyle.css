@@ -5,6 +5,15 @@
     -fx-padding: 10px 10px 10px 10px;
 }
 
+.game-info-box
+{
+    -fx-border-color: #808080 #ffffff #ffffff #808080;
+    -fx-border-width: 3px;
+    -fx-padding: 5px;
+    -fx-hgap: 5px;
+    -fx-vgap: 5px;
+}
+
 .info-box
 {
     -fx-background-color: #c0c0c0;

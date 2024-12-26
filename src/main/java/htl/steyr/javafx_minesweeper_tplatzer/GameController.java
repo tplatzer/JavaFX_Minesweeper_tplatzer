@@ -175,6 +175,7 @@ public class GameController extends Controller
     {
         setGameInfoBox(new HBox());
         getGameInfoBox().setAlignment(Pos.CENTER);
+        getGameInfoBox().getStyleClass().add("game-info-box");
 
         Region leftSpacer = new Region();
         Region rightSpacer = new Region();
@@ -228,6 +229,11 @@ public class GameController extends Controller
         getRestartGameButton().setOnAction(event -> restartGame());
     }
 
+    /**
+     * @ToDo
+     *
+     * Switch Ascii/UTF-8 Smiley with Graphics
+     */
     private void updateRestartGameButton(String status)
     {
         switch (status)

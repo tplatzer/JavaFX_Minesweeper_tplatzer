@@ -60,7 +60,8 @@ public class Controller
         getBackgroundMusicPlayer().stopMusic();
     }
 
-    private void centerStage(Stage stage) {
+    private void centerStage(Stage stage)
+    {
         double screenWidth = javafx.stage.Screen.getPrimary().getVisualBounds().getWidth();
         double screenHeight = javafx.stage.Screen.getPrimary().getVisualBounds().getHeight();
 

@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+/**
+ * @ToDo
+ *
+ * Anzeige der besten Zeit für jeden Spielmodus unter dem jeweiligen Spielmodus
+ */
+
 public class MenuController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
