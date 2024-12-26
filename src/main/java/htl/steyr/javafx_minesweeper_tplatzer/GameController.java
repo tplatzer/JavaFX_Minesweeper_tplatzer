@@ -5,13 +5,12 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.security.Key;
-import java.security.KeyException;
 import java.util.*;
 
 public class GameController extends Controller
@@ -31,7 +30,7 @@ public class GameController extends Controller
     private GridPane gameField;
     private Stage stage;
     private String difficulty;
-    private int totalMines = 0;
+    private int totalMines;
     private int rows;
     private int columns;
     private List<Cell> cells;
@@ -46,7 +45,7 @@ public class GameController extends Controller
         setStage(stage);
         setDefaultValues();
         initializeUserElements();
-        //playBackgroundMusic("background-music");
+        playBackgroundMusic("background-music");
 
         initializeWindow();
     }
@@ -74,7 +73,6 @@ public class GameController extends Controller
                 Objects.requireNonNull(getClass().getResource("/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
-
         switchScene(getStage(), getGameScene(), 1000, 1200, "Bomben Räum Simulator");
     }
 
@@ -339,6 +337,15 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
+
+                // Displays all Bombs at the Game Start for Testing Reason
+                ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + "icon" + ".png")).toExternalForm());
+                double iconSize = cell.getButton().getPrefWidth() * 0.9;
+                imageView.setFitWidth(iconSize);
+                imageView.setFitHeight(iconSize);
+                imageView.setPreserveRatio(true);
+                cell.getButton().setGraphic(imageView);
+
                 bombsPlaced++;
             }
         }
@@ -477,11 +484,6 @@ public class GameController extends Controller
     public VBox getRoot()
     {
         return root;
-    }
-
-    public void setRoot(VBox root)
-    {
-        this.root = root;
     }
 
     public Stage getStage()
