@@ -84,6 +84,31 @@ public class GameController extends Controller
 
     protected void endGame(boolean won)
     {
+        stopTimer();
+        stopBackgroundMusic();
+
+        getRestartGameButton().setDisable(true);
+        for (Cell cell: getCells())
+        {
+            cell.getButton().setDisable(true);
+        }
+
+        if (won)
+        {
+            wonGame();
+        } else
+        {
+            lossGame();
+        }
+    }
+
+    private void wonGame()
+    {
+
+    }
+
+    private void lossGame()
+    {
 
     }
 
