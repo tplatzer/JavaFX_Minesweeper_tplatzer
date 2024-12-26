@@ -13,14 +13,11 @@ import javafx.util.Duration;
 import java.util.*;
 
 /**
- * @ToDo
- *
- * Zahlen Schriftwart größer
- * Bomben Counter wird Hellblau, wenn der Counter auf 0 ist und dann kann man draufklicken um alle nicht geflaggten Cellen zu revealen.
+ * @ToDo Zahlen Schriftwart größer
  * Alle falsch gesetzten Flags werden zu durchgestrichenen Bomben, wenn eine Bombe aufgdeckt wird (das Game ended)
- *
+ * <p>
  * felder mit Bomben werden beim Vollständigen aufdecken Rot (Wenn Game Over)
- *
+ * <p>
  * der Flage Counter soll 099 anzeichen und wenn es negativ wird dann -01 (also dreistellig wenn positiv und 2 stellig mit minus wenn negativ)
  */
 
@@ -142,7 +139,7 @@ public class GameController extends Controller
         Timeline revealBombsTimeLine = new Timeline();
         for (Cell bombCell : bombCells)
         {
-            revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentReveal()));
+            revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal()));
         }
 
         revealBombsTimeLine.setOnFinished(event ->
@@ -228,6 +225,25 @@ public class GameController extends Controller
 
         if (remainingBombs == 0) getRemainingFlagCounterLabel().setId("counter-teal");
         else getRemainingFlagCounterLabel().setId("counter-red");
+
+        getRemainingFlagCounterLabel().setOnMouseClicked(event ->
+        {
+            if (remainingBombs == 0)
+            {
+                revealAllUnflaggedCellsWithSound();
+            }
+        });
+    }
+
+    private void revealAllUnflaggedCellsWithSound()
+    {
+        stopBackgroundMusic();
+
+        getCells().stream()
+                .filter(cell -> !cell.isFlagged() && !cell.isRevealed())
+                .forEach(cell -> cell.reveal(true));
+
+        endGame(false);
     }
 
     private void initializeRestartGameButton()

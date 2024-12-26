@@ -68,7 +68,12 @@ public class Cell
         }
     }
 
-    private void reveal()
+    protected void reveal()
+    {
+        reveal(false);
+    }
+
+    protected void reveal(boolean suppressEndGame)
     {
         if (isRevealed() || isFlagged())
         {
@@ -87,8 +92,8 @@ public class Cell
 
         if (isBomb())
         {
-            silentReveal();
-            getController().endGame(false);
+            silentBombReveal();
+            if (!suppressEndGame) getController().endGame(false);
         } else if (getAdjacentBombs() > 0)
         {
             getButton().setText(String.valueOf(getAdjacentBombs()));
@@ -102,7 +107,7 @@ public class Cell
         getController().checkWinCondition();
     }
 
-    protected void silentReveal()
+    protected void silentBombReveal()
     {
         getButton().setText("");
         setIconForButton("bomb");
