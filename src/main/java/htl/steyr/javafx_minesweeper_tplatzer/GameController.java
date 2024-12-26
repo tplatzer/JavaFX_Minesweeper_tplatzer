@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -73,7 +72,7 @@ public class GameController extends Controller
                 Objects.requireNonNull(getClass().getResource("/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
-        switchScene(getStage(), getGameScene(), 1000, 1500, "Bomben Räum Simulator");
+        switchScene(getStage(), getGameScene(), getDifficulty(), "Bomben Räum Simulator");
     }
 
     private void restartGame()
@@ -353,15 +352,6 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
-
-                // Displays all Bombs at the Game Start for Testing Reason
-                ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + "icon" + ".png")).toExternalForm());
-                double iconSize = cell.getButton().getPrefWidth() * 0.9;
-                imageView.setFitWidth(iconSize);
-                imageView.setFitHeight(iconSize);
-                imageView.setPreserveRatio(true);
-                cell.getButton().setGraphic(imageView);
-
                 bombsPlaced++;
             }
         }
@@ -396,7 +386,7 @@ public class GameController extends Controller
         getGameField().setAlignment(Pos.CENTER);
         getGameField().getStyleClass().add("game-field");
 
-        double gap = 5;
+        double gap = 0;
         getGameField().setHgap(gap);
         getGameField().setVgap(gap);
 

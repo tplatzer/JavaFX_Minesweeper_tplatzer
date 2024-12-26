@@ -19,10 +19,11 @@ public class Controller
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/img/icon.png")).toExternalForm()));
     }
 
-    protected void switchScene(Stage stage, Scene newScene, double newHeight, double newWidth, String title)
+    protected void switchScene(Stage stage, Scene newScene, String title, double newHeight, double newWidth)
     {
         stage.setScene(newScene);
         stage.setTitle(title);
+        stage.setResizable(false);
 
         if (newHeight != -1)
         {
@@ -33,6 +34,35 @@ public class Controller
             stage.setWidth(newWidth);
         }
         centerStage(stage);
+    }
+
+    public void switchScene(Stage stage, Scene newScene, String gameMode, String title)
+    {
+        int windowWidth;
+        int windowHeight;
+        int buttonSize = 45;
+
+        windowHeight = switch (gameMode)
+        {
+            case "beginner" ->
+            {
+                windowWidth = 9 * buttonSize + 5;
+                yield 9 * buttonSize + 100;
+            }
+            case "advanced" ->
+            {
+                windowWidth = 16 * buttonSize + 50;
+                yield 16 * buttonSize + 150;
+            }
+            case "pro" ->
+            {
+                windowWidth = 30 * buttonSize + 50;
+                yield 16 * buttonSize + 150;
+            }
+            default -> throw new IllegalArgumentException("Invalid game mode: " + gameMode);
+        };
+
+        switchScene(stage, newScene, title, windowHeight, windowWidth);
     }
 
     protected Text initializeText(String id, String msg)
