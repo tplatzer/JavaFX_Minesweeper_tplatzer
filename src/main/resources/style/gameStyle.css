@@ -66,8 +66,8 @@
     -fx-border-color: #808080 #ffffff #ffffff #808080;
     -fx-border-width: 3px;
     -fx-padding: 5px;
-    -fx-hgap: 5px;
-    -fx-vgap: 5px;
+    -fx-hgap: 0px;
+    -fx-vgap: 0px;
 }
 
 .cell-button
@@ -77,18 +77,25 @@
     -fx-text-fill: black;
     -fx-background-color: #c0c0c0;
     -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
+    -fx-border-width: 4px;
     -fx-alignment: center;
 
-    -fx-min-width: 30px;
-    -fx-min-height: 30px;
-    -fx-max-width: Infinity;
-    -fx-max-height: Infinity;
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-pref-width: 45px;
+    -fx-pref-height: 45px;
+    -fx-max-width: 45px;
+    -fx-max-height: 45px;
+
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }
 
 .cell-button:pressed
 {
     -fx-background-color: #a0a0a0;
+    -fx-border-color: #808080 #ffffff #ffffff #808080;
+    -fx-border-width: 4px;
 }
 
 .cell-button-revealed
@@ -97,14 +104,20 @@
     -fx-border-color: #808080;
     -fx-border-width: 1px;
     -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 30px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
+
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }
 
 .button:disabled
 {
     -fx-opacity: 1.0;
     -fx-cursor: default;
+
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }
 
 .cell-number-1 { -fx-text-fill: blue; }

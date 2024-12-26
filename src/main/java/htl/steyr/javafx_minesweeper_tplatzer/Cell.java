@@ -95,7 +95,7 @@ public class Cell
             getButton().getStyleClass().add("cell-number-" + getAdjacentBombs());
         } else
         {
-            getButton().setVisible(false);
+            getButton().getStyleClass().add("cell-button-revealed");
             revealAdjacentCells();
         }
 
@@ -150,7 +150,7 @@ public class Cell
 
                         if (neighbor.getAdjacentBombs() == 0)
                         {
-                            neighbor.getButton().setVisible(false);
+                            neighbor.getButton().getStyleClass().add("cell-button-revealed");
                             neighbor.revealAdjacentCells();
                         } else
                         {
