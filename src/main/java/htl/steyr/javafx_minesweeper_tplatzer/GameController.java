@@ -104,12 +104,22 @@ public class GameController extends Controller
 
     private void wonGame()
     {
+        updateRestartGameButton("win");
+        String winJingle = getRandomWinJingle();
+        playSoundEffect(winJingle);
 
+        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(winJingle) - 0.5), event -> switchToMenu()));
+        delay.play();
     }
 
     private void lossGame()
     {
 
+    }
+
+    private void switchToMenu()
+    {
+        new MenuController().start(getStage());
     }
 
     protected void checkWinCondition()
