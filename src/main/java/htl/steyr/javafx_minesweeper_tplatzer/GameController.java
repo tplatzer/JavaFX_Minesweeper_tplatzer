@@ -12,6 +12,18 @@ import javafx.util.Duration;
 
 import java.util.*;
 
+/**
+ * @ToDo
+ *
+ * Zahlen Schriftwart größer
+ * Bomben Counter wird Hellblau, wenn der Counter auf 0 ist und dann kann man draufklicken um alle nicht geflaggten Cellen zu revealen.
+ * Alle falsch gesetzten Flags werden zu durchgestrichenen Bomben, wenn eine Bombe aufgdeckt wird (das Game ended)
+ *
+ * felder mit Bomben werden beim Vollständigen aufdecken Rot (Wenn Game Over)
+ *
+ * der Flage Counter soll 099 anzeichen und wenn es negativ wird dann -01 (also dreistellig wenn positiv und 2 stellig mit minus wenn negativ)
+ */
+
 public class GameController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
@@ -212,6 +224,9 @@ public class GameController extends Controller
         int remainingBombs = getTotalMines() - (int) getCells().stream().filter(Cell::isFlagged).count();
 
         getRemainingFlagCounterLabel().setText(formatCounter(remainingBombs));
+
+        if (remainingBombs == 0) getRemainingFlagCounterLabel().setId("counter-teal");
+        else getRemainingFlagCounterLabel().setId("counter-red");
     }
 
     private void initializeRestartGameButton()
