@@ -1,6 +1,5 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
