@@ -1,7 +1,10 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+
+import java.util.Objects;
 
 public class Cell
 {
@@ -39,18 +42,57 @@ public class Cell
         });
     }
 
-    private void reveal()
-    {
-
-    }
-
     private void toggleFlag()
     {
 
     }
 
+    private void reveal()
+    {
+        if (isRevealed() || isFlagged())
+        {
+            return;
+        }
 
+        setRevealed(true);
 
+        if (isBomb())
+        {
+            silentReveal();
+
+            getController().endGame(false);
+        } else if (getAdjacentBombs() > 0)
+        {
+            getButton().setText(String.valueOf(getAdjacentBombs()));
+        } else
+        {
+            getButton().setVisible(false);
+            revealAdjacentCells();
+        }
+
+        getController().checkWinCondition();
+    }
+
+    private void silentReveal()
+    {
+        getButton().setText("");
+        setIconForButton("bomb");
+    }
+
+    private void setIconForButton(String icon)
+    {
+
+    }
+
+    private void removeIconFromButton()
+    {
+
+    }
+
+    private void revealAdjacentCells()
+    {
+
+    }
 
     public boolean isBomb()
     {
