@@ -1,8 +1,7 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
 import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 public class MusicPlayer
@@ -11,10 +10,11 @@ public class MusicPlayer
 
     public void playMusic(String fileName, float volume)
     {
-        File audioFile = new File(Objects.requireNonNull(getClass().getResource("/sfx/" + fileName)).toExternalForm().replace("file:", ""));
-        try
+        try (InputStream audioStream = getClass().getResourceAsStream("/sfx/" + fileName))
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
+            Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
+
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(audioStream));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 
@@ -30,9 +30,11 @@ public class MusicPlayer
 
     public void playMusicShort(String fileName, float volume)
     {
-        try
+        try (InputStream audioStream = getClass().getResourceAsStream("/sfx/" + fileName))
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(Objects.requireNonNull(getClass().getResource("/sfx/" + fileName)).toExternalForm().replace("file:", "")));
+            Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
+
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(audioStream));
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 
