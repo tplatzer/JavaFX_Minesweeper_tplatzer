@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Objects;
 
 public class Controller
@@ -67,6 +69,11 @@ public class Controller
 
         stage.setX((screenWidth - stageWidth) / 2);
         stage.setY((screenHeight - stageHeight) / 2);
+    }
+
+    public static void checkIfInputStreamIsNotNull(InputStream inputStream, String fileName) throws FileNotFoundException
+    {
+        if (inputStream == null) throw new FileNotFoundException("File not found: " + fileName);
     }
 
     protected MusicPlayer getSoundEffectPlayer()
