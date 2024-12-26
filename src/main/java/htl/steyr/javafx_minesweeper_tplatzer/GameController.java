@@ -217,6 +217,7 @@ public class GameController extends Controller
     {
         setRemainingFlagCounterLabel(new Label(formatCounter(getTotalMines())));
         getRemainingFlagCounterLabel().getStyleClass().add("info-label");
+        getRemainingFlagCounterLabel().setId("counter-red");
     }
 
     protected void updateRemainingFlagsCounter()
