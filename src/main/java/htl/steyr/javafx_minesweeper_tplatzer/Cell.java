@@ -110,7 +110,30 @@ public class Cell
 
     private void revealAdjacentCells()
     {
+        for (int row = getRow() - 1; row <= getRow() + 1; row++)
+        {
+            for (int col = getCol() - 1; col <= getCol() + 1; col++)
+            {
+                if (getController().isInBounds(row, col) && !(row == getRow() && col == getCol()))
+                {
+                    Cell neighbor = getController().getCellAt(row, col);
 
+                    if (!neighbor.isRevealed() && !neighbor.isFlagged())
+                    {
+                        neighbor.setRevealed(true);
+
+                        if (neighbor.getAdjacentBombs() == 0)
+                        {
+                            neighbor.getButton().setVisible(false);
+                            neighbor.revealAdjacentCells();
+                        } else
+                        {
+                            neighbor.getButton().setText(String.valueOf(neighbor.getAdjacentBombs()));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public boolean isBomb()
