@@ -44,7 +44,21 @@ public class Cell
 
     private void toggleFlag()
     {
+        if (!isRevealed())
+        {
+            setFlagged(!isFlagged());
 
+            if (isFlagged())
+            {
+                setIconForButton("flag");
+            } else
+            {
+                removeIconFromButton();
+            }
+
+            getController().updateRemainingFlagsCounter();
+            getController().checkWinCondition();
+        }
     }
 
     private void reveal()
