@@ -22,30 +22,24 @@ public class MenuController extends Controller
     private static final int maxButtonHeight = 100;
     private Stage stage;
     private Scene menuScene;
-    private VBox root = new VBox();
+    private final VBox root = new VBox();
     private Text titleText;
     private Text choiceText;
     private Button beginnerButton;
     private Button advancedButton;
     private Button proButton;
-    private HBox difficultyButtonBox = new HBox();
-    private VBox chooseGameModeBox = new VBox();
+    private HBox difficultyButtonBox;
+    private VBox chooseGameModeBox;
 
     public void start(Stage stage)
     {
         setStage(stage);
-        setDefaultValues();
         initializeUserElements();
-        //playBackgroundMusic("menu-music");
+        playBackgroundMusic("menu-music");
 
         initializeStage(getStage());
         initializeWindow();
         getStage().show();
-    }
-
-    private void setDefaultValues()
-    {
-
     }
 
     private void initializeWindow()
@@ -57,6 +51,7 @@ public class MenuController extends Controller
         getRoot().prefWidthProperty().bind(getStage().widthProperty());
         getRoot().prefHeightProperty().bind(getStage().heightProperty());
         getRoot().getChildren().addAll(getTitleText(), getChooseGameModeBox());
+        getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
                 Objects.requireNonNull(getClass().getResource("/style/style.css")).toExternalForm(),
                 Objects.requireNonNull(getClass().getResource("/style/menuStyle.css")).toExternalForm());
@@ -91,7 +86,7 @@ public class MenuController extends Controller
     private Button initializeDifficultyButton(String id)
     {
         Button button = new Button();
-        //button.setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
+        button.setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
         button.getStyleClass().add("button");
         button.setId(id);
         button.setText(id.toUpperCase());
@@ -110,6 +105,8 @@ public class MenuController extends Controller
 
     private void initializeChooseGameModeBox()
     {
+        setChooseGameModeBox(new VBox());
+
         getChooseGameModeBox().setSpacing(10);
         getChooseGameModeBox().setAlignment(Pos.CENTER);
         getChooseGameModeBox().setMinSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
@@ -121,6 +118,8 @@ public class MenuController extends Controller
 
     private void initializeDifficultyButtonBox()
     {
+        setDifficultyButtonBox(new HBox());
+
         setBeginnerButton(initializeDifficultyButton("beginner"));
         setAdvancedButton(initializeDifficultyButton("advanced"));
         setProButton(initializeDifficultyButton("pro"));
@@ -128,7 +127,7 @@ public class MenuController extends Controller
         getDifficultyButtonBox().setSpacing(10);
         getDifficultyButtonBox().setAlignment(Pos.CENTER);
         getDifficultyButtonBox().getStyleClass().add("box");
-        getDifficultyButtonBox().setId("difficultyButtonBox");
+        getDifficultyButtonBox().setId("difficulty-button-box");
 
         getDifficultyButtonBox().getChildren().addAll(getBeginnerButton(), getAdvancedButton(), getProButton());
     }
@@ -170,11 +169,6 @@ public class MenuController extends Controller
     public VBox getRoot()
     {
         return root;
-    }
-
-    public void setRoot(VBox root)
-    {
-        this.root = root;
     }
 
     public Scene getMenuScene()
