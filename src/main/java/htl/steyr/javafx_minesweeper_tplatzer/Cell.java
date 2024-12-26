@@ -87,7 +87,7 @@ public class Cell
         getController().checkWinCondition();
     }
 
-    private void silentReveal()
+    protected void silentReveal()
     {
         getButton().setText("");
         setIconForButton("bomb");
