@@ -153,7 +153,17 @@ public class GameController extends Controller
 
     protected void checkWinCondition()
     {
+        boolean allBombsCorrectlyFlagged = getCells().stream()
+                .filter(Cell::isBomb)
+                .allMatch(Cell::isFlagged);
+        boolean noFalseFlags = getCells().stream()
+                .filter(cell -> !cell.isBomb())
+                .noneMatch(Cell::isFlagged);
 
+        if (allBombsCorrectlyFlagged && noFalseFlags)
+        {
+            endGame(true);
+        }
     }
 
     private void initializeUserElements()
