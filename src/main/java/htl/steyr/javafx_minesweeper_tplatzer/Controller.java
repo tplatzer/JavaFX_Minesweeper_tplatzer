@@ -74,18 +74,8 @@ public class Controller
         return soundEffectPlayer;
     }
 
-    protected void setSoundEffectPlayer(MusicPlayer soundEffectPlayer)
-    {
-        this.soundEffectPlayer = soundEffectPlayer;
-    }
-
     protected MusicPlayer getBackgroundMusicPlayer()
     {
         return backgroundMusicPlayer;
-    }
-
-    protected void setBackgroundMusicPlayer(MusicPlayer backgroundMusicPlayer)
-    {
-        this.backgroundMusicPlayer = backgroundMusicPlayer;
     }
 }
