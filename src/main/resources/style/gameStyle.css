@@ -91,8 +91,27 @@
     -fx-background-color: #a0a0a0;
 }
 
+.cell-button-revealed
+{
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #808080;
+    -fx-border-width: 1px;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
 .button:disabled
 {
     -fx-opacity: 1.0;
     -fx-cursor: default;
 }
+
+.cell-number-1 { -fx-text-fill: blue; }
+.cell-number-2 { -fx-text-fill: green; }
+.cell-number-3 { -fx-text-fill: red; }
+.cell-number-4 { -fx-text-fill: darkblue; }
+.cell-number-5 { -fx-text-fill: darkred; }
+.cell-number-6 { -fx-text-fill: teal; }
+.cell-number-7 { -fx-text-fill: black; }
+.cell-number-8 { -fx-text-fill: gray; }

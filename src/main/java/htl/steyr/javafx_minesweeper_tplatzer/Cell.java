@@ -69,15 +69,17 @@ public class Cell
         }
 
         setRevealed(true);
+        getButton().setDisable(true);
+        getButton().getStyleClass().add("cell-button-revealed");
 
         if (isBomb())
         {
             silentReveal();
-
             getController().endGame(false);
         } else if (getAdjacentBombs() > 0)
         {
             getButton().setText(String.valueOf(getAdjacentBombs()));
+            getButton().getStyleClass().add("cell-number-" + getAdjacentBombs());
         } else
         {
             getButton().setVisible(false);
@@ -130,6 +132,7 @@ public class Cell
                     if (!neighbor.isRevealed() && !neighbor.isFlagged())
                     {
                         neighbor.setRevealed(true);
+                        neighbor.getButton().setDisable(true);
 
                         if (neighbor.getAdjacentBombs() == 0)
                         {
@@ -138,6 +141,8 @@ public class Cell
                         } else
                         {
                             neighbor.getButton().setText(String.valueOf(neighbor.getAdjacentBombs()));
+                            neighbor.getButton().getStyleClass().add("cell-button-revealed");
+                            neighbor.getButton().getStyleClass().add("cell-number-" + neighbor.getAdjacentBombs());
                         }
                     }
                 }
