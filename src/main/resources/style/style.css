@@ -4,15 +4,9 @@
     padding: 0;
 }
 
-@font-face
-{
-    font-family: 'ARCADE-CLASSIC';
-    src: url('/fonts/ARCADECLASSIC.TTF');
-}
-
 .button
 {
-    -fx-font-family: "ARCADE-CLASSIC";
+    -fx-font-family: "Courier New", monospace;
     -fx-font-size: 20px;
     -fx-background-position: center;
     -fx-background-radius: 10px;
@@ -29,5 +23,5 @@
 
 .text
 {
-    -fx-font-family: ARCADE-CLASSIC;
+    -fx-font-family: "Courier New", monospace;
 }
