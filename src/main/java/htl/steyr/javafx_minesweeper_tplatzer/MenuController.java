@@ -75,16 +75,16 @@ public class MenuController extends Controller
 
         switch (difficulty)
         {
-            case "beginner" -> new GameController("beginner").start(stage);
-            case "advanced" -> new GameController("advanced").start(stage);
-            case "pro" -> new GameController("pro").start(stage);
+            case "beginner" -> new GameController("beginner").start(getStage());
+            case "advanced" -> new GameController("advanced").start(getStage());
+            case "pro" -> new GameController("pro").start(getStage());
         }
     }
 
     private void initializeUserElements()
     {
-        setTitleText(initializeText("titleText", "Bomben Räum Simulator"));
-        setChoiceText(initializeText("choiceText", "Wähle einen Spielmodus"));
+        setTitleText(initializeText("titleText", "Bomb-Disposal-Simulator"));
+        setChoiceText(initializeText("choiceText", "Choose-a-Gamemode"));
         initializeChooseGameModeBox();
 
     }

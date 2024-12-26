@@ -82,7 +82,7 @@ public class GameController extends Controller
                 Objects.requireNonNull(getClass().getResource("/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
-        switchScene(getStage(), getGameScene(), 1000, 1200, "Bomben Räum Simulator");
+        switchScene(getStage(), getGameScene(), 1000, 1500, "Bomben Räum Simulator");
     }
 
     private void restartGame()
