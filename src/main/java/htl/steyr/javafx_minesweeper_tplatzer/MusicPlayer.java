@@ -77,7 +77,7 @@ public class MusicPlayer
             return frames / format.getFrameRate();
         } catch (Exception e)
         {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             return 0.0;
         }
     }
