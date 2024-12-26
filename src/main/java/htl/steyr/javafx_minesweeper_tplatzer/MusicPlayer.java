@@ -60,11 +60,25 @@ public class MusicPlayer
         {
             FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 
-            // Überprüfen, ob der Lautstärkewert im erlaubten Bereich liegt
             float min = volumeControl.getMinimum();
             float max = volumeControl.getMaximum();
-            volume = Math.max(min, Math.min(max, volume)); // Wert in den gültigen Bereich einpassen
+            volume = Math.max(min, Math.min(max, volume));
             volumeControl.setValue(volume);
+        }
+    }
+
+    public static double getSoundEffectDuration(String fileName)
+    {
+        try
+        {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MusicPlayer.class.getResource("/sfx/" + fileName + ".wav")));
+            AudioFormat format = audioInputStream.getFormat();
+            long frames = audioInputStream.getFrameLength();
+            return frames / format.getFrameRate();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            return 0.0;
         }
     }
 }
