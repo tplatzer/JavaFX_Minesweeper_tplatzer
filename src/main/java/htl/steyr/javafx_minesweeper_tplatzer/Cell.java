@@ -95,12 +95,17 @@ public class Cell
 
     private void setIconForButton(String icon)
     {
-
+        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
+        double iconSize = getButton().getPrefWidth() * 0.9;
+        imageView.setFitWidth(iconSize);
+        imageView.setFitHeight(iconSize);
+        imageView.setPreserveRatio(true);
+        getButton().setGraphic(imageView);
     }
 
     private void removeIconFromButton()
     {
-
+        getButton().setGraphic(null);
     }
 
     private void revealAdjacentCells()
