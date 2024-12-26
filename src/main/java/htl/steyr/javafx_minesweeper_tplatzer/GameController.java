@@ -18,7 +18,7 @@ public class GameController extends Controller
     private static final int maxHBoxWidth = 1000;
     private static final int maxHBoxHeight = 700;
     private Scene gameScene;
-    private VBox root = new VBox();
+    private final VBox root = new VBox();
     private HBox gameInfoBox;
     private HBox remainingFlagCounterBox;
     private Label remainingFlagCounterLabel;
