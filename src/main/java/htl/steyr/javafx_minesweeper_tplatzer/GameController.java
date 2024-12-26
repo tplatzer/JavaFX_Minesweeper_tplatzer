@@ -302,22 +302,6 @@ public class GameController extends Controller
         }
 
         initializeField(rows, columns);
-
-        getGameField().setOnMousePressed(event ->
-        {
-            if (event.isPrimaryButtonDown() || event.isSecondaryButtonDown())
-            {
-                updateRestartGameButton("nervous");
-            }
-        });
-
-        getGameField().setOnMousePressed(event ->
-        {
-            if (!event.isPrimaryButtonDown() || !event.isSecondaryButtonDown())
-            {
-                updateRestartGameButton("neutral");
-            }
-        });
     }
 
     private void initializeField(int rows, int columns)

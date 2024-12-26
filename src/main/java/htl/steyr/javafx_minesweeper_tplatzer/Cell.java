@@ -11,6 +11,7 @@ public class Cell
     private boolean isBomb;
     private boolean isFlagged;
     private boolean isRevealed;
+    private boolean isQuestioned;
     private int adjacentBombs;
     private Button button;
     private GameController controller;
@@ -26,6 +27,7 @@ public class Cell
 
         setFlagged(false);
         setRevealed(false);
+        setQuestioned(false);
         setAdjacentBombs(0);
 
         setButton(new Button());
@@ -46,14 +48,19 @@ public class Cell
     {
         if (!isRevealed())
         {
-            setFlagged(!isFlagged());
-
             if (isFlagged())
             {
-                setIconForButton("flag");
+                setFlagged(false);
+                setQuestioned(true);
+                setIconForButton("question");
+            } else if (isQuestioned())
+            {
+                setQuestioned(false);
+                removeIconFromButton();
             } else
             {
-                removeIconFromButton();
+                setFlagged(true);
+                setIconForButton("flag");
             }
 
             getController().updateRemainingFlagsCounter();
@@ -228,5 +235,15 @@ public class Cell
     public void setColumn(int column)
     {
         this.column = column;
+    }
+
+    public boolean isQuestioned()
+    {
+        return isQuestioned;
+    }
+
+    public void setQuestioned(boolean questioned)
+    {
+        isQuestioned = questioned;
     }
 }
