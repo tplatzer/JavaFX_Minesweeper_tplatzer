@@ -1,29 +1,61 @@
-*
+.root-container
 {
-    margin: 0;
-    padding: 0;
-}
-
-#beginner, #advanced, #pro
-{
-    -fx-font-size: 20px;
-}
-
-#beginner:hover, #advanced:hover, #pro:hover {
-    -fx-background-color: lightblue;
-}
-
-#difficultyButtonBox
-{
-
+    -fx-background-color: #c0c0c0;
+    -fx-spacing: 20px;
+    -fx-padding: 20px;
+    -fx-alignment: center;
 }
 
 #titleText
 {
     -fx-font-size: 40px;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+    -fx-padding: 10px;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
 }
 
 #choiceText
 {
     -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-padding: 5px;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
+}
+
+#beginner, #advanced, #pro
+{
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-alignment: center;
+}
+
+#beginner:hover, #advanced:hover, #pro:hover
+{
+    -fx-background-color: #d9d9d9;
+}
+
+#beginner:pressed, #advanced:pressed, #pro:pressed
+{
+    -fx-background-color: #a6a6a6;
+}
+
+#difficultyButtonBox
+{
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
 }
