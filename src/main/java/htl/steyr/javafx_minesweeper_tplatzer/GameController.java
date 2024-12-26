@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -77,6 +78,16 @@ public class GameController extends Controller
     }
 
     private void restartGame()
+    {
+
+    }
+
+    protected void endGame(boolean won)
+    {
+
+    }
+
+    protected void checkWinCondition()
     {
 
     }
@@ -223,26 +234,62 @@ public class GameController extends Controller
 
     private void initializeField(int rows, int columns)
     {
+        setRows(rows);
+        setColumns(columns);
         setCells(new ArrayList<>());
-
         initializeGameFieldGridPane();
 
-        for (int i = 0; i < rows * columns; i++)
-        {
-            getCells().add(new Cell(i < getTotalMines()));
-        }
-        Collections.shuffle(getCells());
+        double buttonWidth = (double) getMaxHBoxHeight() / columns;
+        double buttonHeight = (double) getMaxHBoxWidth() / rows;
 
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < columns; col++)
             {
-                Cell cell = getCells().get(row * columns + col);
+                Cell cell = new Cell(false, this, row, col);
+                cell.getButton().setPrefWidth(buttonWidth);
+                cell.getButton().setPrefHeight(buttonHeight);
+                getCells().add(cell);
+            }
+        }
+
+        Random random = new Random();
+        int bombsPlaced = 0;
+        while (bombsPlaced < getTotalMines())
+        {
+            int randomRow = random.nextInt(rows);
+            int randomCol = random.nextInt(columns);
+
+            Cell cell = getCellAt(randomRow, randomCol);
+            if (!cell.isBomb())
+            {
+                cell.setBomb(true);
+                bombsPlaced++;
+            }
+        }
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                Cell cell = getCellAt(row, col);
+                if (!cell.isBomb())
+                {
+                    cell.setAdjacentBombs(countAdjacentBombs(row, col));
+                }
+            }
+        }
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                Cell cell = getCellAt(row, col);
                 getGameField().add(cell.getButton(), col, row);
             }
         }
 
-        updateRemainingNotMarkedBombsCounter();
+        updateRemainingFlagsCounter();
     }
 
     private void initializeGameFieldGridPane()
@@ -250,11 +297,56 @@ public class GameController extends Controller
         setGameField(new GridPane());
         getGameField().setAlignment(Pos.CENTER);
         getGameField().getStyleClass().add("game-field");
+
+        double gap = 5;
+        getGameField().setHgap(gap);
+        getGameField().setVgap(gap);
+
+        for (int i = 0; i < getColumns(); i++)
+        {
+            ColumnConstraints colConstraints = new ColumnConstraints();
+            colConstraints.setPercentWidth(100.0 / getColumns());
+            getGameField().getColumnConstraints().add(colConstraints);
+        }
+
+        for (int i = 0; i < getRows(); i++)
+        {
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setPercentHeight(100.0 / getRows());
+            getGameField().getRowConstraints().add(rowConstraints);
+        }
+    }
+
+    private int countAdjacentBombs(int row, int col)
+    {
+        int count = 0;
+        for (int r = row - 1; r <= row + 1; r++)
+        {
+            for (int c = col - 1; c <= col + 1; c++)
+            {
+                if (isInBounds(r, c) && getCellAt(r, c).isBomb())
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    protected boolean isInBounds(int row, int col)
+    {
+        return row >= 0 && row < getGameField().getRowCount() && col >= 0 && col < getGameField().getColumnCount();
+    }
+
+    protected Cell getCellAt(int row, int col)
+    {
+        int columns = getGameField().getColumnCount();
+        return getCells().get(row * columns + col);
     }
 
     private String formatCounter(int count)
     {
-        return String.format("%03d", count);
+        return String.format("%s%02d", count < 0 ? "-" : "", Math.abs(count));
     }
 
     private String formatTime(int time)
