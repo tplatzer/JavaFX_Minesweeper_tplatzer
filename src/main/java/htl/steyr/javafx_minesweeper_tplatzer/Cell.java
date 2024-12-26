@@ -95,12 +95,28 @@ public class Cell
 
     private void setIconForButton(String icon)
     {
-        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
+        /*ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
         double iconSize = getButton().getPrefWidth() * 0.9;
         imageView.setFitWidth(iconSize);
         imageView.setFitHeight(iconSize);
         imageView.setPreserveRatio(true);
+        getButton().setGraphic(imageView);*/
+
+        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
+        imageView.setPreserveRatio(true);
+
+        getButton().widthProperty().addListener((observable, oldValue, newValue) -> adjustIconSize(imageView));
+        getButton().heightProperty().addListener((observable, oldValue, newValue) -> adjustIconSize(imageView));
+
+        adjustIconSize(imageView);
+
         getButton().setGraphic(imageView);
+    }
+
+    private void adjustIconSize(ImageView imageView) {
+        double iconSize = Math.min(getButton().getWidth(), getButton().getHeight()) * 0.9;
+        imageView.setFitWidth(iconSize);
+        imageView.setFitHeight(iconSize);
     }
 
     private void removeIconFromButton()

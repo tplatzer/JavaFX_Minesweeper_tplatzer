@@ -98,7 +98,7 @@ public class MenuController extends Controller
         HBox.setHgrow(button, Priority.ALWAYS);
         button.prefWidthProperty().bind(getDifficultyButtonBox().widthProperty().divide(4).subtract(20));
         button.prefHeightProperty()
-                .bind(getDifficultyButtonBox().heightProperty().multiply(0.8));
+                .bind(getDifficultyButtonBox().heightProperty().multiply(0.5));
 
         return button;
     }
