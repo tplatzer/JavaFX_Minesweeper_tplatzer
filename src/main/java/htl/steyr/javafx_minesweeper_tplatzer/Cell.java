@@ -18,7 +18,7 @@ public class Cell
     private int row;
     private int column;
 
-    public Cell (boolean isBomb, GameController controller, int row, int column)
+    public Cell(boolean isBomb, GameController controller, int row, int column)
     {
         setBomb(isBomb);
         setController(controller);
@@ -75,6 +75,12 @@ public class Cell
             return;
         }
 
+        if (isQuestioned())
+        {
+            setQuestioned(false);
+            removeIconFromButton();
+        }
+
         setRevealed(true);
         getButton().setDisable(true);
         getButton().getStyleClass().add("cell-button-revealed");
@@ -115,7 +121,8 @@ public class Cell
         getButton().setGraphic(imageView);
     }
 
-    private void adjustIconSize(ImageView imageView) {
+    private void adjustIconSize(ImageView imageView)
+    {
         double iconSize = Math.min(getButton().getWidth(), getButton().getHeight()) * 0.75;
         imageView.setFitWidth(iconSize);
         imageView.setFitHeight(iconSize);
