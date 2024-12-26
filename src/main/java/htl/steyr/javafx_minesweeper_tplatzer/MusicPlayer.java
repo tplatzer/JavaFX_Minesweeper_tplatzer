@@ -24,11 +24,11 @@ public class MusicPlayer
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
         {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
-    public void playMusicShort(String fileName, float volume)
+    public void playMusicOnce(String fileName, float volume)
     {
         try (InputStream audioStream = getClass().getResourceAsStream("/sfx/" + fileName))
         {
@@ -43,7 +43,7 @@ public class MusicPlayer
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e)
         {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
