@@ -5,12 +5,13 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.security.Key;
+import java.security.KeyException;
 import java.util.*;
 
 public class GameController extends Controller
@@ -114,7 +115,35 @@ public class GameController extends Controller
 
     private void lossGame()
     {
+        updateRestartGameButton("lose");
 
+        List<Cell> bombCells = new ArrayList<>();
+        for (Cell cell : getCells())
+        {
+            if (cell.isBomb())
+            {
+                bombCells.add(cell);
+            }
+        }
+
+        String bombExplosionSound = getRandomBombExplosionSound();
+        playSoundEffect(bombExplosionSound);
+
+        Timeline revealBombsTimeLine = new Timeline();
+        for (Cell bombCell : bombCells)
+        {
+            revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentReveal()));
+        }
+
+        revealBombsTimeLine.setOnFinished(event ->
+        {
+            String loseJingle = getRandomLoseJingle();
+            playSoundEffect(loseJingle);
+
+            new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(loseJingle) - 0.5), ev -> switchToMenu())).play();
+        });
+
+        revealBombsTimeLine.play();
     }
 
     private void switchToMenu()
@@ -399,7 +428,7 @@ public class GameController extends Controller
         return "lose-jingle-" + (Math.random() < 0.5 ? "1" : "2");
     }
 
-    private String getRandomBombExplosion()
+    private String getRandomBombExplosionSound()
     {
         return "bomb-explosion-" + (Math.random() < 0.5 ? "1" : "2");
     }
