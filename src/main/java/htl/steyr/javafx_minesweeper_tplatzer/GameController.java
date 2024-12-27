@@ -12,12 +12,6 @@ import javafx.util.Duration;
 
 import java.util.*;
 
-/**
- * @ToDo Zahlen Schriftwart größer
-
- * der Flage Counter soll 099 anzeichen und wenn es negativ wird dann -01 (also dreistellig wenn positiv und 2 stellig mit minus wenn negativ)
- */
-
 public class GameController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
@@ -477,8 +471,13 @@ public class GameController extends Controller
 
     private String formatCounter(int count)
     {
-        return String.format("%s%02d", count < 0 ? "-" : "", Math.abs(count));
+        if (count < 0) {
+            return String.format("-%02d", Math.abs(count));
+        } else {
+            return String.format("%03d", count);
+        }
     }
+
 
     private String formatTime(int time)
     {
