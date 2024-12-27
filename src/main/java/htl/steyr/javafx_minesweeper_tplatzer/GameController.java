@@ -14,8 +14,7 @@ import java.util.*;
 
 /**
  * @ToDo Zahlen Schriftwart größer
- * felder mit Bomben werden beim Vollständigen aufdecken Rot (Wenn Game Over)
- * <p>
+
  * der Flage Counter soll 099 anzeichen und wenn es negativ wird dann -01 (also dreistellig wenn positiv und 2 stellig mit minus wenn negativ)
  */
 
@@ -127,7 +126,7 @@ public class GameController extends Controller
         List<Cell> bombCells = new ArrayList<>();
         for (Cell cell : getCells())
         {
-            if (cell.isBomb())
+            if (cell.isBomb() && !cell.isFlagged())
             {
                 bombCells.add(cell);
             }
