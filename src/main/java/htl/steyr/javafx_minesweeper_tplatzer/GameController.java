@@ -471,13 +471,9 @@ public class GameController extends Controller
 
     private String formatCounter(int count)
     {
-        if (count < 0) {
-            return String.format("-%02d", Math.abs(count));
-        } else {
-            return String.format("%03d", count);
-        }
+        if (count < 0) return String.format("-%02d", Math.abs(count));
+        else return String.format("%03d", count);
     }
-
 
     private String formatTime(int time)
     {
