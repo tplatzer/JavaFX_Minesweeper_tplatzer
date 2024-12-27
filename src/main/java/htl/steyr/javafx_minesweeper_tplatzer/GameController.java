@@ -14,8 +14,6 @@ import java.util.*;
 
 /**
  * @ToDo Zahlen Schriftwart größer
- * Alle falsch gesetzten Flags werden zu durchgestrichenen Bomben, wenn eine Bombe aufgdeckt wird (das Game ended)
- * <p>
  * felder mit Bomben werden beim Vollständigen aufdecken Rot (Wenn Game Over)
  * <p>
  * der Flage Counter soll 099 anzeichen und wenn es negativ wird dann -01 (also dreistellig wenn positiv und 2 stellig mit minus wenn negativ)
@@ -101,6 +99,8 @@ public class GameController extends Controller
             cell.getButton().setDisable(true);
         }
 
+        showIncorrectFlags();
+
         if (won)
         {
             wonGame();
@@ -151,6 +151,18 @@ public class GameController extends Controller
         });
 
         revealBombsTimeLine.play();
+    }
+
+    private void showIncorrectFlags()
+    {
+        for (Cell cell : getCells())
+        {
+            if (cell.isFlagged() && !cell.isBomb())
+            {
+                cell.setIconForButton("false-flag");
+                cell.getButton().getStyleClass().add("cell-button-revealed");
+            }
+        }
     }
 
     private void switchToMenu()

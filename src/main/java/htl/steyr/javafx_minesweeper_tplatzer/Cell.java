@@ -113,7 +113,7 @@ public class Cell
         setIconForButton("bomb");
     }
 
-    private void setIconForButton(String icon)
+    protected void setIconForButton(String icon)
     {
         ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
         imageView.setPreserveRatio(true);
