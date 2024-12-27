@@ -111,6 +111,11 @@
     -fx-border-radius: 0;
 }
 
+.cell-bomb-revealed
+{
+    -fx-background-color: #FF2400  ;
+}
+
 .button:disabled
 {
     -fx-opacity: 1.0;

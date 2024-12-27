@@ -111,6 +111,8 @@ public class Cell
     {
         getButton().setText("");
         setIconForButton("bomb");
+        getButton().getStyleClass().add("cell-button-revealed");
+        getButton().getStyleClass().add("cell-bomb-revealed");
     }
 
     protected void setIconForButton(String icon)
