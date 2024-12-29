@@ -102,6 +102,11 @@ public class Controller
         stage.setY((screenHeight - stageHeight) / 2);
     }
 
+    protected String formatTime(int time)
+    {
+        return String.format("%03d", time);
+    }
+
     public static void checkIfInputStreamIsNotNull(InputStream inputStream, String fileName) throws FileNotFoundException
     {
         if (inputStream == null) throw new FileNotFoundException("File not found: " + fileName);

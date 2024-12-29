@@ -475,11 +475,6 @@ public class GameController extends Controller
         else return String.format("%03d", count);
     }
 
-    private String formatTime(int time)
-    {
-        return String.format("%03d", time);
-    }
-
     private String getRandomWinJingle()
     {
         return "win-jingle-" + (Math.random() < 0.5 ? "1" : "2");
