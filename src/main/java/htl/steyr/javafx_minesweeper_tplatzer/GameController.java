@@ -35,10 +35,12 @@ public class GameController extends Controller
     private int columns;
     private List<Cell> cells;
     private boolean firstClick;
+    private boolean muted;
 
-    public GameController(String difficulty)
+    public GameController(String difficulty, boolean muted)
     {
         setDifficulty(difficulty);
+        setMuted(muted);
     }
 
     public void start(Stage stage)
@@ -46,7 +48,7 @@ public class GameController extends Controller
         setStage(stage);
         setDefaultValues();
         initializeUserElements();
-        playBackgroundMusic("background-music");
+        if (!isMuted()) playBackgroundMusic("background-music");
 
         initializeWindow();
     }
@@ -81,7 +83,7 @@ public class GameController extends Controller
     private void restartGame()
     {
         stopBackgroundMusic();
-        new GameController(getDifficulty()).start(getStage());
+        new GameController(getDifficulty(), isMuted()).start(getStage());
     }
 
     protected void endGame(boolean won)
@@ -110,11 +112,19 @@ public class GameController extends Controller
     {
         updateBestTime();
         updateRestartGameButton("win");
-        String winJingle = getRandomWinJingle();
-        playSoundEffect(winJingle);
 
-        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(winJingle) - 0.5), event -> switchToMenu()));
-        delay.play();
+        if (isMuted())
+        {
+            new Timeline(new KeyFrame(Duration.seconds(3), event -> switchToMenu())).play();
+        }
+        else
+        {
+            String winJingle = getRandomWinJingle();
+            playSoundEffect(winJingle);
+
+            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(winJingle) - 0.5), event -> switchToMenu()));
+            delay.play();
+        }
     }
 
     private void lossGame()
@@ -130,24 +140,36 @@ public class GameController extends Controller
             }
         }
 
-        String bombExplosionSound = getRandomBombExplosionSound();
-        playSoundEffect(bombExplosionSound);
-
-        Timeline revealBombsTimeLine = new Timeline();
-        for (Cell bombCell : bombCells)
+        if (isMuted())
         {
-            revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal()));
+            for (Cell bombCell : bombCells)
+            {
+                bombCell.silentBombReveal();
+            }
+
+            new Timeline(new KeyFrame(Duration.seconds(3), event -> switchToMenu())).play();
         }
-
-        revealBombsTimeLine.setOnFinished(event ->
+        else
         {
-            String loseJingle = getRandomLoseJingle();
-            playSoundEffect(loseJingle);
+            String bombExplosionSound = getRandomBombExplosionSound();
+            playSoundEffect(bombExplosionSound);
 
-            new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(loseJingle) - 0.5), ev -> switchToMenu())).play();
-        });
+            Timeline revealBombsTimeLine = new Timeline();
+            for (Cell bombCell : bombCells)
+            {
+                revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal()));
+            }
 
-        revealBombsTimeLine.play();
+            revealBombsTimeLine.setOnFinished(event ->
+            {
+                String loseJingle = getRandomLoseJingle();
+                playSoundEffect(loseJingle);
+
+                new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(loseJingle) - 0.5), ev -> switchToMenu())).play();
+            });
+
+            revealBombsTimeLine.play();
+        }
     }
 
     private void showIncorrectFlags()
@@ -181,7 +203,7 @@ public class GameController extends Controller
 
     private void switchToMenu()
     {
-        new MenuController().start(getStage());
+        new MenuController(isMuted()).start(getStage());
     }
 
     protected void checkWinCondition()
@@ -703,5 +725,15 @@ public class GameController extends Controller
     public void setFirstClick(boolean firstClick)
     {
         this.firstClick = firstClick;
+    }
+
+    public boolean isMuted()
+    {
+        return muted;
+    }
+
+    public void setMuted(boolean muted)
+    {
+        this.muted = muted;
     }
 }

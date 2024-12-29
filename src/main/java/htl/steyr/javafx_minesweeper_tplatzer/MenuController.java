@@ -3,6 +3,7 @@ package htl.steyr.javafx_minesweeper_tplatzer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -27,12 +28,20 @@ public class MenuController extends Controller
     private Text choiceText;
     private HBox difficultyBox;
     private VBox chooseGameModeBox;
+    private Button muteSfxButton;
+    private Button resetBestTimesButton;
+    private boolean muted;
+
+    public MenuController(boolean muted)
+    {
+        setMuted(muted);
+    }
 
     public void start(Stage stage)
     {
         setStage(stage);
         initializeUserElements();
-        playBackgroundMusic("menu-music");
+        if (!isMuted()) playBackgroundMusic("menu-music");
 
         initializeStage(getStage());
         initializeWindow();
@@ -59,7 +68,7 @@ public class MenuController extends Controller
 
     private void startGame(String difficulty)
     {
-        new GameController(difficulty).start(getStage());
+        new GameController(difficulty, isMuted()).start(getStage());
     }
 
     private void initializeUserElements()
@@ -80,7 +89,14 @@ public class MenuController extends Controller
         getChooseGameModeBox().setMaxSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
 
         initializeDifficultyBoxes();
-        getChooseGameModeBox().getChildren().addAll(getChoiceText(), getDifficultyBox());
+        initializeMuteSfxButton();
+        initializeResetBestTimesButton();
+
+        getChooseGameModeBox().getChildren().addAll(
+                getChoiceText(),
+                getDifficultyBox(),
+                getMuteSfxButton(),
+                getResetBestTimesButton());
     }
 
     private void initializeDifficultyBoxes()
@@ -126,6 +142,36 @@ public class MenuController extends Controller
         return difficultyBox;
     }
 
+    private void initializeMuteSfxButton()
+    {
+        setMuteSfxButton(new Button("Mute SFX"));
+        getMuteSfxButton().getStyleClass().add("mute-button");
+        getMuteSfxButton().setOnAction(event -> toggleMute());
+    }
+
+    private void toggleMute()
+    {
+        setMuted(!isMuted());
+        if (isMuted())
+        {
+            stopBackgroundMusic();
+            getMuteSfxButton().getStyleClass().add("selected");
+        }
+        else
+        {
+            playBackgroundMusic("menu-music");
+            getMuteSfxButton().getStyleClass().remove("selected");
+        }
+    }
+
+    private void initializeResetBestTimesButton()
+    {
+        setResetBestTimesButton(new Button("Reset Best Times"));
+        getResetBestTimesButton().getStyleClass().add("reset-button");
+        getResetBestTimesButton().setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
+        getResetBestTimesButton().setOnAction(event -> resetBestTimes());
+    }
+
     private int loadBestTime(String difficulty)
     {
         BestTimes bestTimes = BestTimesManager.loadBestTimes();
@@ -136,6 +182,13 @@ public class MenuController extends Controller
             case "pro" -> bestTimes.getProBestTime();
             default -> Integer.MAX_VALUE;
         };
+    }
+
+    private void resetBestTimes()
+    {
+        BestTimes bestTimes = new BestTimes();
+        BestTimesManager.saveBestTimes(bestTimes);
+        initializeDifficultyBoxes();
     }
 
     private String formatBestTime(int bestTime)
@@ -240,5 +293,35 @@ public class MenuController extends Controller
     public void setDifficultyBox(HBox difficultyBox)
     {
         this.difficultyBox = difficultyBox;
+    }
+
+    public boolean isMuted()
+    {
+        return muted;
+    }
+
+    public void setMuted(boolean muted)
+    {
+        this.muted = muted;
+    }
+
+    public Button getMuteSfxButton()
+    {
+        return muteSfxButton;
+    }
+
+    public void setMuteSfxButton(Button muteSfxButton)
+    {
+        this.muteSfxButton = muteSfxButton;
+    }
+
+    public Button getResetBestTimesButton()
+    {
+        return resetBestTimesButton;
+    }
+
+    public void setResetBestTimesButton(Button resetBestTimesButton)
+    {
+        this.resetBestTimesButton = resetBestTimesButton;
     }
 }

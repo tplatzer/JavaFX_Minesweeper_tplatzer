@@ -6,6 +6,67 @@
     -fx-alignment: center;
 }
 
+.button
+{
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-alignment: center;
+}
+
+.button:hover
+{
+    -fx-background-color: #d9d9d9;
+}
+
+.button:pressed
+{
+    -fx-background-color: #a6a6a6;
+}
+
+.mute-button {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 5px 10px;
+    -fx-alignment: center;
+}
+
+.mute-button:hover {
+    -fx-background-color: #d9d9d9;
+}
+
+.mute-button:pressed, .mute-button.selected {
+    -fx-background-color: #a6a6a6;
+    -fx-border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.reset-button {
+    -fx-font-size: 18px;
+    -fx-text-fill: black;
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #ffffff #808080 #808080 #ffffff;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+    -fx-min-width: 150px;
+    -fx-max-width: 200px;
+    -fx-pref-width: 180px;
+    -fx-alignment: center;
+}
+
+.reset-button:hover {
+    -fx-background-color: #d9d9d9;
+}
+
 #titleText
 {
     -fx-font-size: 40px;
@@ -26,28 +87,6 @@
     -fx-border-color: #ffffff #808080 #808080 #ffffff;
     -fx-border-width: 2px;
     -fx-alignment: center;
-}
-
-#beginner, #advanced, #pro
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-alignment: center;
-}
-
-#beginner:hover, #advanced:hover, #pro:hover
-{
-    -fx-background-color: #d9d9d9;
-}
-
-#beginner:pressed, #advanced:pressed, #pro:pressed
-{
-    -fx-background-color: #a6a6a6;
 }
 
 #difficulty-button-box
