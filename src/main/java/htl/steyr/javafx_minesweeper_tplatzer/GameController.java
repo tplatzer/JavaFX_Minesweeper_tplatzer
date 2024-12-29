@@ -188,13 +188,28 @@ public class GameController extends Controller
     {
         BestTimes bestTimes = BestTimesManager.loadBestTimes();
 
-        if (getElapsedTime() < bestTimes.getBeginnerBestTime())
+        switch (getDifficulty())
         {
-            switch (getDifficulty())
+            case "beginner" ->
             {
-                case "beginner" -> bestTimes.setBeginnerBestTime(getElapsedTime());
-                case "advanced" -> bestTimes.setAdvancedBestTime(getElapsedTime());
-                case "pro" -> bestTimes.setProBestTime(getElapsedTime());
+                if (getElapsedTime() < bestTimes.getBeginnerBestTime())
+                {
+                    bestTimes.setBeginnerBestTime(getElapsedTime());
+                }
+            }
+            case "advanced" ->
+            {
+                if (getElapsedTime() < bestTimes.getAdvancedBestTime())
+                {
+                    bestTimes.setAdvancedBestTime(getElapsedTime());
+                }
+            }
+            case "pro" ->
+            {
+                if (getElapsedTime() < bestTimes.getProBestTime())
+                {
+                    bestTimes.setProBestTime(getElapsedTime());
+                }
             }
         }
 

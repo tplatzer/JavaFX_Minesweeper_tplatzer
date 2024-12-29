@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -68,6 +69,7 @@ public class MenuController extends Controller
 
     private void startGame(String difficulty)
     {
+        stopBackgroundMusic();
         new GameController(difficulty, isMuted()).start(getStage());
     }
 
@@ -136,6 +138,7 @@ public class MenuController extends Controller
         bestTimeBox.setAlignment(Pos.CENTER);
         bestTimeBox.getStyleClass().add("info-box");
         bestTimeBox.setMaxSize(25, 25);
+        bestTimeBox.setId(difficulty);
 
         difficultyBox.getChildren().addAll(difficultyButton, bestTimeBox);
 
@@ -161,8 +164,7 @@ public class MenuController extends Controller
         {
             stopBackgroundMusic();
             getMuteSfxButton().getStyleClass().add("selected");
-        }
-        else
+        } else
         {
             playBackgroundMusic("menu-music");
             getMuteSfxButton().getStyleClass().remove("selected");
@@ -181,6 +183,7 @@ public class MenuController extends Controller
     private int loadBestTime(String difficulty)
     {
         BestTimes bestTimes = BestTimesManager.loadBestTimes();
+
         return switch (difficulty)
         {
             case "beginner" -> bestTimes.getBeginnerBestTime();
@@ -194,7 +197,9 @@ public class MenuController extends Controller
     {
         BestTimes bestTimes = new BestTimes();
         BestTimesManager.saveBestTimes(bestTimes);
-        initializeDifficultyBoxes();
+
+        stopBackgroundMusic();
+        new MenuController(isMuted()).start(getStage());
     }
 
     private String formatBestTime(int bestTime)
