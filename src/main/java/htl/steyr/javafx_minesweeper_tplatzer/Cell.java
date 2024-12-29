@@ -17,7 +17,6 @@ public class Cell
     private GameController controller;
     private int row;
     private int column;
-    private boolean firstClick;
 
     public Cell(boolean isBomb, GameController controller, int row, int column)
     {
@@ -25,7 +24,6 @@ public class Cell
         setController(controller);
         setRow(row);
         setColumn(column);
-        setFirstClick(true);
 
         setFlagged(false);
         setRevealed(false);
@@ -38,10 +36,10 @@ public class Cell
 
         getButton().setOnMouseClicked(event ->
         {
-            if (isFirstClick())
+            if (getController().isFirstClick())
             {
-                controller.startTimer();
-                setFirstClick(false);
+                getController().startTimer();
+                getController().setFirstClick(false);
             }
 
             switch (event.getButton())
@@ -267,15 +265,5 @@ public class Cell
     public void setQuestioned(boolean questioned)
     {
         isQuestioned = questioned;
-    }
-
-    public boolean isFirstClick()
-    {
-        return firstClick;
-    }
-
-    public void setFirstClick(boolean firstClick)
-    {
-        this.firstClick = firstClick;
     }
 }
