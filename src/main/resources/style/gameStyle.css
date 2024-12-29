@@ -14,27 +14,7 @@
     -fx-vgap: 5px;
 }
 
-.info-box
-{
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 5px;
-    -fx-spacing: 10px;
-}
 
-.info-label
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-text-fill: red;
-    -fx-background-color: black;
-    -fx-padding: 2px;
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
-    -fx-min-width: 45px;
-    -fx-alignment: center-right;
-}
 
 .restart-button
 {
