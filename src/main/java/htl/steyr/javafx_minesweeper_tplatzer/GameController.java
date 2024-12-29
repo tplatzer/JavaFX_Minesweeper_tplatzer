@@ -115,8 +115,7 @@ public class GameController extends Controller
         if (isMuted())
         {
             new Timeline(new KeyFrame(Duration.seconds(3), event -> switchToMenu())).play();
-        }
-        else
+        } else
         {
             String winJingle = getRandomWinJingle();
             playSoundEffect(winJingle);
@@ -147,8 +146,7 @@ public class GameController extends Controller
             }
 
             new Timeline(new KeyFrame(Duration.seconds(3), event -> switchToMenu())).play();
-        }
-        else
+        } else
         {
             String bombExplosionSound = getRandomBombExplosionSound();
             playSoundEffect(bombExplosionSound);
