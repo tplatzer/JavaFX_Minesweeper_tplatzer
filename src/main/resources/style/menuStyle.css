@@ -30,17 +30,20 @@
     -fx-background-color: #a6a6a6;
 }
 
-.mute-button {
+.mute-button
+{
     -fx-font-size: 16px;
     -fx-padding: 5px 10px;
 }
 
-.mute-button:pressed, .mute-button.selected {
+.mute-button:pressed, .mute-button.selected
+{
     -fx-background-color: #a6a6a6;
     -fx-border-color: #808080 #ffffff #ffffff #808080;
 }
 
-.reset-button {
+.reset-button
+{
     -fx-font-size: 18px;
     -fx-min-width: 150px;
     -fx-max-width: 200px;
@@ -63,7 +66,7 @@
     -fx-font-size: 20px;
     -fx-text-fill: black;
     -fx-background-color: #c0c0c0;
-    -fx-padding: 5px;
+    -fx-padding: 10px;
     -fx-border-color: #ffffff #808080 #808080 #ffffff;
     -fx-border-width: 2px;
     -fx-alignment: center;

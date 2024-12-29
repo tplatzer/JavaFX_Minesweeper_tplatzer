@@ -1,5 +1,6 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,7 +59,10 @@ public class MenuController extends Controller
         getRoot().setMaxSize(MenuController.getMaxHBoxWidth(), MenuController.getMaxHBoxHeight());
         getRoot().prefWidthProperty().bind(getStage().widthProperty());
         getRoot().prefHeightProperty().bind(getStage().heightProperty());
-        getRoot().getChildren().addAll(getTitleText(), getChooseGameModeBox());
+        getRoot().getChildren().addAll(
+                getTitleText(),
+                new Region(),
+                getChooseGameModeBox());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
                 Objects.requireNonNull(getClass().getResource("/style/style.css")).toExternalForm(),
