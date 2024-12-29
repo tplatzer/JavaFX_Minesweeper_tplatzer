@@ -105,6 +105,7 @@ public class GameController extends Controller
 
     private void wonGame()
     {
+        updateBestTime();
         updateRestartGameButton("win");
         String winJingle = getRandomWinJingle();
         playSoundEffect(winJingle);
@@ -154,6 +155,21 @@ public class GameController extends Controller
             {
                 cell.setIconForButton("false-flag");
                 cell.getButton().getStyleClass().add("cell-button-revealed");
+            }
+        }
+    }
+
+    private void updateBestTime()
+    {
+        BestTimes bestTimes = BestTimesManager.loadBestTimes();
+
+        if (getElapsedTime() < bestTimes.getBeginnerBestTime())
+        {
+            switch (getDifficulty())
+            {
+                case "beginner" -> bestTimes.setBeginnerBestTime(getElapsedTime());
+                case "advanced" -> bestTimes.setAdvancedBestTime(getElapsedTime());
+                case "pro" -> bestTimes.setProBestTime(getElapsedTime());
             }
         }
     }
