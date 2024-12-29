@@ -144,7 +144,7 @@ public class GameController extends Controller
         {
             for (Cell bombCell : bombCells)
             {
-                bombCell.silentBombReveal();
+                bombCell.silentBombReveal(false);
             }
 
             new Timeline(new KeyFrame(Duration.seconds(3), event -> switchToMenu())).play();
@@ -157,7 +157,7 @@ public class GameController extends Controller
             Timeline revealBombsTimeLine = new Timeline();
             for (Cell bombCell : bombCells)
             {
-                revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal()));
+                revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal(false)));
             }
 
             revealBombsTimeLine.setOnFinished(event ->
@@ -306,7 +306,9 @@ public class GameController extends Controller
                 .filter(cell -> !cell.isFlagged() && !cell.isRevealed())
                 .forEach(cell -> cell.reveal(true));
 
-        endGame(false);
+        endGame(getCells().stream()
+                .filter(Cell::isRevealed)
+                .noneMatch(Cell::isBomb));
     }
 
     private void initializeRestartGameButton()
@@ -445,12 +447,6 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
-
-                ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + "bomb" + ".png")).toExternalForm());
-                imageView.setFitWidth(25);
-                imageView.setFitHeight(25);
-                cell.getButton().setGraphic(imageView);
-
                 bombsPlaced++;
             }
         }

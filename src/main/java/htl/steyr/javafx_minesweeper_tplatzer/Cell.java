@@ -98,7 +98,9 @@ public class Cell
 
         if (isBomb())
         {
-            silentBombReveal();
+            getButton().getStyleClass().add("cell-bomb-revealed");
+
+            silentBombReveal(suppressEndGame);
             if (!suppressEndGame) getController().endGame(false);
         } else if (getAdjacentBombs() > 0)
         {
@@ -110,15 +112,15 @@ public class Cell
             revealAdjacentCells();
         }
 
-        getController().checkWinCondition();
+        if (!suppressEndGame) getController().checkWinCondition();
     }
 
-    protected void silentBombReveal()
+    protected void silentBombReveal(boolean suppressEndGame)
     {
         getButton().setText("");
         setIconForButton("bomb");
         getButton().getStyleClass().add("cell-button-revealed");
-        getButton().getStyleClass().add("cell-bomb-revealed");
+        if (suppressEndGame) getButton().getStyleClass().add("cell-bomb-revealed");
     }
 
     protected void setIconForButton(String icon)
