@@ -29,9 +29,6 @@ public class MenuController extends Controller
     private final VBox root = new VBox();
     private Text titleText;
     private Text choiceText;
-    private Button beginnerButton;
-    private Button advancedButton;
-    private Button proButton;
     private HBox difficultyBox;
     private VBox chooseGameModeBox;
 
@@ -209,36 +206,6 @@ public class MenuController extends Controller
     public void setMenuScene(Scene menuScene)
     {
         this.menuScene = menuScene;
-    }
-
-    public Button getBeginnerButton()
-    {
-        return beginnerButton;
-    }
-
-    public void setBeginnerButton(Button beginnerButton)
-    {
-        this.beginnerButton = beginnerButton;
-    }
-
-    public Button getAdvancedButton()
-    {
-        return advancedButton;
-    }
-
-    public void setAdvancedButton(Button advancedButton)
-    {
-        this.advancedButton = advancedButton;
-    }
-
-    public Button getProButton()
-    {
-        return proButton;
-    }
-
-    public void setProButton(Button proButton)
-    {
-        this.proButton = proButton;
     }
 
     public Text getTitleText()
