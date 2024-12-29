@@ -1,9 +1,9 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -32,7 +32,7 @@ public class MenuController extends Controller
     private Button beginnerButton;
     private Button advancedButton;
     private Button proButton;
-    private HBox difficultyButtonBox;
+    private HBox difficultyBox;
     private VBox chooseGameModeBox;
 
     public void start(Stage stage)
@@ -64,19 +64,9 @@ public class MenuController extends Controller
         switchScene(getStage(), getMenuScene(), "Menü", 400, 800);
     }
 
-    private void handleButtonClick(ActionEvent event)
+    private void startGame(String difficulty)
     {
-        stopBackgroundMusic();
-
-        Button clickedButton = (Button) event.getSource();
-        String difficulty = clickedButton.getId();
-
-        switch (difficulty)
-        {
-            case "beginner" -> new GameController("beginner").start(getStage());
-            case "advanced" -> new GameController("advanced").start(getStage());
-            case "pro" -> new GameController("pro").start(getStage());
-        }
+        new GameController(difficulty).start(getStage());
     }
 
     private void initializeUserElements()
@@ -85,26 +75,6 @@ public class MenuController extends Controller
         setChoiceText(initializeText("choiceText", "Choose-a-Gamemode"));
         initializeChooseGameModeBox();
 
-    }
-
-    private Button initializeDifficultyButton(String id)
-    {
-        Button button = new Button();
-        button.setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
-        button.getStyleClass().add("button");
-        button.setId(id);
-        button.setText(id.toUpperCase());
-        button.setFocusTraversable(false);
-        button.setOnAction(this::handleButtonClick);
-        button.getStylesheets().addAll(
-                Objects.requireNonNull(getClass().getResource("/style/style.css")).toExternalForm(),
-                Objects.requireNonNull(getClass().getResource("/style/menuStyle.css")).toExternalForm());
-        HBox.setHgrow(button, Priority.ALWAYS);
-        button.prefWidthProperty().bind(getDifficultyButtonBox().widthProperty().divide(4).subtract(20));
-        button.prefHeightProperty()
-                .bind(getDifficultyButtonBox().heightProperty().multiply(0.5));
-
-        return button;
     }
 
     private void initializeChooseGameModeBox()
@@ -116,25 +86,75 @@ public class MenuController extends Controller
         getChooseGameModeBox().setMinSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
         getChooseGameModeBox().setMaxSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
 
-        initializeDifficultyButtonBox();
-        getChooseGameModeBox().getChildren().addAll(getChoiceText(), getDifficultyButtonBox());
+        initializeDifficultyBoxes();
+        getChooseGameModeBox().getChildren().addAll(getChoiceText(), getDifficultyBox());
     }
 
-    private void initializeDifficultyButtonBox()
+    private void initializeDifficultyBoxes()
     {
-        setDifficultyButtonBox(new HBox());
+        setDifficultyBox(new HBox());
+        getDifficultyBox().setAlignment(Pos.CENTER);
+        getDifficultyBox().setSpacing(10);
+        getDifficultyBox().getStyleClass().add("box");
+        getDifficultyBox().setId("difficulty-button-box");
 
-        setBeginnerButton(initializeDifficultyButton("beginner"));
-        setAdvancedButton(initializeDifficultyButton("advanced"));
-        setProButton(initializeDifficultyButton("pro"));
-
-        getDifficultyButtonBox().setSpacing(10);
-        getDifficultyButtonBox().setAlignment(Pos.CENTER);
-        getDifficultyButtonBox().getStyleClass().add("box");
-        getDifficultyButtonBox().setId("difficulty-button-box");
-
-        getDifficultyButtonBox().getChildren().addAll(getBeginnerButton(), getAdvancedButton(), getProButton());
+        getDifficultyBox().getChildren().addAll(
+                createDifficultyBox("beginner", loadBestTime("beginner")),
+                createDifficultyBox("advanced", loadBestTime("advanced")),
+                createDifficultyBox("pro", loadBestTime("pro")));
     }
+
+    private VBox createDifficultyBox(String difficulty, int bestTime)
+    {
+        VBox difficultyBox = new VBox();
+        difficultyBox.setSpacing(10);
+        difficultyBox.setAlignment(Pos.CENTER);
+
+        Button difficultyButton = new Button(difficulty.toUpperCase());
+        difficultyButton.setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
+        difficultyButton.getStyleClass().add("button");
+        difficultyButton.setId(difficulty);
+        difficultyButton.setFocusTraversable(false);
+        difficultyButton.setOnAction(event -> startGame(difficulty));
+        HBox.setHgrow(difficultyButton, Priority.ALWAYS);
+        difficultyButton.prefWidthProperty().bind(getDifficultyBox().widthProperty().divide(4).subtract(20));
+        difficultyButton.prefHeightProperty().bind(getDifficultyBox().heightProperty().multiply(0.3));
+
+        Label bestTimeLabel = new Label(formatBestTime(bestTime));
+        bestTimeLabel.getStyleClass().add("info-label");
+
+        VBox bestTimeBox = new VBox(bestTimeLabel);
+        bestTimeBox.setAlignment(Pos.CENTER);
+        bestTimeBox.getStyleClass().add("info-box");
+        bestTimeBox.setMaxSize(25, 25);
+
+        difficultyBox.getChildren().addAll(difficultyButton, bestTimeBox);
+
+        return difficultyBox;
+    }
+
+
+    private int loadBestTime(String difficulty)
+    {
+        BestTimes bestTimes = BestTimeManager.loadBestTimes();
+        return switch (difficulty)
+        {
+            case "beginner" -> bestTimes.getBeginnerBestTime();
+            case "advanced" -> bestTimes.getAdvancedBestTime();
+            case "pro" -> bestTimes.getProBestTime();
+            default -> Integer.MAX_VALUE;
+        };
+    }
+
+    private String formatBestTime(int bestTime)
+    {
+        if (bestTime == Integer.MAX_VALUE)
+        {
+            return "---";
+        }
+        return String.format("%03d", bestTime);
+    }
+
 
     public static int getMaxHBoxWidth()
     {
@@ -189,16 +209,6 @@ public class MenuController extends Controller
     public void setMenuScene(Scene menuScene)
     {
         this.menuScene = menuScene;
-    }
-
-    public HBox getDifficultyButtonBox()
-    {
-        return difficultyButtonBox;
-    }
-
-    public void setDifficultyButtonBox(HBox difficultyButtonBox)
-    {
-        this.difficultyButtonBox = difficultyButtonBox;
     }
 
     public Button getBeginnerButton()
@@ -259,5 +269,15 @@ public class MenuController extends Controller
     public void setChooseGameModeBox(VBox chooseGameModeBox)
     {
         this.chooseGameModeBox = chooseGameModeBox;
+    }
+
+    public HBox getDifficultyBox()
+    {
+        return difficultyBox;
+    }
+
+    public void setDifficultyBox(HBox difficultyBox)
+    {
+        this.difficultyBox = difficultyBox;
     }
 }
