@@ -14,7 +14,7 @@ public class BestTimesManager
             oos.writeObject(bestTimes);
         } catch (Exception e)
         {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -30,7 +30,7 @@ public class BestTimesManager
             return (BestTimes) ois.readObject();
         } catch (Exception e)
         {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             return new BestTimes();
         }
     }
