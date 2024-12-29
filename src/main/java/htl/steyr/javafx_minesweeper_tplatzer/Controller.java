@@ -36,7 +36,7 @@ public class Controller
         centerStage(stage);
     }
 
-    public void switchScene(Stage stage, Scene newScene, String gameMode, String title)
+    protected void switchScene(Stage stage, Scene newScene, String gameMode, String title)
     {
         int windowWidth;
         int windowHeight;
@@ -102,7 +102,7 @@ public class Controller
         stage.setY((screenHeight - stageHeight) / 2);
     }
 
-    public static void checkIfInputStreamIsNotNull(InputStream inputStream, String fileName) throws FileNotFoundException
+    protected static void checkIfInputStreamIsNotNull(InputStream inputStream, String fileName) throws FileNotFoundException
     {
         if (inputStream == null) throw new FileNotFoundException("File not found: " + fileName);
     }
