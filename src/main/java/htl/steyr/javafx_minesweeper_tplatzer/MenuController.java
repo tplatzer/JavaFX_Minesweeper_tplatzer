@@ -12,10 +12,6 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-/**
- * @ToDo Anzeige der besten Zeit für jeden Spielmodus unter dem jeweiligen Spielmodus
- */
-
 public class MenuController extends Controller
 {
     private static final int maxHBoxWidth = 1000;
@@ -130,7 +126,6 @@ public class MenuController extends Controller
         return difficultyBox;
     }
 
-
     private int loadBestTime(String difficulty)
     {
         BestTimes bestTimes = BestTimeManager.loadBestTimes();
@@ -151,7 +146,6 @@ public class MenuController extends Controller
         }
         return String.format("%03d", bestTime);
     }
-
 
     public static int getMaxHBoxWidth()
     {
