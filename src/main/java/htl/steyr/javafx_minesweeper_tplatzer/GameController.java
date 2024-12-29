@@ -469,6 +469,11 @@ public class GameController extends Controller
         return getCells().get(row * columns + col);
     }
 
+    private String formatTime(int time)
+    {
+        return String.format("%03d", time);
+    }
+
     private String formatCounter(int count)
     {
         if (count < 0) return String.format("-%02d", Math.abs(count));
