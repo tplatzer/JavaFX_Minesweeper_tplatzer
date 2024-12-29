@@ -1,7 +1,7 @@
 .root-container
 {
     -fx-background-color: #c0c0c0;
-    -fx-spacing: 20px;
+    -fx-spacing: 15px;
     -fx-padding: 20px;
     -fx-alignment: center;
 }
