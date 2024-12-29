@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -33,6 +34,7 @@ public class GameController extends Controller
     private int rows;
     private int columns;
     private List<Cell> cells;
+    private boolean firstClick;
 
     public GameController(String difficulty)
     {
@@ -55,6 +57,7 @@ public class GameController extends Controller
         setTotalMines(0);
         setRows(0);
         setColumns(0);
+        setFirstClick(true);
     }
 
     private void initializeWindow()
@@ -72,7 +75,7 @@ public class GameController extends Controller
                 Objects.requireNonNull(getClass().getResource("/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
-        switchScene(getStage(), getGameScene(), getDifficulty(), "Bomben Räum Simulator");
+        switchScene(getStage(), getGameScene(), getDifficulty(), "Bomb-Disposal-Simulator");
     }
 
     private void restartGame()
@@ -172,6 +175,8 @@ public class GameController extends Controller
                 case "pro" -> bestTimes.setProBestTime(getElapsedTime());
             }
         }
+
+        BestTimesManager.saveBestTimes(bestTimes);
     }
 
     private void switchToMenu()
@@ -682,5 +687,15 @@ public class GameController extends Controller
     public void setColumns(int columns)
     {
         this.columns = columns;
+    }
+
+    public boolean isFirstClick()
+    {
+        return firstClick;
+    }
+
+    public void setFirstClick(boolean firstClick)
+    {
+        this.firstClick = firstClick;
     }
 }

@@ -54,7 +54,7 @@ public class MenuController extends Controller
                 Objects.requireNonNull(getClass().getResource("/style/menuStyle.css")).toExternalForm());
 
         setMenuScene(new Scene(getRoot()));
-        switchScene(getStage(), getMenuScene(), "Menü", 400, 800);
+        switchScene(getStage(), getMenuScene(), "Menu", 400, 800);
     }
 
     private void startGame(String difficulty)
