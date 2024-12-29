@@ -128,7 +128,7 @@ public class MenuController extends Controller
 
     private int loadBestTime(String difficulty)
     {
-        BestTimes bestTimes = BestTimeManager.loadBestTimes();
+        BestTimes bestTimes = BestTimesManager.loadBestTimes();
         return switch (difficulty)
         {
             case "beginner" -> bestTimes.getBeginnerBestTime();

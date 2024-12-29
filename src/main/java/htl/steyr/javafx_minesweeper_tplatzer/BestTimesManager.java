@@ -2,7 +2,7 @@ package htl.steyr.javafx_minesweeper_tplatzer;
 
 import java.io.*;
 
-public class BestTimeManager
+public class BestTimesManager
 {
     private static final String FILE_NAME = "best_times.dat";
 
