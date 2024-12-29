@@ -408,6 +408,12 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
+
+                ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + "bomb" + ".png")).toExternalForm());
+                imageView.setFitWidth(25);
+                imageView.setFitHeight(25);
+                cell.getButton().setGraphic(imageView);
+
                 bombsPlaced++;
             }
         }
