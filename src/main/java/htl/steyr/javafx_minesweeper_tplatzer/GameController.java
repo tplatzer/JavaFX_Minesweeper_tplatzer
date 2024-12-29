@@ -402,16 +402,11 @@ public class GameController extends Controller
         setCells(new ArrayList<>());
         initializeGameFieldGridPane();
 
-        double buttonWidth = (double) getMaxHBoxHeight() / columns;
-        double buttonHeight = (double) getMaxHBoxWidth() / rows;
-
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < columns; col++)
             {
                 Cell cell = new Cell(false, this, row, col);
-                cell.getButton().setPrefWidth(buttonWidth);
-                cell.getButton().setPrefHeight(buttonHeight);
 
                 cell.getButton().setOnMousePressed(event ->
                 {
