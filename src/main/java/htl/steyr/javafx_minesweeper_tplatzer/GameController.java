@@ -304,11 +304,9 @@ public class GameController extends Controller
         getTimerLabel().getStyleClass().add("info-label");
 
         getTimerBox().getChildren().add(getTimerLabel());
-
-        startTimer();
     }
 
-    private void startTimer()
+    protected void startTimer()
     {
         setTimer(new Timeline(new KeyFrame(Duration.seconds(1), event ->
         {
