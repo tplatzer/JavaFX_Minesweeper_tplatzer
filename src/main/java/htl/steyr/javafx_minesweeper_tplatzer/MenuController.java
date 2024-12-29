@@ -145,7 +145,12 @@ public class MenuController extends Controller
     private void initializeMuteSfxButton()
     {
         setMuteSfxButton(new Button("Mute SFX"));
+        getMuteSfxButton().getStyleClass().add("button");
         getMuteSfxButton().getStyleClass().add("mute-button");
+
+        if (isMuted()) getMuteSfxButton().getStyleClass().add("selected");
+        else getMuteSfxButton().getStyleClass().remove("selected");
+
         getMuteSfxButton().setOnAction(event -> toggleMute());
     }
 
@@ -167,6 +172,7 @@ public class MenuController extends Controller
     private void initializeResetBestTimesButton()
     {
         setResetBestTimesButton(new Button("Reset Best Times"));
+        getResetBestTimesButton().getStyleClass().add("button");
         getResetBestTimesButton().getStyleClass().add("reset-button");
         getResetBestTimesButton().setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
         getResetBestTimesButton().setOnAction(event -> resetBestTimes());

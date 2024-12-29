@@ -31,18 +31,8 @@
 }
 
 .mute-button {
-    -fx-font-family: "Courier New", monospace;
     -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
     -fx-padding: 5px 10px;
-    -fx-alignment: center;
-}
-
-.mute-button:hover {
-    -fx-background-color: #d9d9d9;
 }
 
 .mute-button:pressed, .mute-button.selected {
@@ -52,19 +42,9 @@
 
 .reset-button {
     -fx-font-size: 18px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
     -fx-min-width: 150px;
     -fx-max-width: 200px;
     -fx-pref-width: 180px;
-    -fx-alignment: center;
-}
-
-.reset-button:hover {
-    -fx-background-color: #d9d9d9;
 }
 
 #titleText
