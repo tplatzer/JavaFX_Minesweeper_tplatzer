@@ -62,8 +62,8 @@ public class MenuController extends Controller
                 getChooseGameModeBox());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
-                Objects.requireNonNull(getClass().getResource("/style/style.css")).toExternalForm(),
-                Objects.requireNonNull(getClass().getResource("/style/menuStyle.css")).toExternalForm());
+                Objects.requireNonNull(getClass().getResource("/retro/style/style.css")).toExternalForm(),
+                Objects.requireNonNull(getClass().getResource("/retro/style/menuStyle.css")).toExternalForm());
 
         setMenuScene(new Scene(getRoot()));
         switchScene(getStage(), getMenuScene(), "Menu", 400, 800);

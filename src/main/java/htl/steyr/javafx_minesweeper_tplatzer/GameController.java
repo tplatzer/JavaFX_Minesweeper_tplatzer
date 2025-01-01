@@ -72,8 +72,8 @@ public class GameController extends Controller
         getRoot().getChildren().addAll(getGameInfoBox(), getGameField());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
-                Objects.requireNonNull(getClass().getResource("/style/style.css")).toExternalForm(),
-                Objects.requireNonNull(getClass().getResource("/style/gameStyle.css")).toExternalForm());
+                Objects.requireNonNull(getClass().getResource("/retro/style/style.css")).toExternalForm(),
+                Objects.requireNonNull(getClass().getResource("/retro/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
         switchScene(getStage(), getGameScene(), getDifficulty(), "Bomb-Disposal-Simulator");

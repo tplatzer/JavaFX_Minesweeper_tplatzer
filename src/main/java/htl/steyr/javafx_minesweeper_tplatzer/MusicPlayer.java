@@ -10,7 +10,7 @@ public class MusicPlayer
 
     public void playMusic(String fileName, float volume)
     {
-        try (InputStream audioStream = getClass().getResourceAsStream("/sfx/" + fileName))
+        try (InputStream audioStream = getClass().getResourceAsStream("/retro/sfx/" + fileName))
         {
             Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
 
@@ -30,7 +30,7 @@ public class MusicPlayer
 
     public void playMusicOnce(String fileName, float volume)
     {
-        try (InputStream audioStream = getClass().getResourceAsStream("/sfx/" + fileName))
+        try (InputStream audioStream = getClass().getResourceAsStream("/retro/sfx/" + fileName))
         {
             Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
 
@@ -73,7 +73,7 @@ public class MusicPlayer
     {
         try
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MusicPlayer.class.getResource("/sfx/" + fileName + ".wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MusicPlayer.class.getResource("/retro/sfx/" + fileName + ".wav")));
             AudioFormat format = audioInputStream.getFormat();
             long frames = audioInputStream.getFrameLength();
             return frames / format.getFrameRate();

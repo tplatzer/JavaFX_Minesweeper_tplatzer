@@ -125,7 +125,7 @@ public class Cell
 
     protected void setIconForButton(String icon)
     {
-        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/img/" + icon + ".png")).toExternalForm());
+        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/retro/img/" + icon + ".png")).toExternalForm());
         imageView.setPreserveRatio(true);
 
         getButton().widthProperty().addListener((observable, oldValue, newValue) -> adjustIconSize(imageView));

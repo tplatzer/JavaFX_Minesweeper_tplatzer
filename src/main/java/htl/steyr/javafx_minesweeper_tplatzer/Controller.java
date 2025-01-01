@@ -16,7 +16,7 @@ public class Controller
 
     protected void initializeStage(Stage stage)
     {
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/img/icon.png")).toExternalForm()));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/retro/img/icon.png")).toExternalForm()));
     }
 
     protected void switchScene(Stage stage, Scene newScene, String title, double newHeight, double newWidth)
