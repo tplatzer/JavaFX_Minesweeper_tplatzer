@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class Cell
 {
+    private String style;
     private boolean isBomb;
     private boolean isFlagged;
     private boolean isRevealed;
@@ -18,8 +19,9 @@ public class Cell
     private int row;
     private int column;
 
-    public Cell(boolean isBomb, GameController controller, int row, int column)
+    public Cell(String style, boolean isBomb, GameController controller, int row, int column)
     {
+        setStyle(style);
         setBomb(isBomb);
         setController(controller);
         setRow(row);
@@ -125,7 +127,7 @@ public class Cell
 
     protected void setIconForButton(String icon)
     {
-        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/retro/img/" + icon + ".png")).toExternalForm());
+        ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/img/" + icon + ".png")).toExternalForm());
         imageView.setPreserveRatio(true);
 
         getButton().widthProperty().addListener((observable, oldValue, newValue) -> adjustIconSize(imageView));
@@ -267,5 +269,15 @@ public class Cell
     public void setQuestioned(boolean questioned)
     {
         isQuestioned = questioned;
+    }
+
+    public String getStyle()
+    {
+        return style;
+    }
+
+    public void setStyle(String style)
+    {
+        this.style = style;
     }
 }

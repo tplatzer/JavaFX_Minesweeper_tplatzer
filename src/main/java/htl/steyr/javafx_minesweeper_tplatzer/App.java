@@ -9,7 +9,7 @@ public class App extends Application
     @Override
     public void start(Stage stage)
     {
-        new MenuController(false).start(stage);
+        new MenuController("retro", false).start(stage);
     }
 
     public static void main(String[] args)

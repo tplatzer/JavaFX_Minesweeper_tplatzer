@@ -28,12 +28,16 @@ public class MenuController extends Controller
     private Text choiceText;
     private HBox difficultyBox;
     private VBox chooseGameModeBox;
+    private HBox controlButtonsBox;
+    private Button chooseStyleButton;
     private Button muteSfxButton;
     private Button resetBestTimesButton;
+    private String style;
     private boolean muted;
 
-    public MenuController(boolean muted)
+    public MenuController(String style, boolean muted)
     {
+        setStyle(style);
         setMuted(muted);
     }
 
@@ -41,9 +45,9 @@ public class MenuController extends Controller
     {
         setStage(stage);
         initializeUserElements();
-        if (!isMuted()) playBackgroundMusic("menu-music");
+        if (!isMuted()) playBackgroundMusic("menu-music", getStyle());
 
-        initializeStage(getStage());
+        initializeStage(getStage(), getStyle());
         initializeWindow();
         getStage().show();
     }
@@ -62,8 +66,8 @@ public class MenuController extends Controller
                 getChooseGameModeBox());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
-                Objects.requireNonNull(getClass().getResource("/retro/style/style.css")).toExternalForm(),
-                Objects.requireNonNull(getClass().getResource("/retro/style/menuStyle.css")).toExternalForm());
+                Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/style.css")).toExternalForm(),
+                Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/menuStyle.css")).toExternalForm());
 
         setMenuScene(new Scene(getRoot()));
         switchScene(getStage(), getMenuScene(), "Menu", 400, 800);
@@ -72,7 +76,7 @@ public class MenuController extends Controller
     private void startGame(String difficulty)
     {
         stopBackgroundMusic();
-        new GameController(difficulty, isMuted()).start(getStage());
+        new GameController(difficulty, getStyle(), isMuted()).start(getStage());
     }
 
     private void initializeUserElements()
@@ -93,14 +97,26 @@ public class MenuController extends Controller
         getChooseGameModeBox().setMaxSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
 
         initializeDifficultyBoxes();
-        initializeMuteSfxButton();
+        initializeControlButtonsBox();
         initializeResetBestTimesButton();
 
         getChooseGameModeBox().getChildren().addAll(
                 getChoiceText(),
                 getDifficultyBox(),
-                getMuteSfxButton(),
+                getControlButtonsBox(),
                 getResetBestTimesButton());
+    }
+
+    private void initializeControlButtonsBox()
+    {
+        initializeMuteSfxButton();
+        initializeChooseStyleButton();
+
+        setControlButtonsBox(new HBox());
+        getControlButtonsBox().setSpacing(10);
+        getControlButtonsBox().setAlignment(Pos.CENTER);
+
+        getControlButtonsBox().getChildren().addAll(getMuteSfxButton(), getChooseStyleButton());
     }
 
     private void initializeDifficultyBoxes()
@@ -159,6 +175,33 @@ public class MenuController extends Controller
         getMuteSfxButton().setOnAction(event -> toggleMute());
     }
 
+    private void initializeChooseStyleButton()
+    {
+        setChooseStyleButton(new Button(getStyle().toUpperCase()));
+        getChooseStyleButton().getStyleClass().add("button");
+        getChooseStyleButton().getStyleClass().add("style-button");
+
+        getChooseStyleButton().setOnAction(event -> toggleStyle());
+    }
+
+    private void toggleStyle()
+    {
+        if ("retro".equals(getStyle()))
+        {
+            setStyle("modern");
+        }
+        else
+        {
+            setStyle("retro");
+        }
+
+        getChooseStyleButton().setText(getStyle().toUpperCase());
+
+        stopBackgroundMusic();
+
+        new MenuController(getStyle(), isMuted()).start(getStage());
+    }
+
     private void toggleMute()
     {
         setMuted(!isMuted());
@@ -168,7 +211,7 @@ public class MenuController extends Controller
             getMuteSfxButton().getStyleClass().add("selected");
         } else
         {
-            playBackgroundMusic("menu-music");
+            playBackgroundMusic("menu-music", getStyle());
             getMuteSfxButton().getStyleClass().remove("selected");
         }
     }
@@ -201,7 +244,7 @@ public class MenuController extends Controller
         BestTimesManager.saveBestTimes(bestTimes);
 
         stopBackgroundMusic();
-        new MenuController(isMuted()).start(getStage());
+        new MenuController(getStyle(), isMuted()).start(getStage());
     }
 
     private String formatBestTime(int bestTime)
@@ -336,5 +379,35 @@ public class MenuController extends Controller
     public void setResetBestTimesButton(Button resetBestTimesButton)
     {
         this.resetBestTimesButton = resetBestTimesButton;
+    }
+
+    public String getStyle()
+    {
+        return style;
+    }
+
+    public void setStyle(String style)
+    {
+        this.style = style;
+    }
+
+    public Button getChooseStyleButton()
+    {
+        return chooseStyleButton;
+    }
+
+    public void setChooseStyleButton(Button chooseStyleButton)
+    {
+        this.chooseStyleButton = chooseStyleButton;
+    }
+
+    public HBox getControlButtonsBox()
+    {
+        return controlButtonsBox;
+    }
+
+    public void setControlButtonsBox(HBox controlButtonsBox)
+    {
+        this.controlButtonsBox = controlButtonsBox;
     }
 }

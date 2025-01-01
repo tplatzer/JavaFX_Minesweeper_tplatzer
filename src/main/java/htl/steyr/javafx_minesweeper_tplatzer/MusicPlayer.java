@@ -8,9 +8,9 @@ public class MusicPlayer
 {
     private Clip clip;
 
-    public void playMusic(String fileName, float volume)
+    public void playMusic(String fileName, float volume, String style)
     {
-        try (InputStream audioStream = getClass().getResourceAsStream("/retro/sfx/" + fileName))
+        try (InputStream audioStream = getClass().getResourceAsStream("/" + style + "/sfx/" + fileName))
         {
             Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
 
@@ -28,9 +28,9 @@ public class MusicPlayer
         }
     }
 
-    public void playMusicOnce(String fileName, float volume)
+    public void playMusicOnce(String fileName, float volume, String style)
     {
-        try (InputStream audioStream = getClass().getResourceAsStream("/retro/sfx/" + fileName))
+        try (InputStream audioStream = getClass().getResourceAsStream("/" + style + "/sfx/" + fileName))
         {
             Controller.checkIfInputStreamIsNotNull(audioStream, fileName);
 
@@ -69,11 +69,11 @@ public class MusicPlayer
         }
     }
 
-    public static double getSoundEffectDuration(String fileName)
+    public static double getSoundEffectDuration(String fileName, String style)
     {
         try
         {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MusicPlayer.class.getResource("/retro/sfx/" + fileName + ".wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(MusicPlayer.class.getResource("/" + style + "/sfx/" + fileName + ".wav")));
             AudioFormat format = audioInputStream.getFormat();
             long frames = audioInputStream.getFrameLength();
             return frames / format.getFrameRate();

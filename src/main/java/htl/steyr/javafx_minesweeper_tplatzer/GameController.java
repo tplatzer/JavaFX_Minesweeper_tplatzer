@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ public class GameController extends Controller
     private GridPane gameField;
     private Stage stage;
     private String difficulty;
+    private String style;
     private int totalMines;
     private int rows;
     private int columns;
@@ -36,9 +38,10 @@ public class GameController extends Controller
     private boolean firstClick;
     private boolean muted;
 
-    public GameController(String difficulty, boolean muted)
+    public GameController(String difficulty, String style, boolean muted)
     {
         setDifficulty(difficulty);
+        setStyle(style);
         setMuted(muted);
     }
 
@@ -47,7 +50,7 @@ public class GameController extends Controller
         setStage(stage);
         setDefaultValues();
         initializeUserElements();
-        if (!isMuted()) playBackgroundMusic("background-music");
+        if (!isMuted()) playBackgroundMusic("background-music", getStyle());
 
         initializeWindow();
     }
@@ -72,8 +75,8 @@ public class GameController extends Controller
         getRoot().getChildren().addAll(getGameInfoBox(), getGameField());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
-                Objects.requireNonNull(getClass().getResource("/retro/style/style.css")).toExternalForm(),
-                Objects.requireNonNull(getClass().getResource("/retro/style/gameStyle.css")).toExternalForm());
+                Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/style.css")).toExternalForm(),
+                Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/gameStyle.css")).toExternalForm());
 
         setGameScene(new Scene(getRoot()));
         switchScene(getStage(), getGameScene(), getDifficulty(), "Bomb-Disposal-Simulator");
@@ -82,7 +85,7 @@ public class GameController extends Controller
     private void restartGame()
     {
         stopBackgroundMusic();
-        new GameController(getDifficulty(), isMuted()).start(getStage());
+        new GameController(getDifficulty(), getStyle(), isMuted()).start(getStage());
     }
 
     protected void endGame(boolean won)
@@ -118,9 +121,9 @@ public class GameController extends Controller
         } else
         {
             String winJingle = getRandomWinJingle();
-            playSoundEffect(winJingle);
+            playSoundEffect(winJingle, getStyle());
 
-            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(winJingle) - 0.5), event -> switchToMenu()));
+            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(winJingle, getStyle()) - 0.5), event -> switchToMenu()));
             delay.play();
         }
     }
@@ -149,20 +152,20 @@ public class GameController extends Controller
         } else
         {
             String bombExplosionSound = getRandomBombExplosionSound();
-            playSoundEffect(bombExplosionSound);
+            playSoundEffect(bombExplosionSound, getStyle());
 
             Timeline revealBombsTimeLine = new Timeline();
             for (Cell bombCell : bombCells)
             {
-                revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound) - 0.5), event -> bombCell.silentBombReveal(false)));
+                revealBombsTimeLine.getKeyFrames().add(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(bombExplosionSound, getStyle()) - 0.5), event -> bombCell.silentBombReveal(false)));
             }
 
             revealBombsTimeLine.setOnFinished(event ->
             {
                 String loseJingle = getRandomLoseJingle();
-                playSoundEffect(loseJingle);
+                playSoundEffect(loseJingle, getStyle());
 
-                new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(loseJingle) - 0.5), ev -> switchToMenu())).play();
+                new Timeline(new KeyFrame(Duration.seconds(MusicPlayer.getSoundEffectDuration(loseJingle, getStyle()) - 0.5), ev -> switchToMenu())).play();
             });
 
             revealBombsTimeLine.play();
@@ -215,7 +218,7 @@ public class GameController extends Controller
 
     private void switchToMenu()
     {
-        new MenuController(isMuted()).start(getStage());
+        new MenuController(getStyle(), isMuted()).start(getStage());
     }
 
     protected void checkWinCondition()
@@ -406,7 +409,7 @@ public class GameController extends Controller
         {
             for (int col = 0; col < columns; col++)
             {
-                Cell cell = new Cell(false, this, row, col);
+                Cell cell = new Cell(getStyle(), false, this, row, col);
 
                 cell.getButton().setOnMousePressed(event ->
                 {
@@ -439,6 +442,12 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
+
+                /*ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/img/" + "bomb" + ".png")).toExternalForm());
+                imageView.setFitHeight(25);
+                imageView.setFitWidth(25);
+                cell.getButton().setGraphic(imageView);*/
+
                 bombsPlaced++;
             }
         }
@@ -738,5 +747,15 @@ public class GameController extends Controller
     public void setMuted(boolean muted)
     {
         this.muted = muted;
+    }
+
+    public String getStyle()
+    {
+        return style;
+    }
+
+    public void setStyle(String style)
+    {
+        this.style = style;
     }
 }

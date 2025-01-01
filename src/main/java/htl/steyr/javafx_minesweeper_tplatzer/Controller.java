@@ -14,9 +14,9 @@ public class Controller
     protected MusicPlayer backgroundMusicPlayer = new MusicPlayer();
     protected MusicPlayer soundEffectPlayer = new MusicPlayer();
 
-    protected void initializeStage(Stage stage)
+    protected void initializeStage(Stage stage, String style)
     {
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/retro/img/icon.png")).toExternalForm()));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/" + style + "/img/icon.png")).toExternalForm()));
     }
 
     protected void switchScene(Stage stage, Scene newScene, String title, double newHeight, double newWidth)
@@ -75,14 +75,14 @@ public class Controller
         return text;
     }
 
-    protected void playSoundEffect(String fileName)
+    protected void playSoundEffect(String fileName, String style)
     {
-        getSoundEffectPlayer().playMusicOnce(fileName + ".wav", -30.0f);
+        getSoundEffectPlayer().playMusicOnce(fileName + ".wav", -30.0f, style);
     }
 
-    protected void playBackgroundMusic(String fileName)
+    protected void playBackgroundMusic(String fileName, String style)
     {
-        getBackgroundMusicPlayer().playMusic(fileName + ".wav", -30.0f);
+        getBackgroundMusicPlayer().playMusic(fileName + ".wav", -30.0f, style);
     }
 
     protected void stopBackgroundMusic()
