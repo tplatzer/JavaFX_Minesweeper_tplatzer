@@ -20,6 +20,7 @@
     -fx-background-radius: 8px;
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
+    -fx-clip: true;
 }
 
 .button:hover

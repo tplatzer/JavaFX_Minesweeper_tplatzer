@@ -17,6 +17,7 @@
     -fx-background-color: #ffffff;
     -fx-border-radius: 8px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);
+    -fx-background-radius: 8px;
 }
 
 .restart-button
@@ -29,6 +30,7 @@
     -fx-border-color: #cccccc;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 2, 2);
 }
 
@@ -50,6 +52,7 @@
     -fx-border-width: 2px;
     -fx-padding: 10px;
     -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 2, 2);
 }
 
