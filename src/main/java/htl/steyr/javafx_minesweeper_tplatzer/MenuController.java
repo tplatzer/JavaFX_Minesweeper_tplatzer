@@ -79,7 +79,7 @@ public class MenuController extends Controller
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/menuStyle.css")).toExternalForm());
 
         setMenuScene(new Scene(getRoot()));
-        switchScene(getStage(), getMenuScene(), "Menu", 475, 1000);
+        switchScene(getStage(), getMenuScene(), "Menu", 500, 1000);
     }
 
     private void startGame(String difficulty)
@@ -253,7 +253,6 @@ public class MenuController extends Controller
         setLeaderboardButton(new Button("Leaderboard"));
         getLeaderboardButton().setOnAction(event -> showLeaderboardWindow());
         getLeaderboardButton().getStyleClass().add("button");
-        getLeaderboardButton().getStyleClass().add("leaderboard-button");
     }
 
     private void showLeaderboardWindow()
