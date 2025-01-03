@@ -66,9 +66,9 @@
 .reset-button
 {
     -fx-font-size: 16px;
-    -fx-min-width: 150px;
-    -fx-max-width: 200px;
-    -fx-pref-width: 180px;
+    -fx-min-width: 250px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 300px;
     -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
     -fx-border-color: #b3b3b3;
     -fx-border-radius: 8px;
@@ -80,9 +80,16 @@
     -fx-background-color: linear-gradient(to bottom, #f9f9f9, #d9d9d9);
 }
 
+#usernameLabel
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #444444;
+    -fx-padding: 1px;
+}
+
 #titleText
 {
-    -fx-font-size: 36px;
+    -fx-font-size: 40px;
     -fx-text-fill: #333333;
     -fx-padding: 10px;
     -fx-border-color: transparent;

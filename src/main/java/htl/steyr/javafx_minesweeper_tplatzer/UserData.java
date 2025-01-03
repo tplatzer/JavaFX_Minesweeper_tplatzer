@@ -3,19 +3,21 @@ package htl.steyr.javafx_minesweeper_tplatzer;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class BestTimes implements Serializable
+public class UserData implements Serializable
 {
     @Serial
     private static final long serialVersionUID = 1L;
     private int beginnerBestTime;
     private int advancedBestTime;
     private int proBestTime;
+    private String username;
 
-    public BestTimes()
+    public UserData()
     {
         setBeginnerBestTime(Integer.MAX_VALUE);
         setAdvancedBestTime(Integer.MAX_VALUE);
         setProBestTime(Integer.MAX_VALUE);
+        setUsername("Default_Username");
     }
 
     public int getBeginnerBestTime()
@@ -46,5 +48,15 @@ public class BestTimes implements Serializable
     public void setProBestTime(int proBestTime)
     {
         this.proBestTime = proBestTime;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

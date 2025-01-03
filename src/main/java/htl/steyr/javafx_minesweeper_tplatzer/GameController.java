@@ -37,9 +37,11 @@ public class GameController extends Controller
     private List<Cell> cells;
     private boolean firstClick;
     private boolean muted;
+    private String username;
 
-    public GameController(String difficulty, String style, boolean muted)
+    public GameController(String username, String difficulty, String style, boolean muted)
     {
+        setUsername(username);
         setDifficulty(difficulty);
         setStyle(style);
         setMuted(muted);
@@ -85,7 +87,7 @@ public class GameController extends Controller
     private void restartGame()
     {
         stopBackgroundMusic();
-        new GameController(getDifficulty(), getStyle(), isMuted()).start(getStage());
+        new GameController(getUsername(), getDifficulty(), getStyle(), isMuted()).start(getStage());
     }
 
     protected void endGame(boolean won)
@@ -118,7 +120,7 @@ public class GameController extends Controller
         LeaderboardClient client = new LeaderboardClient();
         try
         {
-            client.submitBestTime("Tim", getElapsedTime(), getDifficulty());
+            client.submitBestTime(getUsername(), getElapsedTime(), getDifficulty());
         } catch (Exception e)
         {
             System.err.println(e.getMessage());
@@ -195,39 +197,39 @@ public class GameController extends Controller
 
     private void updateBestTime()
     {
-        BestTimes bestTimes = BestTimesManager.loadBestTimes();
+        UserData userData = UserDataManager.loadUserData();
 
         switch (getDifficulty())
         {
             case "beginner" ->
             {
-                if (getElapsedTime() < bestTimes.getBeginnerBestTime())
+                if (getElapsedTime() < userData.getBeginnerBestTime())
                 {
-                    bestTimes.setBeginnerBestTime(getElapsedTime());
+                    userData.setBeginnerBestTime(getElapsedTime());
                 }
             }
             case "advanced" ->
             {
-                if (getElapsedTime() < bestTimes.getAdvancedBestTime())
+                if (getElapsedTime() < userData.getAdvancedBestTime())
                 {
-                    bestTimes.setAdvancedBestTime(getElapsedTime());
+                    userData.setAdvancedBestTime(getElapsedTime());
                 }
             }
             case "pro" ->
             {
-                if (getElapsedTime() < bestTimes.getProBestTime())
+                if (getElapsedTime() < userData.getProBestTime())
                 {
-                    bestTimes.setProBestTime(getElapsedTime());
+                    userData.setProBestTime(getElapsedTime());
                 }
             }
         }
 
-        BestTimesManager.saveBestTimes(bestTimes);
+        UserDataManager.saveUserData(userData);
     }
 
     private void switchToMenu()
     {
-        new MenuController(getStyle(), isMuted()).start(getStage());
+        new MenuController(getUsername(), getStyle(), isMuted()).start(getStage());
     }
 
     protected void checkWinCondition()
@@ -766,5 +768,15 @@ public class GameController extends Controller
     public void setStyle(String style)
     {
         this.style = style;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 }

@@ -57,9 +57,16 @@
 .reset-button
 {
     -fx-font-size: 18px;
-    -fx-min-width: 150px;
-    -fx-max-width: 200px;
-    -fx-pref-width: 180px;
+    -fx-min-width: 250px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 300px;
+}
+
+#usernameLabel
+{
+    -fx-font-size: 20px;
+    -fx-text-fill: #444444;
+    -fx-padding: 1px;
 }
 
 #titleText

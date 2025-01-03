@@ -24,19 +24,27 @@ public class MenuController extends Controller
     private Stage stage;
     private Scene menuScene;
     private final VBox root = new VBox();
-    private Text titleText;
+    private VBox headerContainer;
+    private HBox headerBox;
+    private Label titleLable;
+    private HBox usernameBox;
+    private Label usernameLabel;
     private Text choiceText;
     private HBox difficultyBox;
     private VBox chooseGameModeBox;
     private HBox controlButtonsBox;
     private Button chooseStyleButton;
+    private Button leaderboardButton;
     private Button muteSfxButton;
-    private Button resetBestTimesButton;
+    private HBox footerBox;
+    private Button resetLocalBestTimesButton;
     private String style;
     private boolean muted;
+    private String username;
 
-    public MenuController(String style, boolean muted)
+    public MenuController(String username, String style, boolean muted)
     {
+        setUsername(username);
         setStyle(style);
         setMuted(muted);
     }
@@ -61,30 +69,70 @@ public class MenuController extends Controller
         getRoot().prefWidthProperty().bind(getStage().widthProperty());
         getRoot().prefHeightProperty().bind(getStage().heightProperty());
         getRoot().getChildren().addAll(
-                getTitleText(),
+                getHeaderBox(),
                 new Region(),
-                getChooseGameModeBox());
+                getChooseGameModeBox(),
+                getFooterBox());
         getRoot().getStyleClass().add("root-container");
         getRoot().getStylesheets().addAll(
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/style.css")).toExternalForm(),
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/menuStyle.css")).toExternalForm());
 
         setMenuScene(new Scene(getRoot()));
-        switchScene(getStage(), getMenuScene(), "Menu", 400, 800);
+        switchScene(getStage(), getMenuScene(), "Menu", 475, 1000);
     }
 
     private void startGame(String difficulty)
     {
         stopBackgroundMusic();
-        new GameController(difficulty, getStyle(), isMuted()).start(getStage());
+        new GameController(getUsername(), difficulty, getStyle(), isMuted()).start(getStage());
     }
 
     private void initializeUserElements()
     {
-        setTitleText(initializeText("titleText", "Bomb-Disposal-Simulator"));
-        setChoiceText(initializeText("choiceText", "Choose-a-Gamemode"));
+        initializeHeaderBox();
         initializeChooseGameModeBox();
+        initializeFooterBox();
+    }
 
+    private void initializeHeaderBox()
+    {
+        setHeaderContainer(new VBox());
+        getHeaderContainer().setAlignment(Pos.TOP_RIGHT);
+        getHeaderContainer().prefWidthProperty().bind(getRoot().widthProperty());
+        getHeaderContainer().setSpacing(5);
+
+        setUsernameLabel(new Label(getUsername()));
+        getUsernameLabel().setId("usernameLabel");
+        getUsernameLabel().setAlignment(Pos.TOP_RIGHT);
+
+        getUsernameLabel().setOnMouseClicked(event -> changeUserName());
+
+        setUsernameBox(new HBox(getUsernameLabel()));
+        getUsernameBox().setAlignment(Pos.TOP_RIGHT);
+        getUsernameBox().prefWidthProperty().bind(getHeaderContainer().widthProperty());
+
+        setHeaderBox(new HBox());
+        getHeaderBox().setSpacing(10);
+        getHeaderBox().setAlignment(Pos.CENTER);
+        getHeaderBox().prefWidthProperty().bind(getRoot().widthProperty());
+
+        setTitleLable(new Label("Bomb-Disposal-Simulator"));
+        getTitleLable().setId("titleText");
+        getTitleLable().setAlignment(Pos.CENTER);
+
+        getHeaderBox().getChildren().add(getTitleLable());
+
+        getHeaderContainer().getChildren().addAll(getUsernameBox(), getHeaderBox());
+
+        getRoot().getChildren().addFirst(getHeaderContainer());
+
+    }
+
+    private void changeUserName()
+    {
+        stopBackgroundMusic();
+        new UsernameController(getUsername(), getStyle(), isMuted()).start(getStage());
     }
 
     private void initializeChooseGameModeBox()
@@ -96,15 +144,14 @@ public class MenuController extends Controller
         getChooseGameModeBox().setMinSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
         getChooseGameModeBox().setMaxSize(MenuController.getMaxVBoxWidth(), MenuController.getMaxVBoxHeight());
 
+        setChoiceText(initializeText("choiceText", "Choose-a-Gamemode"));
         initializeDifficultyBoxes();
         initializeControlButtonsBox();
-        initializeResetBestTimesButton();
 
         getChooseGameModeBox().getChildren().addAll(
                 getChoiceText(),
                 getDifficultyBox(),
-                getControlButtonsBox(),
-                getResetBestTimesButton());
+                getControlButtonsBox());
     }
 
     private void initializeControlButtonsBox()
@@ -131,6 +178,23 @@ public class MenuController extends Controller
                 createDifficultyBox("beginner", loadBestTime("beginner")),
                 createDifficultyBox("advanced", loadBestTime("advanced")),
                 createDifficultyBox("pro", loadBestTime("pro")));
+    }
+
+    private void initializeFooterBox()
+    {
+        setFooterBox(new HBox());
+        getFooterBox().setSpacing(10);
+        getFooterBox().setAlignment(Pos.CENTER_RIGHT);
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        initializeResetLocalBestTimesButton();
+        initializeLeaderboardButton();
+
+        getResetLocalBestTimesButton().setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
+        getFooterBox().getChildren().addAll(getResetLocalBestTimesButton(), spacer, getLeaderboardButton());
+
     }
 
     private VBox createDifficultyBox(String difficulty, int bestTime)
@@ -184,13 +248,25 @@ public class MenuController extends Controller
         getChooseStyleButton().setOnAction(event -> toggleStyle());
     }
 
+    private void initializeLeaderboardButton()
+    {
+        setLeaderboardButton(new Button("Leaderboard"));
+        getLeaderboardButton().setOnAction(event -> showLeaderboardWindow());
+        getLeaderboardButton().getStyleClass().add("button");
+        getLeaderboardButton().getStyleClass().add("leaderboard-button");
+    }
+
+    private void showLeaderboardWindow()
+    {
+        new LeaderboardController(getStyle()).start();
+    }
+
     private void toggleStyle()
     {
         if ("retro".equals(getStyle()))
         {
             setStyle("modern");
-        }
-        else
+        } else
         {
             setStyle("retro");
         }
@@ -199,7 +275,7 @@ public class MenuController extends Controller
 
         stopBackgroundMusic();
 
-        new MenuController(getStyle(), isMuted()).start(getStage());
+        new MenuController(getUsername(), getStyle(), isMuted()).start(getStage());
     }
 
     private void toggleMute()
@@ -216,35 +292,40 @@ public class MenuController extends Controller
         }
     }
 
-    private void initializeResetBestTimesButton()
+    private void initializeResetLocalBestTimesButton()
     {
-        setResetBestTimesButton(new Button("Reset Best Times"));
-        getResetBestTimesButton().getStyleClass().add("button");
-        getResetBestTimesButton().getStyleClass().add("reset-button");
-        getResetBestTimesButton().setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
-        getResetBestTimesButton().setOnAction(event -> resetBestTimes());
+        setResetLocalBestTimesButton(new Button("Reset Local Best Times"));
+        getResetLocalBestTimesButton().getStyleClass().add("button");
+        getResetLocalBestTimesButton().getStyleClass().add("reset-button");
+        getResetLocalBestTimesButton().setMaxSize(getMaxButtonWidth(), getMaxButtonHeight());
+        getResetLocalBestTimesButton().setOnAction(event -> resetBestTimes());
     }
 
     private int loadBestTime(String difficulty)
     {
-        BestTimes bestTimes = BestTimesManager.loadBestTimes();
+        UserData userData = UserDataManager.loadUserData();
 
         return switch (difficulty)
         {
-            case "beginner" -> bestTimes.getBeginnerBestTime();
-            case "advanced" -> bestTimes.getAdvancedBestTime();
-            case "pro" -> bestTimes.getProBestTime();
+            case "beginner" -> userData.getBeginnerBestTime();
+            case "advanced" -> userData.getAdvancedBestTime();
+            case "pro" -> userData.getProBestTime();
             default -> Integer.MAX_VALUE;
         };
     }
 
     private void resetBestTimes()
     {
-        BestTimes bestTimes = new BestTimes();
-        BestTimesManager.saveBestTimes(bestTimes);
+        UserData userData = new UserData();
+        UserDataManager.saveUserData(userData);
 
         stopBackgroundMusic();
-        new MenuController(getStyle(), isMuted()).start(getStage());
+        new MenuController(getUsername(), getStyle(), isMuted()).start(getStage());
+    }
+
+    private String formatUsername(String username)
+    {
+        return String.format("%-16s", username);
     }
 
     private String formatBestTime(int bestTime)
@@ -311,14 +392,14 @@ public class MenuController extends Controller
         this.menuScene = menuScene;
     }
 
-    public Text getTitleText()
+    public Label getTitleLable()
     {
-        return titleText;
+        return titleLable;
     }
 
-    public void setTitleText(Text titleText)
+    public void setTitleLable(Label titleLable)
     {
-        this.titleText = titleText;
+        this.titleLable = titleLable;
     }
 
     public Text getChoiceText()
@@ -371,14 +452,14 @@ public class MenuController extends Controller
         this.muteSfxButton = muteSfxButton;
     }
 
-    public Button getResetBestTimesButton()
+    public Button getResetLocalBestTimesButton()
     {
-        return resetBestTimesButton;
+        return resetLocalBestTimesButton;
     }
 
-    public void setResetBestTimesButton(Button resetBestTimesButton)
+    public void setResetLocalBestTimesButton(Button resetLocalBestTimesButton)
     {
-        this.resetBestTimesButton = resetBestTimesButton;
+        this.resetLocalBestTimesButton = resetLocalBestTimesButton;
     }
 
     public String getStyle()
@@ -409,5 +490,75 @@ public class MenuController extends Controller
     public void setControlButtonsBox(HBox controlButtonsBox)
     {
         this.controlButtonsBox = controlButtonsBox;
+    }
+
+    public Button getLeaderboardButton()
+    {
+        return leaderboardButton;
+    }
+
+    public void setLeaderboardButton(Button leaderboardButton)
+    {
+        this.leaderboardButton = leaderboardButton;
+    }
+
+    public HBox getFooterBox()
+    {
+        return footerBox;
+    }
+
+    public void setFooterBox(HBox footerBox)
+    {
+        this.footerBox = footerBox;
+    }
+
+    public HBox getHeaderBox()
+    {
+        return headerBox;
+    }
+
+    public void setHeaderBox(HBox headerBox)
+    {
+        this.headerBox = headerBox;
+    }
+
+    public Label getUsernameLabel()
+    {
+        return usernameLabel;
+    }
+
+    public void setUsernameLabel(Label usernameLabel)
+    {
+        this.usernameLabel = usernameLabel;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public VBox getHeaderContainer()
+    {
+        return headerContainer;
+    }
+
+    public void setHeaderContainer(VBox headerContainer)
+    {
+        this.headerContainer = headerContainer;
+    }
+
+    public HBox getUsernameBox()
+    {
+        return usernameBox;
+    }
+
+    public void setUsernameBox(HBox usernameBox)
+    {
+        this.usernameBox = usernameBox;
     }
 }
