@@ -29,7 +29,6 @@ public class LeaderboardClient
                 throw new Exception("Failed to fetch leaderboard: " + response.body());
             }
 
-            System.out.println(response.body());
             return parseJsonToMap(response.body());
         }
     }

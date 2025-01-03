@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class UsernameController extends Controller
+public class UsernameMenuController extends Controller
 {
     private static final int maxVBoxWidth = 1050;
     private static final int maxVBoxHeight = 525;
@@ -26,7 +26,7 @@ public class UsernameController extends Controller
     private String username;
     private boolean muted;
 
-    public UsernameController(String username, String style, boolean muted)
+    public UsernameMenuController(String username, String style, boolean muted)
     {
         setUsername(username);
         setStyle(style);
@@ -37,7 +37,7 @@ public class UsernameController extends Controller
     {
         setStage(stage);
         initializeUserElements();
-        if (!isMuted()) playBackgroundMusic("username-music", getStyle());
+        if (!isMuted()) playBackgroundMusic("username-menu-music", getStyle());
 
         initializeStage(getStage(), getStyle());
         initializeWindow();
@@ -55,8 +55,8 @@ public class UsernameController extends Controller
     {
         getRoot().setSpacing(30);
         getRoot().setAlignment(Pos.CENTER);
-        getRoot().setMinSize(UsernameController.getMaxVBoxWidth(), UsernameController.getMaxVBoxHeight());
-        getRoot().setMaxSize(UsernameController.getMaxVBoxWidth(), UsernameController.getMaxVBoxHeight());
+        getRoot().setMinSize(UsernameMenuController.getMaxVBoxWidth(), UsernameMenuController.getMaxVBoxHeight());
+        getRoot().setMaxSize(UsernameMenuController.getMaxVBoxWidth(), UsernameMenuController.getMaxVBoxHeight());
         getRoot().prefWidthProperty().bind(getStage().widthProperty());
         getRoot().prefHeightProperty().bind(getStage().heightProperty());
         getRoot().getChildren().addAll(
@@ -68,7 +68,7 @@ public class UsernameController extends Controller
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/usernameStyle.css")).toExternalForm());
 
         setUsernameScene(new Scene(getRoot()));
-        switchScene(getStage(), getUsernameScene(), "Username", 200, 600);
+        switchScene(getStage(), getUsernameScene(), "Username Menu", 200, 600);
     }
 
     private void initializeUsernameTextField()

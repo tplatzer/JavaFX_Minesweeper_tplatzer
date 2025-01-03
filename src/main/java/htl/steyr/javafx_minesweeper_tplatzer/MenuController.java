@@ -132,7 +132,7 @@ public class MenuController extends Controller
     private void changeUserName()
     {
         stopBackgroundMusic();
-        new UsernameController(getUsername(), getStyle(), isMuted()).start(getStage());
+        new UsernameMenuController(getUsername(), getStyle(), isMuted()).start(getStage());
     }
 
     private void initializeChooseGameModeBox()
