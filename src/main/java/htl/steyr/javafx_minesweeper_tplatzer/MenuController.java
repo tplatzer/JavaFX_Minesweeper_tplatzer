@@ -102,7 +102,7 @@ public class MenuController extends Controller
         getHeaderContainer().prefWidthProperty().bind(getRoot().widthProperty());
         getHeaderContainer().setSpacing(5);
 
-        setUsernameLabel(new Label(getUsername()));
+        setUsernameLabel(new Label(formatUsername(getUsername())));
         getUsernameLabel().setId("usernameLabel");
         getUsernameLabel().setAlignment(Pos.TOP_RIGHT);
 
@@ -316,8 +316,7 @@ public class MenuController extends Controller
 
     private void resetBestTimes()
     {
-        UserData userData = new UserData();
-        UserDataManager.saveUserData(userData);
+        UserDataManager.saveUserData(new UserData(UserDataManager.loadUserData().getUsername()));
 
         stopBackgroundMusic();
         new MenuController(getUsername(), getStyle(), isMuted()).start(getStage());
@@ -325,7 +324,7 @@ public class MenuController extends Controller
 
     private String formatUsername(String username)
     {
-        return String.format("%-16s", username);
+        return String.format("%16s", username);
     }
 
     private String formatBestTime(int bestTime)

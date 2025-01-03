@@ -20,6 +20,12 @@ public class UserData implements Serializable
         setUsername("Default_Username");
     }
 
+    public UserData(String username)
+    {
+        super();
+        setUsername(username);
+    }
+
     public int getBeginnerBestTime()
     {
         return beginnerBestTime;

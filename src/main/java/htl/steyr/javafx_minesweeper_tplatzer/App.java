@@ -1,7 +1,6 @@
 package htl.steyr.javafx_minesweeper_tplatzer;
 
 import javafx.application.Application;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class App extends Application
