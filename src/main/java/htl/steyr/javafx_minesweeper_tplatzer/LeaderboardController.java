@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class LeaderboardController extends Controller
 {
-    private static final int maxVBoxWidth = 1050;
+    private static final int maxVBoxWidth = 1090;
     private static final int maxVBoxHeight = 525;
     private final Stage stage = new Stage();
     private final VBox root = new VBox();
@@ -61,6 +61,8 @@ public class LeaderboardController extends Controller
             LeaderboardClient client = new LeaderboardClient();
             Map<String, List<Map<String, Object>>> leaderboard = client.fetchLeaderboard();
 
+            System.out.println("Fetched leaderboard: " + leaderboard);
+
             for (Map<String, Object> entry : leaderboard.get("beginner"))
             {
                 Label entryLabel = new Label(formatLeaderboardEntry((String) entry.get("username"), ((int) entry.get("time"))));
@@ -81,8 +83,8 @@ public class LeaderboardController extends Controller
             }
         } catch (Exception e)
         {
-            getRoot().getChildren().add(new Label("Failed to load leaderboard."));
-            System.err.println(e.getMessage());
+            //getRoot().getChildren().add(new Label("Failed to load leaderboard."));
+            System.out.println(e.getMessage());
         }
 
         Scene scene = new Scene(getRoot());

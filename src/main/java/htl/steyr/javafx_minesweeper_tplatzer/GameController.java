@@ -452,6 +452,9 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
+
+                cell.getButton().setVisible(false);
+
                 bombsPlaced++;
             }
         }
