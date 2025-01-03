@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -113,6 +114,15 @@ public class GameController extends Controller
     {
         updateBestTime();
         updateRestartGameButton("win");
+
+        LeaderboardClient client = new LeaderboardClient();
+        try
+        {
+            client.submitBestTime("Tim", getElapsedTime(), getDifficulty());
+        } catch (Exception e)
+        {
+            System.err.println(e.getMessage());
+        }
 
         if (isMuted())
         {
@@ -441,6 +451,12 @@ public class GameController extends Controller
             if (!cell.isBomb())
             {
                 cell.setBomb(true);
+
+                ImageView imageView = new ImageView(Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/img/" + "bomb" + ".png")).toExternalForm());
+                imageView.setFitWidth(25);
+                imageView.setFitHeight(25);
+                cell.getButton().setGraphic(imageView);
+
                 bombsPlaced++;
             }
         }
