@@ -37,6 +37,7 @@ public class UsernameController extends Controller
     {
         setStage(stage);
         initializeUserElements();
+        if (!isMuted()) playBackgroundMusic("username-music", getStyle());
 
         initializeStage(getStage(), getStyle());
         initializeWindow();
@@ -112,17 +113,14 @@ public class UsernameController extends Controller
     {
         setUsername(getUsernameTextField().getText().trim());
 
-        UserData userData = UserDataManager.loadUserData();
-
-        userData.setUsername(getUsernameTextField().getText().trim());
-
-        UserDataManager.saveUserData(userData);
+        UserDataManager.saveUserData(UserDataManager.loadUserData().setUsername(getUsername()));
 
         returnToMenu();
     }
 
     private void returnToMenu()
     {
+        stopBackgroundMusic();
         new MenuController(getUsername(), getStyle(), isMuted()).start(getStage());
     }
 

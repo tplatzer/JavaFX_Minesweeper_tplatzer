@@ -61,8 +61,9 @@ public class UserData implements Serializable
         return username;
     }
 
-    public void setUsername(String username)
+    public UserData setUsername(String username)
     {
         this.username = username;
+        return this;
     }
 }
