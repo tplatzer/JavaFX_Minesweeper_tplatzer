@@ -81,7 +81,7 @@ public class LeaderboardController extends Controller
             }
         } catch (Exception e)
         {
-            //getRoot().getChildren().add(new Label("Failed to load leaderboard."));
+            getRoot().getChildren().add(new Label("Failed to load leaderboard."));
             System.out.println(e.getMessage());
         }
 
