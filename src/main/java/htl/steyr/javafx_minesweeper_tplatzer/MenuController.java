@@ -26,7 +26,7 @@ public class MenuController extends Controller
     private final VBox root = new VBox();
     private VBox headerContainer;
     private HBox headerBox;
-    private Label titleLable;
+    private Label titleLabel;
     private HBox usernameBox;
     private Label usernameLabel;
     private Text choiceText;
@@ -117,11 +117,11 @@ public class MenuController extends Controller
         getHeaderBox().setAlignment(Pos.CENTER);
         getHeaderBox().prefWidthProperty().bind(getRoot().widthProperty());
 
-        setTitleLable(new Label("Bomb-Disposal-Simulator"));
-        getTitleLable().setId("titleText");
-        getTitleLable().setAlignment(Pos.CENTER);
+        setTitleLabel(new Label("Bomb-Disposal-Simulator"));
+        getTitleLabel().setId("titleText");
+        getTitleLabel().setAlignment(Pos.CENTER);
 
-        getHeaderBox().getChildren().add(getTitleLable());
+        getHeaderBox().getChildren().add(getTitleLabel());
 
         getHeaderContainer().getChildren().addAll(getUsernameBox(), getHeaderBox());
 
@@ -390,14 +390,14 @@ public class MenuController extends Controller
         this.menuScene = menuScene;
     }
 
-    public Label getTitleLable()
+    public Label getTitleLabel()
     {
-        return titleLable;
+        return titleLabel;
     }
 
-    public void setTitleLable(Label titleLable)
+    public void setTitleLabel(Label titleLabel)
     {
-        this.titleLable = titleLable;
+        this.titleLabel = titleLabel;
     }
 
     public Text getChoiceText()
