@@ -88,6 +88,7 @@ public class LeaderboardController extends Controller
         Scene scene = new Scene(getRoot());
 
         getStage().setTitle("Global Leaderboard");
+        getStage().setResizable(false);
         getStage().setScene(scene);
     }
 
