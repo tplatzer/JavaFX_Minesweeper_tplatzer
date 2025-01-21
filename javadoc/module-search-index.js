@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"htl.steyr.javafx_minesweeper_tplatzer"}];updateSearchResults();

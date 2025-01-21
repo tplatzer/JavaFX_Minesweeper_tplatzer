@@ -1,0 +1,5 @@
+module:htl.steyr.javafx_minesweeper_tplatzer
+htl.steyr.javafx_minesweeper_tplatzer.app
+htl.steyr.javafx_minesweeper_tplatzer.controller
+htl.steyr.javafx_minesweeper_tplatzer.model
+htl.steyr.javafx_minesweeper_tplatzer.service

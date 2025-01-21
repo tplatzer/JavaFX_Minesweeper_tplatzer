@@ -63,7 +63,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>htl.steyr.javafx_minesweeper_tplatzer.App</mainClass>
+                                    <mainClass>htl.steyr.javafx_minesweeper_tplatzer.app.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
@@ -89,7 +89,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                htl.steyr.javafx_minesweeper_tplatzer/htl.steyr.javafx_minesweeper_tplatzer.App
+                                htl.steyr.javafx_minesweeper_tplatzer/htl.steyr.javafx_minesweeper_tplatzer.app.App
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

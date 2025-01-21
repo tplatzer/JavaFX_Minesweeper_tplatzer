@@ -139,3 +139,9 @@ Thumbs.db
 src/main/resources/META-INF
 
 Spielbeschreibung Minesweeper.pdf
+
+# Ignoriere auch die Map-Dateien (z.B. .css.map)
+*.css.map
+
+# Ignore the old stylesheets
+*_old.css
