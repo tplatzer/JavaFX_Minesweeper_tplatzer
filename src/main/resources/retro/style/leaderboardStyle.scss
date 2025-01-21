@@ -1,0 +1,147 @@
+/**
+ * SCSS style definitions for the retro leaderboard theme.
+ * This file defines the visual styles for the leaderboard UI components, including the root container,
+ * leaderboard columns, headers, entries, and buttons.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for background and various UI elements.
+ */
+$light-gray: #c0c0c0;
+
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+$dark-gray: #808080;
+
+/**
+ * Light border color, primarily used for elements with lighter backgrounds.
+ */
+$border-color-light: #ffffff;
+
+/**
+ * Dark border color used for elements with darker backgrounds.
+ */
+$border-color-dark: #808080;
+
+/**
+ * Background color for the leaderboard columns and other elements.
+ */
+$background-color: #d9d9d9;
+
+/**
+ * Font family used throughout the UI for a retro look.
+ */
+$font-family: "Courier New", monospace;
+
+
+/* --- Leaderboard Root --- */
+
+/**
+ * Style for the root container of the leaderboard UI.
+ * The container has a light gray background with padding, spacing between child elements,
+ * and a border around the entire component.
+ */
+.leaderboard-root
+{
+  -fx-background-color: $light-gray; // Light gray background for the root container.
+  -fx-spacing: 15px; // Spacing between elements inside the container.
+  -fx-padding: 15px; // Padding around the edges of the container.
+  -fx-alignment: center; // Center alignment for the elements inside the container.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color with light gray on top and bottom, dark gray on the sides.
+  -fx-border-width: 2px; // Border width for the container.
+  -fx-border-radius: 0; // No border radius for the container.
+}
+
+
+/* --- Leaderboard Column --- */
+
+/**
+ * Style for the individual columns in the leaderboard.
+ * Each column has a background color, borders, padding, and spacing for its content.
+ */
+.leaderboard-column
+{
+  -fx-background-color: $background-color; // Background color for the leaderboard column.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color with light gray on top and bottom, dark gray on the sides.
+  -fx-border-width: 2px; // Border width for the column.
+  -fx-padding: 10px; // Padding inside the column.
+  -fx-spacing: 10px; // Spacing between elements inside the column.
+  -fx-border-radius: 0; // No border radius for the column.
+  -fx-min-width: 350px; // Minimum width for the column.
+  -fx-max-width: 500px; // Maximum width for the column.
+}
+
+
+/* --- Leaderboard Header --- */
+
+/**
+ * Style for the header of the leaderboard.
+ * The header has bold text with a background color and borders, and it is centered within the column.
+ */
+.leaderboard-header
+{
+  -fx-font-family: $font-family; // Font for the header text.
+  -fx-font-size: 18px; // Font size for the header text.
+  -fx-font-weight: bold; // Bold font weight for the header.
+  -fx-text-fill: black; // Text color for the header.
+  -fx-padding: 5px 10px; // Padding inside the header.
+  -fx-background-color: $light-gray; // Light gray background for the header.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color for the header.
+  -fx-border-width: 2px; // Border width for the header.
+  -fx-border-radius: 0; // No border radius for the header.
+  -fx-alignment: center; // Center alignment for the header text.
+}
+
+
+/* --- Leaderboard Entry --- */
+
+/**
+ * Style for each individual entry in the leaderboard.
+ * Each entry has a background color, padding, and borders, and it is aligned to the left.
+ */
+.leaderboard-entry
+{
+  -fx-font-family: $font-family; // Font for the entry text.
+  -fx-font-size: 16px; // Font size for the entry text.
+  -fx-text-fill: black; // Text color for the entry.
+  -fx-padding: 5px 10px; // Padding inside the entry.
+  -fx-background-color: #e6e6e6; // Light gray background for the entry.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color for the entry.
+  -fx-border-width: 2px; // Border width for the entry.
+  -fx-border-radius: 0; // No border radius for the entry.
+  -fx-min-width: 240px; // Minimum width for the entry.
+  -fx-alignment: center-left; // Left alignment for the entry text.
+}
+
+
+/* --- Leaderboard Button --- */
+
+/**
+ * Style for the leaderboard button, used to interact with leaderboard entries.
+ * The button has a light gray background with dark gray borders and is styled with padding, alignment, and hover/pressed effects.
+ */
+.leaderboard-button
+{
+  -fx-font-family: $font-family; // Font for the button text.
+  -fx-font-size: 16px; // Font size for the button text.
+  -fx-text-fill: black; // Text color for the button.
+  -fx-background-color: $light-gray; // Light gray background for the button.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color for the button.
+  -fx-border-width: 2px; // Border width for the button.
+  -fx-padding: 8px 15px; // Padding inside the button.
+  -fx-border-radius: 0; // No border radius for the button.
+  -fx-background-radius: 0; // No background radius for the button.
+
+  &:hover
+  { // On hover, the button changes to a lighter background color.
+    -fx-background-color: $background-color;
+  }
+
+  &:pressed
+  { // When pressed, the button changes its background color.
+    -fx-background-color: #a6a6a6;
+  }
+}

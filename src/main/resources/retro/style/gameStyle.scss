@@ -1,0 +1,258 @@
+/**
+ * SCSS style definitions for the retro theme in the game.
+ * This file defines the visual styles for the game components, such as the root container, game field,
+ * buttons, cells, and other elements within the game UI.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for the background and various UI elements.
+ */
+$light-gray: #c0c0c0;
+
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+$dark-gray: #808080;
+
+/**
+ * Light border color, primarily used for elements with lighter backgrounds.
+ */
+$border-color-light: #ffffff;
+
+/**
+ * Dark border color used for elements with darker backgrounds.
+ */
+$border-color-dark: #808080;
+
+/**
+ * Background color for the entire game container.
+ */
+$background-color: #c0c0c0;
+
+/**
+ * Font family used throughout the UI for a retro look.
+ */
+$font-family: "Courier New", monospace;
+
+
+/* --- Root Container --- */
+
+/**
+ * Style for the root container of the game UI.
+ * The container has a light gray background with padding and spacing between child elements.
+ */
+.root-container
+{
+  -fx-background-color: $light-gray; // Light gray background for the root container.
+  -fx-spacing: 10px; // Spacing between elements inside the container.
+  -fx-padding: 10px; // Padding around the edges of the container.
+}
+
+
+/* --- Game Info Box --- */
+
+/**
+ * Style for the game info box that holds additional game-related information.
+ * The box features a border with alternating colors and some padding and spacing for content.
+ */
+.game-info-box
+{
+  -fx-border-color: $dark-gray $border-color-light $border-color-light $dark-gray; // Border colors with dark gray on the top and bottom, light gray on the left and right.
+  -fx-border-width: 3px; // Thicker border for the game info box.
+  -fx-padding: 5px; // Padding inside the box.
+  -fx-hgap: 5px; // Horizontal gap between content inside the box.
+  -fx-vgap: 5px; // Vertical gap between content inside the box.
+}
+
+
+/* --- Restart Button --- */
+
+/**
+ * Style for the restart button in the game.
+ * The button uses the "Courier New" font, and features padding, rounded borders, and hover effects.
+ */
+.restart-button
+{
+  -fx-font-family: $font-family; // Font for the button text.
+  -fx-font-size: 20px; // Font size for the button text.
+  -fx-text-fill: black; // Text color for the button.
+  -fx-background-color: $light-gray; // Light gray background for the button.
+  -fx-padding: 5px; // Padding inside the button.
+  -fx-border-color: $border-color-light $dark-gray $dark-gray $border-color-light; // Border color for the button.
+  -fx-border-width: 2px; // Border width for the button.
+  -fx-min-width: 50px; // Minimum width for the button.
+  -fx-min-height: 50px; // Minimum height for the button.
+  -fx-alignment: center; // Center the button text.
+
+  &:hover
+  { // On hover, change the background color to indicate the button is interactive.
+    -fx-background-color: #d9d9d9;
+  }
+
+  &:pressed
+  { // When the button is pressed, change the background color to show it is being clicked.
+    -fx-background-color: #a6a6a6;
+  }
+}
+
+
+/* --- Game Field --- */
+
+/**
+ * Style for the game field container where the grid of cells is displayed.
+ * The field has a light gray background with dark gray borders.
+ */
+.game-field
+{
+  -fx-background-color: $light-gray; // Light gray background for the game field.
+  -fx-border-color: $dark-gray $border-color-light $border-color-light $dark-gray; // Dark gray borders for the game field.
+  -fx-border-width: 3px; // Thicker border around the game field.
+  -fx-padding: 5px; // Padding inside the field.
+  -fx-hgap: 0px; // No horizontal gap between cells.
+  -fx-vgap: 0px; // No vertical gap between cells.
+}
+
+
+/* --- Cell Button --- */
+
+/**
+ * Style for the individual cell buttons in the game field.
+ * These buttons have a light gray background and dark gray borders, with specific size constraints.
+ */
+.cell-button
+{
+  -fx-font-family: $font-family; // Font for the button text.
+  -fx-font-size: 16px; // Font size for the button text.
+  -fx-text-fill: black; // Text color for the button.
+  -fx-background-color: $light-gray; // Light gray background for the button.
+  -fx-border-color: $border-color-light $dark-gray $dark-gray $border-color-light; // Border color for the button.
+  -fx-border-width: 4px; // Thicker border for the button.
+  -fx-alignment: center; // Center the text inside the button.
+  -fx-min-width: 45px; // Minimum width for the button.
+  -fx-min-height: 45px; // Minimum height for the button.
+  -fx-pref-width: 45px; // Preferred width for the button.
+  -fx-pref-height: 45px; // Preferred height for the button.
+  -fx-max-width: 45px; // Maximum width for the button.
+  -fx-max-height: 45px; // Maximum height for the button.
+  -fx-background-radius: 0; // Square corners for the button.
+  -fx-border-radius: 0; // No border radius.
+
+  &:pressed
+  { // On press, change the background and border color to show the button is being pressed.
+    -fx-background-color: #a0a0a0;
+    -fx-border-color: $dark-gray $border-color-light $border-color-light $dark-gray;
+    -fx-border-width: 4px;
+  }
+}
+
+
+/* --- Revealed Cell --- */
+
+/**
+ * Style for revealed cells that are not bombs.
+ * These cells have bold text and a light gray background.
+ */
+.cell-button-revealed
+{
+  -fx-background-color: $light-gray; // Light gray background for revealed cells.
+  -fx-border-color: $dark-gray; // Dark gray border for revealed cells.
+  -fx-border-width: 1px; // Thinner border for revealed cells.
+  -fx-font-family: $font-family; // Font for the text in revealed cells.
+  -fx-font-size: 15px; // Font size for the revealed cell text.
+  -fx-font-weight: bold; // Bold text for revealed cells.
+  -fx-background-radius: 0; // No rounded corners.
+  -fx-border-radius: 0; // No border radius.
+}
+
+
+/* --- Bomb Revealed Cell --- */
+
+/**
+ * Style for cells that are revealed and contain a bomb.
+ * These cells are highlighted with a red background to indicate a bomb.
+ */
+.cell-bomb-revealed
+{
+  -fx-background-color: #FF2400; // Red background for bomb cells.
+}
+
+
+/* --- Disabled Button --- */
+
+/**
+ * Style for disabled buttons, including opacity and cursor settings.
+ * Disabled buttons have a lower opacity and a default cursor.
+ */
+.button:disabled
+{
+  -fx-opacity: 1.0; // Full opacity for disabled buttons (no fading).
+  -fx-cursor: default; // Default cursor for disabled buttons.
+  -fx-background-radius: 0; // No rounded corners for disabled buttons.
+  -fx-border-radius: 0; // No border radius for disabled buttons.
+}
+
+
+/* --- Cell Number Color --- */
+
+/**
+ * Color styles for different cell numbers, based on the number of adjacent bombs.
+ * Each number has its own unique text color for easy differentiation.
+ */
+.cell-number-1
+{
+  -fx-text-fill: blue;
+}
+
+.cell-number-2
+{
+  -fx-text-fill: green;
+}
+
+.cell-number-3
+{
+  -fx-text-fill: red;
+}
+
+.cell-number-4
+{
+  -fx-text-fill: darkblue;
+}
+
+.cell-number-5
+{
+  -fx-text-fill: darkred;
+}
+
+.cell-number-6
+{
+  -fx-text-fill: teal;
+}
+
+.cell-number-7
+{
+  -fx-text-fill: black;
+}
+
+.cell-number-8
+{
+  -fx-text-fill: gray;
+}
+
+
+/* --- Counter Colors --- */
+
+/**
+ * Styles for counters indicating remaining flags or other game stats.
+ * These labels are styled with different colors for red and teal counters.
+ */
+#counter-red
+{
+  -fx-text-fill: red; // Red color for the counter.
+}
+
+#counter-teal
+{
+  -fx-text-fill: teal; // Teal color for the counter.
+}

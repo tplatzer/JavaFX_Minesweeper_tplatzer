@@ -1,73 +1,116 @@
-.leaderboard-root
-{
-    -fx-background-color: #c0c0c0;
-    -fx-spacing: 15px;
-    -fx-padding: 15px;
-    -fx-alignment: center;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-border-radius: 0;
+/**
+ * SCSS style definitions for the retro leaderboard theme.
+ * This file defines the visual styles for the leaderboard UI components, including the root container,
+ * leaderboard columns, headers, entries, and buttons.
+ */
+/* --- General Variables --- */
+/**
+ * Light gray color used for background and various UI elements.
+ */
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+/**
+ * Light border color, primarily used for elements with lighter backgrounds.
+ */
+/**
+ * Dark border color used for elements with darker backgrounds.
+ */
+/**
+ * Background color for the leaderboard columns and other elements.
+ */
+/**
+ * Font family used throughout the UI for a retro look.
+ */
+/* --- Leaderboard Root --- */
+/**
+ * Style for the root container of the leaderboard UI.
+ * The container has a light gray background with padding, spacing between child elements,
+ * and a border around the entire component.
+ */
+.leaderboard-root {
+  -fx-background-color: #c0c0c0;
+  -fx-spacing: 15px;
+  -fx-padding: 15px;
+  -fx-alignment: center;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-border-radius: 0;
 }
 
-.leaderboard-column
-{
-    -fx-background-color: #d9d9d9;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
-    -fx-border-radius: 0;
-    -fx-min-width: 300px;
-    -fx-max-width: 500px;
+/* --- Leaderboard Column --- */
+/**
+ * Style for the individual columns in the leaderboard.
+ * Each column has a background color, borders, padding, and spacing for its content.
+ */
+.leaderboard-column {
+  -fx-background-color: #d9d9d9;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-border-radius: 0;
+  -fx-min-width: 350px;
+  -fx-max-width: 500px;
 }
 
-.leaderboard-header
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: black;
-    -fx-padding: 5px 10px;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-border-radius: 0;
-    -fx-alignment: center;
+/* --- Leaderboard Header --- */
+/**
+ * Style for the header of the leaderboard.
+ * The header has bold text with a background color and borders, and it is centered within the column.
+ */
+.leaderboard-header {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-text-fill: black;
+  -fx-padding: 5px 10px;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-border-radius: 0;
+  -fx-alignment: center;
 }
 
-.leaderboard-entry
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-padding: 5px 10px;
-    -fx-background-color: #e6e6e6;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-border-radius: 0;
-    -fx-min-width: 240px;
-    -fx-alignment: center-left;
+/* --- Leaderboard Entry --- */
+/**
+ * Style for each individual entry in the leaderboard.
+ * Each entry has a background color, padding, and borders, and it is aligned to the left.
+ */
+.leaderboard-entry {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-padding: 5px 10px;
+  -fx-background-color: #e6e6e6;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-border-radius: 0;
+  -fx-min-width: 240px;
+  -fx-alignment: center-left;
 }
 
-.leaderboard-button
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 8px 15px;
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
+/* --- Leaderboard Button --- */
+/**
+ * Style for the leaderboard button, used to interact with leaderboard entries.
+ * The button has a light gray background with dark gray borders and is styled with padding, alignment, and hover/pressed effects.
+ */
+.leaderboard-button {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 8px 15px;
+  -fx-border-radius: 0;
+  -fx-background-radius: 0;
+}
+.leaderboard-button:hover {
+  -fx-background-color: #d9d9d9;
+}
+.leaderboard-button:pressed {
+  -fx-background-color: #a6a6a6;
 }
 
-.leaderboard-button:hover
-{
-    -fx-background-color: #d9d9d9;
-}
-
-.leaderboard-button:pressed
-{
-    -fx-background-color: #a6a6a6;
-}
+/*# sourceMappingURL=leaderboardStyle.css.map */

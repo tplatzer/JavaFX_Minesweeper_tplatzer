@@ -1,123 +1,202 @@
-.root-container
-{
-    -fx-background-color: #c0c0c0;
-    -fx-spacing: 10px;
-    -fx-padding: 10px 10px 10px 10px;
+/**
+ * SCSS style definitions for the retro theme in the game.
+ * This file defines the visual styles for the game components, such as the root container, game field,
+ * buttons, cells, and other elements within the game UI.
+ */
+/* --- General Variables --- */
+/**
+ * Light gray color used for the background and various UI elements.
+ */
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+/**
+ * Light border color, primarily used for elements with lighter backgrounds.
+ */
+/**
+ * Dark border color used for elements with darker backgrounds.
+ */
+/**
+ * Background color for the entire game container.
+ */
+/**
+ * Font family used throughout the UI for a retro look.
+ */
+/* --- Root Container --- */
+/**
+ * Style for the root container of the game UI.
+ * The container has a light gray background with padding and spacing between child elements.
+ */
+.root-container {
+  -fx-background-color: #c0c0c0;
+  -fx-spacing: 10px;
+  -fx-padding: 10px;
 }
 
-.game-info-box
-{
-    -fx-border-color: #808080 #ffffff #ffffff #808080;
-    -fx-border-width: 3px;
-    -fx-padding: 5px;
-    -fx-hgap: 5px;
-    -fx-vgap: 5px;
+/* --- Game Info Box --- */
+/**
+ * Style for the game info box that holds additional game-related information.
+ * The box features a border with alternating colors and some padding and spacing for content.
+ */
+.game-info-box {
+  -fx-border-color: #808080 #ffffff #ffffff #808080;
+  -fx-border-width: 3px;
+  -fx-padding: 5px;
+  -fx-hgap: 5px;
+  -fx-vgap: 5px;
 }
 
-.restart-button
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-padding: 5px;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-min-width: 50px;
-    -fx-min-height: 50px;
-    -fx-alignment: center;
+/* --- Restart Button --- */
+/**
+ * Style for the restart button in the game.
+ * The button uses the "Courier New" font, and features padding, rounded borders, and hover effects.
+ */
+.restart-button {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 20px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-padding: 5px;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-min-width: 50px;
+  -fx-min-height: 50px;
+  -fx-alignment: center;
+}
+.restart-button:hover {
+  -fx-background-color: #d9d9d9;
+}
+.restart-button:pressed {
+  -fx-background-color: #a6a6a6;
 }
 
-.restart-button:hover
-{
-    -fx-background-color: #d9d9d9;
+/* --- Game Field --- */
+/**
+ * Style for the game field container where the grid of cells is displayed.
+ * The field has a light gray background with dark gray borders.
+ */
+.game-field {
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #808080 #ffffff #ffffff #808080;
+  -fx-border-width: 3px;
+  -fx-padding: 5px;
+  -fx-hgap: 0px;
+  -fx-vgap: 0px;
 }
 
-.restart-button:pressed
-{
-    -fx-background-color: #a6a6a6;
+/* --- Cell Button --- */
+/**
+ * Style for the individual cell buttons in the game field.
+ * These buttons have a light gray background and dark gray borders, with specific size constraints.
+ */
+.cell-button {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 4px;
+  -fx-alignment: center;
+  -fx-min-width: 45px;
+  -fx-min-height: 45px;
+  -fx-pref-width: 45px;
+  -fx-pref-height: 45px;
+  -fx-max-width: 45px;
+  -fx-max-height: 45px;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
+}
+.cell-button:pressed {
+  -fx-background-color: #a0a0a0;
+  -fx-border-color: #808080 #ffffff #ffffff #808080;
+  -fx-border-width: 4px;
 }
 
-.game-field
-{
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #808080 #ffffff #ffffff #808080;
-    -fx-border-width: 3px;
-    -fx-padding: 5px;
-    -fx-hgap: 0px;
-    -fx-vgap: 0px;
+/* --- Revealed Cell --- */
+/**
+ * Style for revealed cells that are not bombs.
+ * These cells have bold text and a light gray background.
+ */
+.cell-button-revealed {
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #808080;
+  -fx-border-width: 1px;
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 15px;
+  -fx-font-weight: bold;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
 }
 
-.cell-button
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 4px;
-    -fx-alignment: center;
-
-    -fx-min-width: 45px;
-    -fx-min-height: 45px;
-    -fx-pref-width: 45px;
-    -fx-pref-height: 45px;
-    -fx-max-width: 45px;
-    -fx-max-height: 45px;
-
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+/* --- Bomb Revealed Cell --- */
+/**
+ * Style for cells that are revealed and contain a bomb.
+ * These cells are highlighted with a red background to indicate a bomb.
+ */
+.cell-bomb-revealed {
+  -fx-background-color: #FF2400;
 }
 
-.cell-button:pressed
-{
-    -fx-background-color: #a0a0a0;
-    -fx-border-color: #808080 #ffffff #ffffff #808080;
-    -fx-border-width: 4px;
+/* --- Disabled Button --- */
+/**
+ * Style for disabled buttons, including opacity and cursor settings.
+ * Disabled buttons have a lower opacity and a default cursor.
+ */
+.button:disabled {
+  -fx-opacity: 1;
+  -fx-cursor: default;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
 }
 
-.cell-button-revealed
-{
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #808080;
-    -fx-border-width: 1px;
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+/* --- Cell Number Color --- */
+/**
+ * Color styles for different cell numbers, based on the number of adjacent bombs.
+ * Each number has its own unique text color for easy differentiation.
+ */
+.cell-number-1 {
+  -fx-text-fill: blue;
 }
 
-.cell-bomb-revealed
-{
-    -fx-background-color: #FF2400;
+.cell-number-2 {
+  -fx-text-fill: green;
 }
 
-.button:disabled
-{
-    -fx-opacity: 1.0;
-    -fx-cursor: default;
-
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
+.cell-number-3 {
+  -fx-text-fill: red;
 }
 
-.cell-number-1 { -fx-text-fill: blue; }
-.cell-number-2 { -fx-text-fill: green; }
-.cell-number-3 { -fx-text-fill: red; }
-.cell-number-4 { -fx-text-fill: darkblue; }
-.cell-number-5 { -fx-text-fill: darkred; }
-.cell-number-6 { -fx-text-fill: teal; }
-.cell-number-7 { -fx-text-fill: black; }
-.cell-number-8 { -fx-text-fill: gray; }
-
-#counter-red
-{
-    -fx-text-fill: red;
+.cell-number-4 {
+  -fx-text-fill: darkblue;
 }
 
-#counter-teal
-{
-    -fx-text-fill: teal;
+.cell-number-5 {
+  -fx-text-fill: darkred;
 }
+
+.cell-number-6 {
+  -fx-text-fill: teal;
+}
+
+.cell-number-7 {
+  -fx-text-fill: black;
+}
+
+.cell-number-8 {
+  -fx-text-fill: gray;
+}
+
+/* --- Counter Colors --- */
+/**
+ * Styles for counters indicating remaining flags or other game stats.
+ * These labels are styled with different colors for red and teal counters.
+ */
+#counter-red {
+  -fx-text-fill: red;
+}
+
+#counter-teal {
+  -fx-text-fill: teal;
+}
+
+/*# sourceMappingURL=gameStyle.css.map */

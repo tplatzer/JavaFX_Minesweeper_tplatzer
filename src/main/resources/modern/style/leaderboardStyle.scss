@@ -1,0 +1,132 @@
+/**
+ * SCSS style definitions for the modern leaderboard in the Bomb-Disposal-Simulator.
+ * This stylesheet defines the visual appearance of the leaderboard, including columns, headers, entries, and buttons.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for background elements in the leaderboard.
+ */
+$light-gray: #f9f9f9;
+
+/**
+ * Dark gray color used for background elements in the leaderboard.
+ */
+$dark-gray: #e6e6e6;
+
+/**
+ * Border color applied to various elements in the leaderboard.
+ */
+$border-color: #cccccc;
+
+/**
+ * Border radius used for rounded corners in various UI elements.
+ */
+$border-radius: 8px;
+
+/**
+ * Shadow color used for drop shadows applied to UI elements.
+ */
+$shadow-color: rgba(0, 0, 0, 0.15);
+
+
+/* --- Leaderboard Root --- */
+
+/**
+ * The root container of the leaderboard, with a gradient background, shadow effect, and spacing.
+ */
+.leaderboard-root
+{
+  -fx-font-size: 17px; // Font size for text in the leaderboard
+  -fx-background-color: linear-gradient(to bottom, #ffffff, $dark-gray); // Gradient background
+  -fx-spacing: 20px; // Spacing between children elements
+  -fx-padding: 20px; // Padding around the container
+  -fx-alignment: center; // Center-align the contents
+  -fx-border-radius: $border-radius; // Apply border radius
+  -fx-effect: dropshadow(gaussian, $shadow-color, 8, 0, 4, 4); // Shadow effect for depth
+  -fx-background-insets: 0; // No inset for the background
+}
+
+/* --- Leaderboard Column --- */
+
+/**
+ * Columns in the leaderboard, with background color, border, padding, and shadow effect.
+ */
+.leaderboard-column
+{
+  -fx-background-color: $light-gray; // Background color for columns
+  -fx-border-color: $border-color; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-padding: 15px; // Padding inside the column
+  -fx-spacing: 10px; // Spacing between elements inside the column
+  -fx-border-radius: $border-radius; // Apply rounded corners
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 2, 2); // Shadow effect
+  -fx-background-radius: $border-radius; // Apply rounded corners for background
+  -fx-min-width: 350px; // Minimum width of the column
+  -fx-max-width: 500px; // Maximum width of the column
+}
+
+/* --- Leaderboard Header --- */
+
+/**
+ * Header for each column in the leaderboard, with bold text, gradient background, and shadow effect.
+ */
+.leaderboard-header
+{
+  -fx-font-weight: bold; // Bold text for headers
+  -fx-padding: 5px 10px; // Padding around the header
+  -fx-background-color: linear-gradient(to bottom, #f2f2f2, $dark-gray); // Gradient background
+  -fx-border-color: $border-color; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-border-radius: 6px; // Slightly rounded corners for the header
+  -fx-alignment: center; // Center-align the header text
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 1, 1); // Shadow effect
+  -fx-background-insets: 0; // No inset for the background
+}
+
+/* --- Leaderboard Entry --- */
+
+/**
+ * Each entry in the leaderboard with padding, background gradient, and shadow effect.
+ */
+.leaderboard-entry
+{
+  -fx-padding: 5px 10px; // Padding inside each entry
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f0f0); // Gradient background
+  -fx-border-color: #dddddd; // Light border color
+  -fx-border-width: 1px; // Border width
+  -fx-border-radius: 6px; // Slightly rounded corners
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 2, 0, 1, 1); // Subtle shadow effect
+  -fx-min-width: 300px; // Minimum width of each entry
+  -fx-alignment: center-left; // Left-align the content inside the entry
+  -fx-background-insets: 0; // No inset for the background
+}
+
+/* --- Leaderboard Button --- */
+
+/**
+ * Button for actions on the leaderboard, with gradient background and shadow effect.
+ */
+.leaderboard-button
+{
+  -fx-background-color: linear-gradient(to bottom, #ffffff, $dark-gray); // Button background gradient
+  -fx-border-color: #b3b3b3; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-padding: 8px 15px; // Padding inside the button
+  -fx-border-radius: $border-radius; // Rounded corners for the button
+  -fx-background-radius: $border-radius; // Rounded corners for background
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 2, 2); // Shadow effect for depth
+  -fx-background-insets: 0; // No inset for the background
+
+  &:hover // On hover
+  {
+    -fx-background-color: linear-gradient(to bottom, $light-gray, #d9d9d9); // Change background color on hover
+  }
+
+  &:pressed // When button is pressed
+  {
+    -fx-background-color: $border-color; // Change background color when pressed
+    -fx-effect: none; // Remove shadow effect on press
+  }
+}

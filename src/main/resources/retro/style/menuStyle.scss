@@ -1,0 +1,222 @@
+/**
+ * SCSS style definitions for the retro menu theme.
+ * This file defines the visual styles for the menu UI components, including buttons, labels,
+ * the root container, and other interface elements such as text fields, style, and mute buttons.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for background and various UI elements.
+ */
+$light-gray: #c0c0c0;
+
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+$dark-gray: #808080;
+
+/**
+ * Light border color used for UI elements with lighter backgrounds.
+ */
+$border-color-light: #ffffff;
+
+/**
+ * Dark border color used for UI elements with darker backgrounds.
+ */
+$border-color-dark: #808080;
+
+/**
+ * Background color when a button or UI element is hovered.
+ */
+$background-color-hover: #d9d9d9;
+
+/**
+ * Background color when a button or UI element is pressed.
+ */
+$background-color-pressed: #a6a6a6;
+
+/**
+ * Font family used for all text elements, set to "Courier New" with a monospace fallback.
+ */
+$font-family: "Courier New", monospace;
+
+/**
+ * Large font size used for title and key texts.
+ */
+$font-size-large: 40px;
+
+/**
+ * Medium font size used for general text elements.
+ */
+$font-size-medium: 20px;
+
+/**
+ * Middle font size used for buttons and other elements that require a slightly smaller font.
+ */
+$font-size-middle: 18px;
+
+/**
+ * Small font size used for minor text elements such as labels.
+ */
+$font-size-small: 16px;
+
+/**
+ * Default font color used for most of the text elements.
+ */
+$font-color: black;
+
+
+/* --- Root Container --- */
+
+/**
+ * The root container for the menu, defining the background color, padding, spacing, and alignment.
+ * This container holds all UI elements within the menu and provides the necessary layout.
+ */
+.root-container
+{
+  -fx-background-color: $light-gray; // Light gray background for the root container.
+  -fx-spacing: 15px; // Spacing between elements inside the container.
+  -fx-padding: 20px; // Padding around the edges of the container.
+  -fx-alignment: center; // Center alignment for the elements inside the container.
+}
+
+
+/* --- Button Styles --- */
+
+/**
+ * General style for all buttons in the menu, including background color, padding, border, and effects.
+ * Includes hover and pressed states for interactive feedback.
+ */
+.button
+{
+  -fx-font-family: $font-family; // Font for button text.
+  -fx-font-size: $font-size-middle; // Medium font size for button text.
+  -fx-text-fill: $font-color; // Text color for the button.
+  -fx-background-color: $light-gray; // Light gray background for the button.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Light and dark borders for the button.
+  -fx-border-width: 2px; // Border width for the button.
+  -fx-padding: 10px 15px; // Padding inside the button.
+  -fx-border-radius: 0; // No border radius for the button.
+  -fx-background-radius: 0; // No background radius for the button.
+  -fx-alignment: center; // Center alignment for the button text.
+
+  &:hover
+  {
+    -fx-background-color: $background-color-hover; // Change background color on hover.
+  }
+
+  &:pressed
+  {
+    -fx-background-color: $background-color-pressed; // Change background color when pressed.
+  }
+}
+
+
+/* --- Mute Button --- */
+
+/**
+ * Style for the mute button. This button has a smaller font size and changes background color when pressed or selected.
+ */
+.mute-button
+{
+  -fx-font-size: $font-size-small; // Small font size for the mute button text.
+  -fx-padding: 5px 10px; // Padding inside the mute button.
+
+  &:pressed,
+  &.selected
+  {
+    -fx-background-color: $background-color-pressed; // Change background color when pressed or selected.
+    -fx-border-color: $border-color-dark $border-color-light $border-color-light $border-color-dark; // Change border color on pressed.
+  }
+}
+
+
+/* --- Style Button --- */
+
+/**
+ * Style for the style change button. This button allows users to change the UI style and has hover effects.
+ */
+.style-button
+{
+  -fx-font-size: $font-size-small; // Small font size for the style button text.
+  -fx-padding: 5px 10px; // Padding inside the style button.
+  -fx-min-width: 150px; // Minimum width for the button.
+
+  &:hover
+  {
+    -fx-background-color: $background-color-hover; // Change background color on hover.
+  }
+}
+
+
+/* --- Reset Button --- */
+
+/**
+ * Style for the reset button. This button has a larger size to indicate its importance in the UI.
+ */
+.reset-button
+{
+  -fx-font-size: $font-size-middle; // Medium font size for the reset button text.
+  -fx-min-width: 250px; // Minimum width for the reset button.
+  -fx-pref-width: 280px; // Preferred width for the reset button.
+  -fx-max-width: 300px; // Maximum width for the reset button.
+}
+
+
+/* --- Label Styles --- */
+
+/**
+ * Style for the username label. It has a medium font size and padding.
+ */
+#usernameLabel
+{
+  -fx-font-size: $font-size-medium; // Medium font size for the username label.
+  -fx-text-fill: #444444; // Text color for the label.
+  -fx-padding: 1px; // Padding inside the label.
+}
+
+/**
+ * Style for the title text. The title text is larger and centered with a black background.
+ */
+#titleText
+{
+  -fx-font-size: $font-size-large; // Large font size for the title text.
+  -fx-text-fill: red; // Red text color for the title.
+  -fx-background-color: black; // Black background for the title.
+  -fx-padding: 10px; // Padding inside the title text.
+  -fx-border-color: black; // Black border color around the title.
+  -fx-border-width: 2px; // Border width for the title text.
+  -fx-alignment: center; // Center alignment for the title text.
+}
+
+/**
+ * Style for the choice text. This text is used for giving the user choices in the menu.
+ */
+#choiceText
+{
+  -fx-font-size: $font-size-medium; // Medium font size for the choice text.
+  -fx-text-fill: $font-color; // Default text color.
+  -fx-background-color: $light-gray; // Light gray background for the choice text.
+  -fx-padding: 10px; // Padding inside the choice text.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color around the choice text.
+  -fx-border-width: 2px; // Border width around the choice text.
+  -fx-alignment: center; // Center alignment for the choice text.
+}
+
+
+/* --- Difficulty Button Box --- */
+
+/**
+ * Style for the box containing the difficulty buttons.
+ * It has a light gray background with borders, padding, and spacing for the buttons inside.
+ */
+#difficulty-button-box
+{
+  -fx-background-color: $light-gray; // Light gray background for the difficulty button box.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Border color around the box.
+  -fx-border-width: 2px; // Border width for the box.
+  -fx-padding: 10px; // Padding inside the box.
+  -fx-spacing: 10px; // Spacing between buttons inside the box.
+  -fx-alignment: center; // Center alignment for the buttons inside the box.
+}

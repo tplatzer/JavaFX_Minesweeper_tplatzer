@@ -1,135 +1,211 @@
-.root-container
-{
-    -fx-background-color: linear-gradient(to bottom, #f9f9f9, #eaeaea);
-    -fx-spacing: 20px;
-    -fx-padding: 20px;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-border-radius: 10px;
+/**
+ * SCSS style definitions for the modern game style in the Bomb-Disposal-Simulator.
+ * This stylesheet defines the visual appearance for various components used in the game.
+ * Key components like buttons, game fields, cell buttons, and more are styled for a modern look.
+ */
+/* --- General Variables --- */
+/**
+ * Border radius used for elements with rounded corners.
+ */
+/**
+ * Border color used for various elements in the UI.
+ */
+/**
+ * Light background color used for most UI elements.
+ */
+/**
+ * Dark background color used for certain UI elements.
+ */
+/**
+ * Background gradient applied to certain containers for a smooth transition effect.
+ */
+/**
+ * Shadow effect applied to elements for a subtle 3D effect.
+ */
+/**
+ * Background gradient for buttons, providing a smooth effect.
+ */
+/**
+ * Background gradient for buttons on hover.
+ */
+/**
+ * Background color of the button when pressed.
+ */
+/**
+ * Font family used for text in buttons and other UI elements.
+ */
+/* --- Root Container --- */
+/**
+ * Root container for the entire layout, with a gradient background, spacing, and padding.
+ */
+.root-container {
+  -fx-background-color: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+  -fx-spacing: 20px;
+  -fx-padding: 20px;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-border-radius: 10px;
 }
 
-.game-info-box
-{
-    -fx-border-color: #cccccc;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);
-    -fx-background-radius: 8px;
+/* --- Game Info Box --- */
+/**
+ * Box that contains game-related information, with a border and shadow effect.
+ */
+.game-info-box {
+  -fx-border-color: #cccccc;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: #ffffff;
+  -fx-border-radius: 8px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);
+  -fx-background-radius: 8px;
 }
 
-.restart-button
-{
-    -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 18px;
-    -fx-text-fill: #333333;
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
-    -fx-padding: 10px;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 2, 2);
+/* --- Restart Button --- */
+/**
+ * Button used to restart the game, styled with a gradient background and shadow effect.
+ */
+.restart-button {
+  -fx-font-family: "Arial", sans-serif;
+  -fx-font-size: 18px;
+  -fx-text-fill: #333333;
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  -fx-padding: 10px;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 2, 2);
+}
+.restart-button:hover {
+  -fx-background-color: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+}
+.restart-button:pressed {
+  -fx-background-color: #cccccc;
+  -fx-effect: none;
 }
 
-.restart-button:hover
-{
-    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+/* --- Game Field --- */
+/**
+ * Container that holds the game grid. It has a light background and shadow effect.
+ */
+.game-field {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);
 }
 
-.restart-button:pressed
-{
-    -fx-background-color: #cccccc;
-    -fx-effect: none;
+/* --- Cell Button --- */
+/**
+ * Button for each individual cell in the game grid. Styled with a custom font and background.
+ */
+.cell-button {
+  -fx-font-family: "Arial", sans-serif;
+  -fx-font-size: 16px;
+  -fx-text-fill: #444444;
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  -fx-border-color: #cccccc;
+  -fx-border-width: 2px;
+  -fx-alignment: center;
+  -fx-padding: 5px;
+  -fx-min-width: 45px;
+  -fx-min-height: 45px;
+  -fx-pref-width: 45px;
+  -fx-pref-height: 45px;
+  -fx-max-width: 45px;
+  -fx-max-height: 45px;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+.cell-button:pressed {
+  -fx-background-color: #cccccc;
+  -fx-border-color: #b3b3b3;
+  -fx-border-width: 2px;
 }
 
-.game-field
-{
-    -fx-background-color: #ffffff;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 2, 2);
+/* --- Revealed Cell --- */
+/**
+ * Style for cells that have been revealed. It has a dark background color and bold text.
+ */
+.cell-button-revealed {
+  -fx-background-color: #e6e6e6;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-font-family: "Arial", sans-serif;
+  -fx-font-size: 15px;
+  -fx-font-weight: bold;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
 }
 
-.cell-button
-{
-    -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 16px;
-    -fx-text-fill: #444444;
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
-    -fx-border-color: #cccccc;
-    -fx-border-width: 2px;
-    -fx-alignment: center;
-    -fx-padding: 5px;
-
-    -fx-min-width: 45px;
-    -fx-min-height: 45px;
-    -fx-pref-width: 45px;
-    -fx-pref-height: 45px;
-    -fx-max-width: 45px;
-    -fx-max-height: 45px;
-
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+/* --- Revealed Bomb Cell --- */
+/**
+ * Style for cells that have been revealed and contain a bomb. It has a red background color.
+ */
+.cell-bomb-revealed {
+  -fx-background-color: #ff6b6b;
+  -fx-border-color: #cc0000;
+  -fx-border-width: 1px;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
 }
 
-.cell-button:pressed
-{
-    -fx-background-color: #cccccc;
-    -fx-border-color: #b3b3b3;
-    -fx-border-width: 2px;
+/* --- Numbered Cells --- */
+/**
+ * Style for cells based on the number of adjacent bombs. Text color is different for each number.
+ */
+.cell-number-1 {
+  -fx-text-fill: #1e90ff;
 }
 
-.cell-button-revealed
-{
-    -fx-background-color: #e6e6e6;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-font-family: "Arial", sans-serif;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+.cell-number-2 {
+  -fx-text-fill: #32cd32;
 }
 
-.cell-bomb-revealed
-{
-    -fx-background-color: #ff6b6b;
-    -fx-border-color: #cc0000;
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+.cell-number-3 {
+  -fx-text-fill: #ff4500;
 }
 
-.button:disabled
-{
-    -fx-opacity: 1.0;
-    -fx-cursor: default;
-    -fx-border-color: #cccccc;
+.cell-number-4 {
+  -fx-text-fill: #00008b;
 }
 
-.cell-number-1 { -fx-text-fill: #1e90ff; }
-.cell-number-2 { -fx-text-fill: #32cd32; }
-.cell-number-3 { -fx-text-fill: #ff4500; }
-.cell-number-4 { -fx-text-fill: #00008b; }
-.cell-number-5 { -fx-text-fill: #8b0000; }
-.cell-number-6 { -fx-text-fill: #20b2aa; }
-.cell-number-7 { -fx-text-fill: #000000; }
-.cell-number-8 { -fx-text-fill: #808080; }
-
-#counter-red
-{
-    -fx-text-fill: #ff6b6b;
-    -fx-font-weight: bold;
+.cell-number-5 {
+  -fx-text-fill: #8b0000;
 }
 
-#counter-teal
-{
-    -fx-text-fill: #20b2aa;
-    -fx-font-weight: bold;
+.cell-number-6 {
+  -fx-text-fill: #20b2aa;
 }
+
+.cell-number-7 {
+  -fx-text-fill: #000000;
+}
+
+.cell-number-8 {
+  -fx-text-fill: #808080;
+}
+
+/* --- Counters --- */
+/**
+ * Style for counters indicating remaining bombs.
+ */
+#counter-red {
+  -fx-text-fill: #ff6b6b;
+  -fx-font-weight: bold;
+}
+
+/**
+ * Style for counters indicating remaining bombs in teal.
+ */
+#counter-teal {
+  -fx-text-fill: #20b2aa;
+  -fx-font-weight: bold;
+}
+
+/*# sourceMappingURL=gameStyle.css.map */

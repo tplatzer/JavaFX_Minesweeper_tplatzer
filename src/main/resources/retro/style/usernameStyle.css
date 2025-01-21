@@ -1,73 +1,136 @@
-.root-container
-{
-    -fx-background-color: #c0c0c0;
-    -fx-padding: 30px;
-    -fx-spacing: 20px;
-    -fx-alignment: center;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-border-radius: 0;
+/**
+ * SCSS style definitions for the retro theme of the username menu.
+ * This file contains the visual styles for the username input form, including the root container,
+ * text fields, buttons, and return button. It defines the color scheme, padding, borders, hover/pressed states,
+ * and other visual elements for a retro aesthetic.
+ */
+/* --- General Variables --- */
+/**
+ * The primary background color used for the UI elements, set to a light gray shade (#c0c0c0).
+ */
+/**
+ * The background color for buttons and UI elements when hovered, set to a slightly darker shade (#d9d9d9).
+ */
+/**
+ * The background color for buttons and UI elements when pressed, set to a darker shade (#a6a6a6).
+ */
+/**
+ * The background color for disabled elements, set to a very light gray shade (#e6e6e6).
+ */
+/**
+ * The light border color for UI elements, set to white (#ffffff).
+ */
+/**
+ * The dark border color for UI elements, set to dark gray (#808080).
+ */
+/**
+ * The font size for small text elements, set to 16px.
+ */
+/**
+ * The color of the text, set to black (#000000).
+ */
+/* --- General Reset --- */
+/**
+ * Reset the margin and padding for all elements to ensure consistent styling across the UI.
+ */
+* {
+  -fx-margin: 0;
+  -fx-padding: 0;
 }
 
-.text-field
-{
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: #ffffff;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 5px;
-    -fx-min-width: 200px;
-    -fx-max-width: 400px;
+/* --- Root Container --- */
+/**
+ * Style for the root container of the username menu. This element holds all other UI components
+ * and defines the background color, padding, spacing, alignment, and borders for the entire container.
+ */
+.root-container {
+  -fx-background-color: #c0c0c0;
+  -fx-padding: 30px;
+  -fx-spacing: 20px;
+  -fx-alignment: center;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-border-radius: 0;
 }
 
-.text-field:focused
-{
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-background-color: #e6e6e6;
+/* --- Text Field Styles --- */
+/**
+ * Style for the text field where the user enters their username. This element defines the font size,
+ * text color, background color, padding, borders, and behavior when the text field is focused.
+ */
+.text-field {
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-background-color: #ffffff;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 5px;
+  -fx-min-width: 200px;
+  -fx-max-width: 400px;
+  /**
+   * When the text field is focused, change the border and background to highlight it.
+   */
+}
+.text-field:focused {
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-background-color: #e6e6e6;
 }
 
-.button
-{
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 8px 15px;
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
+/* --- Button Styles --- */
+/**
+ * Style for the general buttons in the UI. This includes the background color, font size, text color,
+ * padding, border styles, and hover/pressed states.
+ */
+.button {
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 8px 15px;
+  -fx-border-radius: 0;
+  -fx-background-radius: 0;
+  /**
+   * Hover effect for the button, changing the background color when hovered.
+   */
+  /**
+   * Pressed effect for the button, changing the background color when clicked.
+   */
+  /**
+   * Disabled state for the button, changing the background color and text color when disabled.
+   */
+}
+.button:hover {
+  -fx-background-color: #d9d9d9;
+}
+.button:pressed {
+  -fx-background-color: #a6a6a6;
+}
+.button:disabled {
+  -fx-background-color: #e6e6e6;
+  -fx-text-fill: #808080;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
 }
 
-.button:hover
-{
-    -fx-background-color: #d9d9d9;
+/* --- Return Button Styles --- */
+/**
+ * Style for the return button. This button is typically used for navigation purposes.
+ * It has a small font size, black text color, and transparent background, with padding for spacing.
+ */
+.return-button {
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-background-color: transparent;
+  -fx-border: none;
+  -fx-padding: 10px;
+  /**
+   * Hover effect for the return button, changing the text color and adding underline on hover.
+   */
+}
+.return-button:hover {
+  -fx-text-fill: black;
+  -fx-background-color: #d9d9d9;
+  -fx-underline: true;
 }
 
-.button:pressed
-{
-    -fx-background-color: #a6a6a6;
-}
-
-.button:disabled
-{
-    -fx-background-color: #e6e6e6;
-    -fx-text-fill: #808080;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-}
-
-.return-button
-{
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-background-color: transparent;
-    -fx-border: none;
-    -fx-padding: 10px;
-}
-
-.return-button:hover
-{
-    -fx-text-fill: black;
-    -fx-background-color: #d9d9d9;
-    -fx-underline: true;
-}
+/*# sourceMappingURL=usernameStyle.css.map */

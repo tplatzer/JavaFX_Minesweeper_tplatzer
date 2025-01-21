@@ -1,0 +1,275 @@
+/**
+ * SCSS style definitions for the modern game style in the Bomb-Disposal-Simulator.
+ * This stylesheet defines the visual appearance for various components used in the game.
+ * Key components like buttons, game fields, cell buttons, and more are styled for a modern look.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Border radius used for elements with rounded corners.
+ */
+$border-radius: 8px;
+
+/**
+ * Border color used for various elements in the UI.
+ */
+$border-color: #cccccc;
+
+/**
+ * Light background color used for most UI elements.
+ */
+$background-color-light: #ffffff;
+
+/**
+ * Dark background color used for certain UI elements.
+ */
+$background-color-dark: #e6e6e6;
+
+/**
+ * Background gradient applied to certain containers for a smooth transition effect.
+ */
+$background-gradient: linear-gradient(to bottom, #f9f9f9, #eaeaea);
+
+/**
+ * Shadow effect applied to elements for a subtle 3D effect.
+ */
+$shadow-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 5, 0, 2, 2);
+
+/**
+ * Background gradient for buttons, providing a smooth effect.
+ */
+$button-background: linear-gradient(to bottom, #ffffff, #e6e6e6);
+
+/**
+ * Background gradient for buttons on hover.
+ */
+$button-hover-background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+
+/**
+ * Background color of the button when pressed.
+ */
+$button-pressed-background: #cccccc;
+
+/**
+ * Font family used for text in buttons and other UI elements.
+ */
+$font-family: "Arial", sans-serif;
+
+
+/* --- Root Container --- */
+
+/**
+ * Root container for the entire layout, with a gradient background, spacing, and padding.
+ */
+.root-container
+{
+  -fx-background-color: $background-gradient; // Applying background gradient
+  -fx-spacing: 20px; // Setting spacing between child elements
+  -fx-padding: 20px; // Padding around the container
+  -fx-border-color: $border-color; // Applying border color
+  -fx-border-width: 1px; // Border width
+  -fx-border-radius: 10px; // Rounded corners for the container
+}
+
+/* --- Game Info Box --- */
+
+/**
+ * Box that contains game-related information, with a border and shadow effect.
+ */
+.game-info-box
+{
+  -fx-border-color: $border-color;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: $background-color-light;
+  -fx-border-radius: $border-radius;
+  -fx-effect: $shadow-effect; // Adding shadow effect
+  -fx-background-radius: $border-radius;
+}
+
+/* --- Restart Button --- */
+
+/**
+ * Button used to restart the game, styled with a gradient background and shadow effect.
+ */
+.restart-button
+{
+  -fx-font-family: $font-family; // Setting font
+  -fx-font-size: 18px; // Font size
+  -fx-text-fill: #333333; // Text color
+  -fx-background-color: $button-background; // Background gradient
+  -fx-padding: 10px; // Padding inside the button
+  -fx-border-color: $border-color; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-border-radius: $border-radius; // Rounded corners
+  -fx-background-radius: $border-radius; // Rounded corners for background
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 2, 2); // Shadow effect
+
+  &:hover // On hover
+  {
+    -fx-background-color: $button-hover-background; // Change background on hover
+  }
+
+  &:pressed // When button is pressed
+  {
+    -fx-background-color: $button-pressed-background; // Change background when pressed
+    -fx-effect: none; // Remove shadow effect on press
+  }
+}
+
+/* --- Game Field --- */
+
+/**
+ * Container that holds the game grid. It has a light background and shadow effect.
+ */
+.game-field
+{
+  -fx-background-color: $background-color-light;
+  -fx-border-color: $border-color;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-border-radius: $border-radius;
+  -fx-background-radius: $border-radius;
+  -fx-effect: $shadow-effect; // Adding shadow effect to the game field
+}
+
+/* --- Cell Button --- */
+
+/**
+ * Button for each individual cell in the game grid. Styled with a custom font and background.
+ */
+.cell-button
+{
+  -fx-font-family: $font-family; // Setting font for the button
+  -fx-font-size: 16px; // Font size
+  -fx-text-fill: #444444; // Text color
+  -fx-background-color: $button-background; // Background gradient
+  -fx-border-color: $border-color; // Border color
+  -fx-border-width: 2px; // Border width
+  -fx-alignment: center; // Text alignment in the center
+  -fx-padding: 5px; // Padding inside the button
+
+  -fx-min-width: 45px; // Minimum width of the button
+  -fx-min-height: 45px; // Minimum height of the button
+  -fx-pref-width: 45px; // Preferred width of the button
+  -fx-pref-height: 45px; // Preferred height of the button
+  -fx-max-width: 45px; // Maximum width of the button
+  -fx-max-height: 45px; // Maximum height of the button
+
+  -fx-border-radius: 5px; // Rounded corners for the button border
+  -fx-background-radius: 5px; // Rounded corners for the background
+
+  &:pressed // When button is pressed
+  {
+    -fx-background-color: $button-pressed-background; // Change background when pressed
+    -fx-border-color: #b3b3b3; // Change border color when pressed
+    -fx-border-width: 2px; // Change border width when pressed
+  }
+}
+
+/* --- Revealed Cell --- */
+
+/**
+ * Style for cells that have been revealed. It has a dark background color and bold text.
+ */
+.cell-button-revealed
+{
+  -fx-background-color: $background-color-dark;
+  -fx-border-color: $border-color;
+  -fx-border-width: 1px;
+  -fx-font-family: $font-family;
+  -fx-font-size: 15px;
+  -fx-font-weight: bold; // Bold font for revealed cells
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+
+/* --- Revealed Bomb Cell --- */
+
+/**
+ * Style for cells that have been revealed and contain a bomb. It has a red background color.
+ */
+.cell-bomb-revealed
+{
+  -fx-background-color: #ff6b6b; // Red background for bomb cells
+  -fx-border-color: #cc0000; // Darker red border for bomb cells
+  -fx-border-width: 1px;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+
+/* --- Numbered Cells --- */
+
+/**
+ * Style for cells based on the number of adjacent bombs. Text color is different for each number.
+ */
+.cell-number-1
+{
+  -fx-text-fill: #1e90ff;
+}
+
+// Blue for 1 adjacent bomb
+.cell-number-2
+{
+  -fx-text-fill: #32cd32;
+}
+
+// Green for 2 adjacent bombs
+.cell-number-3
+{
+  -fx-text-fill: #ff4500;
+}
+
+// Red for 3 adjacent bombs
+.cell-number-4
+{
+  -fx-text-fill: #00008b;
+}
+
+// Dark blue for 4 adjacent bombs
+.cell-number-5
+{
+  -fx-text-fill: #8b0000;
+}
+
+// Dark red for 5 adjacent bombs
+.cell-number-6
+{
+  -fx-text-fill: #20b2aa;
+}
+
+// Teal for 6 adjacent bombs
+.cell-number-7
+{
+  -fx-text-fill: #000000;
+}
+
+// Black for 7 adjacent bombs
+.cell-number-8
+{
+  -fx-text-fill: #808080;
+}
+
+// Gray for 8 adjacent bombs
+
+/* --- Counters --- */
+
+/**
+ * Style for counters indicating remaining bombs.
+ */
+#counter-red
+{
+  -fx-text-fill: #ff6b6b; // Red text color for counter
+  -fx-font-weight: bold; // Bold font for counter
+}
+
+/**
+ * Style for counters indicating remaining bombs in teal.
+ */
+#counter-teal
+{
+  -fx-text-fill: #20b2aa; // Teal text color for counter
+  -fx-font-weight: bold; // Bold font for counter
+}
