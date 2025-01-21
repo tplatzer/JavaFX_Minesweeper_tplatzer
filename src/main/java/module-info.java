@@ -6,5 +6,8 @@ module htl.steyr.javafx_minesweeper_tplatzer {
     requires java.desktop;
     requires java.net.http;
 
-    exports htl.steyr.javafx_minesweeper_tplatzer;
+    exports htl.steyr.javafx_minesweeper_tplatzer.app;
+    exports htl.steyr.javafx_minesweeper_tplatzer.controller;
+    exports htl.steyr.javafx_minesweeper_tplatzer.model;
+    exports htl.steyr.javafx_minesweeper_tplatzer.service;
 }

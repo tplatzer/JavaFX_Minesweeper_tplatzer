@@ -1,0 +1,170 @@
+/**
+ * SCSS style definitions for the modern theme used in the Bomb-Disposal-Simulator.
+ * This file defines the visual styles for buttons, boxes, labels, and other UI elements.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Font family used throughout the design for consistency. A monospace font is chosen for readability.
+ */
+$font-family: "Consolas", monospace;
+
+/**
+ * Light gray color used for background elements in various UI components.
+ */
+$light-gray: #e6e6e6;
+
+/**
+ * Border color used for UI components such as buttons and boxes.
+ */
+$border-color: #b3b3b3;
+
+/**
+ * Shadow color for creating depth and visual separation between elements.
+ */
+$shadow-color: rgba(0, 0, 0, 0.2);
+
+/**
+ * Border radius applied to various UI elements to create rounded corners.
+ */
+$border-radius: 8px;
+
+/**
+ * Medium font size used for text on buttons and other important UI elements.
+ */
+$font-size-middle: 18px;
+
+/**
+ * Small font size used for auxiliary text like labels and info boxes.
+ */
+$font-size-small: 16px;
+
+
+/* --- Universal Reset --- */
+
+/**
+ * Reset margin and padding for all elements to ensure consistent spacing across components.
+ */
+*
+{
+  -fx-margin: 0;
+  -fx-padding: 0;
+}
+
+
+/* --- Button Styles --- */
+
+/**
+ * Style for buttons with gradient background, border, shadow effect, and rounded corners.
+ * The hover and pressed states provide feedback to the user with different background colors.
+ */
+.button
+{
+  -fx-font-family: $font-family; // Set the font family for the button text.
+  -fx-font-size: $font-size-middle; // Set the font size to medium.
+  -fx-text-fill: #333333; // Dark text color for visibility.
+  -fx-background-color: linear-gradient(to bottom, #ffffff, $light-gray); // Gradient background for the button.
+  -fx-border-color: $border-color; // Set the border color.
+  -fx-border-width: 1px; // Define border width.
+  -fx-padding: 10px 15px; // Padding inside the button for spacing.
+  -fx-border-radius: $border-radius; // Apply rounded corners to the button.
+  -fx-background-radius: $border-radius; // Apply rounded corners to the background.
+  -fx-alignment: center; // Align text to the center of the button.
+  -fx-effect: dropshadow(gaussian, $shadow-color, 5, 0, 2, 2); // Shadow effect for depth.
+
+  &:hover
+  { // On hover, lighten the background.
+    -fx-background-color: linear-gradient(to bottom, #f9f9f9, #d9d9d9);
+  }
+
+  &:pressed
+  { // On press, change background to a solid color and remove shadow.
+    -fx-background-color: #cccccc;
+    -fx-effect: none;
+  }
+}
+
+
+/* --- Box Styles --- */
+
+/**
+ * Style for generic boxes with padding, a light background, border, and shadow effect.
+ */
+.box
+{
+  -fx-padding: 15px; // Padding inside the box.
+  -fx-background-color: #f2f2f2; // Light background color.
+  -fx-border-color: #cccccc; // Border color.
+  -fx-border-width: 1px; // Border width.
+  -fx-border-radius: $border-radius; // Rounded corners for the box.
+  -fx-effect: dropshadow(gaussian, $shadow-color, 3, 0, 1, 1); // Shadow effect for depth.
+}
+
+
+/* --- Text Styles --- */
+
+/**
+ * Basic text style with monospace font and dark text color.
+ */
+.text
+{
+  -fx-font-family: $font-family; // Use monospace font family for consistency.
+  -fx-text-fill: #444444; // Dark text color for readability.
+}
+
+
+/* --- Info Box Styles --- */
+
+/**
+ * Style for info boxes with a white background, a subtle border, padding, and shadow.
+ */
+.info-box
+{
+  -fx-background-color: #ffffff; // White background for the info box.
+  -fx-border-color: #cccccc; // Light gray border color.
+  -fx-border-width: 1px; // Border width.
+  -fx-padding: 5px; // Padding inside the info box.
+  -fx-spacing: 10px; // Space between elements inside the box.
+  -fx-border-radius: $border-radius; // Apply rounded corners to the box.
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 4, 0, 2, 2); // Shadow effect for visual depth.
+  -fx-background-radius: $border-radius; // Apply rounded corners to the background.
+}
+
+/**
+ * Style for info labels with monospace font, smaller font size, and a subtle background and border.
+ */
+.info-label
+{
+  -fx-font-family: $font-family; // Use monospace font family.
+  -fx-font-size: $font-size-small; // Small font size for labels.
+  -fx-text-fill: #444444; // Dark text color for visibility.
+  -fx-background-color: #f9f9f9; // Light background for info labels.
+  -fx-padding: 5px 10px; // Padding inside the label.
+  -fx-border-color: #cccccc; // Border color for the label.
+  -fx-border-width: 1px; // Border width.
+  -fx-border-radius: 5px; // Rounded corners for the label.
+  -fx-alignment: center-right; // Align text to the right.
+  -fx-min-width: 51px; // Minimum width to ensure label consistency.
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 1, 1); // Apply shadow for depth.
+  -fx-background-radius: 5px; // Apply rounded corners to the background.
+}
+
+
+/* --- Time and Flag Labels --- */
+
+/**
+ * Style for the time label with a minimum width to accommodate the time value.
+ */
+.time-label
+{
+  -fx-min-width: 58px; // Set a minimum width for the time label.
+}
+
+/**
+ * Style for the flag label with a minimum width to accommodate the flag count.
+ */
+.flag-label
+{
+  -fx-min-width: 45px; // Set a minimum width for the flag label.
+}

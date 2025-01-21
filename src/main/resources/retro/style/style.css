@@ -1,49 +1,113 @@
-*
-{
-    margin: 0;
-    padding: 0;
+/**
+ * SCSS style definitions for the retro theme.
+ * This file contains the visual styles for the game, including buttons, labels, text fields,
+ * and other interface elements that make up the game interface.
+ */
+/* --- General Variables --- */
+/**
+ * Font family used for all text elements, set to "Courier New" with a monospace fallback.
+ */
+/**
+ * Large font size used for the most prominent text elements in the game interface.
+ */
+/**
+ * Primary background color for UI elements, set to a light gray shade.
+ */
+/**
+ * Light border color used for UI elements with light backgrounds.
+ */
+/**
+ * Dark border color used for UI elements with dark backgrounds.
+ */
+/**
+ * Background color when a button or UI element is hovered.
+ */
+/**
+ * Background color when a button or UI element is pressed.
+ */
+/* --- General Reset --- */
+/**
+ * Reset margins and paddings for all elements to ensure consistent styling across the UI.
+ */
+* {
+  -fx-margin: 0;
+  -fx-padding: 0;
 }
 
-.button
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-background-position: center;
-    -fx-background-radius: 10px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: contain;
-    -fx-border-radius: 10px;
-    -fx-padding: 10px;
+/* --- Button Styles --- */
+/**
+ * General button style, defining the background, text size, padding, and border properties.
+ * Includes hover and pressed states for interactive feedback.
+ */
+.button {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 20px;
+  -fx-background-position: center;
+  -fx-background-radius: 10px;
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: contain;
+  -fx-border-radius: 10px;
+  -fx-padding: 10px;
 }
 
-.box
-{
-    -fx-padding: 10;
+/* --- Box Styles --- */
+/**
+ * Box container with padding for spacing between elements.
+ */
+.box {
+  -fx-padding: 10;
 }
 
-.text
-{
-    -fx-font-family: "Courier New", monospace;
+/* --- Text Styles --- */
+/**
+ * Base text style for all text elements, defining font family.
+ */
+.text {
+  -fx-font-family: "Courier New", monospace;
 }
 
-.info-box
-{
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 5px;
-    -fx-spacing: 10px;
+/* --- Info Box Styles --- */
+/**
+ * Style for the info box, which contains game information such as time, flags, and score.
+ * It defines the background color, borders, padding, and spacing.
+ */
+.info-box {
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 5px;
+  -fx-spacing: 10px;
 }
 
-.info-label
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-text-fill: red;
-    -fx-background-color: black;
-    -fx-padding: 2px;
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
-    -fx-min-width: 45px;
-    -fx-alignment: center-right;
+/* --- Info Label Styles --- */
+/**
+ * Style for the info label, typically used for displaying information such as time or score.
+ * It has a large font size, red text color, black background, and borders.
+ */
+.info-label {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 20px;
+  -fx-text-fill: red;
+  -fx-background-color: black;
+  -fx-padding: 2px;
+  -fx-border-color: black;
+  -fx-border-width: 2px;
+  -fx-alignment: center-right;
 }
+
+/* --- Time and Flag Label Styles --- */
+/**
+ * Style for the time label, ensuring a minimum width.
+ */
+.time-label {
+  -fx-min-width: 57px;
+}
+
+/**
+ * Style for the flag label, ensuring a minimum width.
+ */
+.flag-label {
+  -fx-min-width: 45px;
+}
+
+/*# sourceMappingURL=style.css.map */

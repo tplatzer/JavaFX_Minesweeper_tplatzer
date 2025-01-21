@@ -1,106 +1,161 @@
-.root-container
-{
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
-    -fx-spacing: 20px;
-    -fx-padding: 30px;
-    -fx-alignment: center;
-    -fx-border-radius: 10px;
+/**
+ * SCSS style definitions for the modern menu in the Bomb-Disposal-Simulator.
+ * This stylesheet defines the visual appearance of the main menu, including the root container,
+ * buttons, labels, and difficulty button box.
+ */
+/* --- General Variables --- */
+/**
+ * Light gray color used for background elements in the menu.
+ */
+/**
+ * Dark gray color used for background elements in the menu.
+ */
+/**
+ * Border color applied to various elements in the menu.
+ */
+/**
+ * Shadow color applied to various elements for depth effect.
+ */
+/**
+ * Border radius applied to UI elements with rounded corners.
+ */
+/**
+ * Padding applied to buttons for consistent spacing.
+ */
+/**
+ * Large font size for titles in the menu.
+ */
+/**
+ * Medium font size for main text in the menu.
+ */
+/**
+ * Middle font size for buttons and labels.
+ */
+/**
+ * Small font size for auxiliary buttons like mute or style buttons.
+ */
+/* --- Root Container --- */
+/**
+ * The root container of the menu with a gradient background, spacing, and alignment.
+ */
+.root-container {
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  -fx-spacing: 20px;
+  -fx-padding: 30px;
+  -fx-alignment: center;
+  -fx-border-radius: 10px;
 }
 
-.button
-{
-    -fx-font-size: 18px;
-    -fx-text-fill: #333333;
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc);
-    -fx-border-color: #b3b3b3;
-    -fx-border-width: 1px;
-    -fx-padding: 10px 15px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
-    -fx-clip: true;
+/* --- Button Styles --- */
+/**
+ * Generic button style with a gradient background, shadow, padding, and border radius.
+ */
+.button {
+  -fx-font-size: 18px;
+  -fx-text-fill: #333333;
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc);
+  -fx-border-color: #b3b3b3;
+  -fx-border-width: 1px;
+  -fx-padding: 10px 15px;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+  -fx-alignment: center;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2);
+  -fx-clip: true;
+}
+.button:hover {
+  -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
+}
+.button:pressed {
+  -fx-background-color: #bfbfbf;
+  -fx-effect: none;
 }
 
-.button:hover
-{
-    -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
+/* --- Mute Button --- */
+/**
+ * Mute button with a smaller font size and specific styling for pressed and selected states.
+ */
+.mute-button {
+  -fx-font-size: 16px;
+  -fx-padding: 8px 12px;
+  -fx-min-width: 120px;
+}
+.mute-button:pressed, .mute-button.selected {
+  -fx-background-color: #bfbfbf;
+  -fx-border-color: #999999;
 }
 
-.button:pressed
-{
-    -fx-background-color: #bfbfbf;
-    -fx-effect: none;
+/* --- Style Button --- */
+/**
+ * Style button with a small font size, padding, and gradient background.
+ */
+.style-button {
+  -fx-font-size: 16px;
+  -fx-padding: 8px 12px;
+  -fx-min-width: 150px;
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc);
+  -fx-border-color: #b3b3b3;
+  -fx-border-radius: 8px;
+  -fx-background-radius: 8px;
+}
+.style-button:hover {
+  -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
 }
 
-.mute-button
-{
-    -fx-font-size: 16px;
-    -fx-padding: 8px 12px;
-    -fx-min-width: 120px;
+/* --- Reset Button --- */
+/**
+ * Reset button with a larger width and specific preferred size.
+ */
+.reset-button {
+  -fx-min-width: 250px;
+  -fx-pref-width: 280px;
 }
 
-.mute-button:pressed, .mute-button.selected
-{
-    -fx-background-color: #bfbfbf;
-    -fx-border-color: #999999;
+/* --- Label Styles --- */
+/**
+ * Style for the username label with a medium font size and gray text color.
+ */
+#usernameLabel {
+  -fx-font-size: 20px;
+  -fx-text-fill: #444444;
+  -fx-padding: 1px;
 }
 
-.style-button
-{
-    -fx-font-size: 16px;
-    -fx-padding: 8px 12px;
-    -fx-min-width: 150px;
-    -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc);
-    -fx-border-color: #b3b3b3;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+/**
+ * Title text style with a large font size and centered alignment.
+ */
+#titleText {
+  -fx-font-size: 40px;
+  -fx-text-fill: #333333;
+  -fx-padding: 10px;
+  -fx-border-color: transparent;
+  -fx-alignment: center;
 }
 
-.style-button:hover
-{
-    -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
+/**
+ * Text style for the choice text with medium font size and gray text color.
+ */
+#choiceText {
+  -fx-font-size: 20px;
+  -fx-text-fill: #666666;
+  -fx-background-color: transparent;
+  -fx-padding: 10px;
+  -fx-border-color: transparent;
+  -fx-alignment: center;
 }
 
-.reset-button
-{
-    -fx-min-width: 250px;
-    -fx-pref-width: 280px;
+/* --- Difficulty Button Box --- */
+/**
+ * Container for the difficulty buttons, with light gray background, borders, and padding.
+ */
+#difficulty-button-box {
+  -fx-background-color: #f9f9f9;
+  -fx-border-color: #cccccc;
+  -fx-border-width: 1px;
+  -fx-padding: 15px;
+  -fx-spacing: 10px;
+  -fx-alignment: center;
+  -fx-border-radius: 10px;
 }
 
-#usernameLabel
-{
-    -fx-font-size: 20px;
-    -fx-text-fill: #444444;
-    -fx-padding: 1px;
-}
-
-#titleText
-{
-    -fx-font-size: 40px;
-    -fx-text-fill: #333333;
-    -fx-padding: 10px;
-    -fx-border-color: transparent;
-    -fx-alignment: center;
-}
-
-#choiceText
-{
-    -fx-font-size: 20px;
-    -fx-text-fill: #666666;
-    -fx-background-color: transparent;
-    -fx-padding: 10px;
-    -fx-border-color: transparent;
-    -fx-alignment: center;
-}
-
-#difficulty-button-box
-{
-    -fx-background-color: #f9f9f9;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1px;
-    -fx-padding: 15px;
-    -fx-spacing: 10px;
-    -fx-alignment: center;
-    -fx-border-radius: 10px;
-}
+/*# sourceMappingURL=menuStyle.css.map */

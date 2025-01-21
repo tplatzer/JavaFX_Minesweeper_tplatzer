@@ -1,0 +1,211 @@
+/**
+ * SCSS style definitions for the modern menu in the Bomb-Disposal-Simulator.
+ * This stylesheet defines the visual appearance of the main menu, including the root container,
+ * buttons, labels, and difficulty button box.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for background elements in the menu.
+ */
+$light-gray: #f9f9f9;
+
+/**
+ * Dark gray color used for background elements in the menu.
+ */
+$dark-gray: #e6e6e6;
+
+/**
+ * Border color applied to various elements in the menu.
+ */
+$border-color: #cccccc;
+
+/**
+ * Shadow color applied to various elements for depth effect.
+ */
+$shadow-color: rgba(0, 0, 0, 0.2);
+
+/**
+ * Border radius applied to UI elements with rounded corners.
+ */
+$border-radius: 8px;
+
+/**
+ * Padding applied to buttons for consistent spacing.
+ */
+$button-padding: 10px 15px;
+
+/**
+ * Large font size for titles in the menu.
+ */
+$font-size-large: 40px;
+
+/**
+ * Medium font size for main text in the menu.
+ */
+$font-size-medium: 20px;
+
+/**
+ * Middle font size for buttons and labels.
+ */
+$font-size-middle: 18px;
+
+/**
+ * Small font size for auxiliary buttons like mute or style buttons.
+ */
+$font-size-small: 16px;
+
+
+/* --- Root Container --- */
+
+/**
+ * The root container of the menu with a gradient background, spacing, and alignment.
+ */
+.root-container
+{
+  -fx-background-color: linear-gradient(to bottom, #ffffff, $dark-gray); // Gradient background for the root container
+  -fx-spacing: 20px; // Spacing between the children elements
+  -fx-padding: 30px; // Padding inside the root container
+  -fx-alignment: center; // Center-align the content
+  -fx-border-radius: 10px; // Apply rounded corners to the container
+}
+
+
+/* --- Button Styles --- */
+
+/**
+ * Generic button style with a gradient background, shadow, padding, and border radius.
+ */
+.button
+{
+  -fx-font-size: $font-size-middle; // Medium font size for buttons
+  -fx-text-fill: #333333; // Dark text color
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc); // Gradient background for the button
+  -fx-border-color: #b3b3b3; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-padding: $button-padding; // Padding inside the button
+  -fx-border-radius: $border-radius; // Rounded corners for the button
+  -fx-background-radius: $border-radius; // Rounded corners for the background
+  -fx-alignment: center; // Center-align the text inside the button
+  -fx-effect: dropshadow(gaussian, $shadow-color, 5, 0, 2, 2); // Apply shadow effect to create depth
+  -fx-clip: true; // Clip the content to fit the button shape
+
+  &:hover // When the mouse hovers over the button
+  {
+    -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9); // Lighter background on hover
+  }
+
+  &:pressed // When the button is pressed
+  {
+    -fx-background-color: #bfbfbf; // Darker background when pressed
+    -fx-effect: none; // Remove the shadow effect on press
+  }
+}
+
+/* --- Mute Button --- */
+
+/**
+ * Mute button with a smaller font size and specific styling for pressed and selected states.
+ */
+.mute-button
+{
+  -fx-font-size: $font-size-small; // Small font size for the mute button
+  -fx-padding: 8px 12px; // Padding inside the button
+  -fx-min-width: 120px; // Minimum width for the button
+
+  &:pressed, // When the mute button is pressed or selected
+  &.selected // When the mute button is in a selected state
+  {
+    -fx-background-color: #bfbfbf; // Change background color when pressed or selected
+    -fx-border-color: #999999; // Lighter border color when selected
+  }
+}
+
+/* --- Style Button --- */
+
+/**
+ * Style button with a small font size, padding, and gradient background.
+ */
+.style-button
+{
+  -fx-font-size: $font-size-small; // Small font size for the style button
+  -fx-padding: 8px 12px; // Padding inside the button
+  -fx-min-width: 150px; // Minimum width for the button
+  -fx-background-color: linear-gradient(to bottom, #ffffff, #cccccc); // Gradient background
+  -fx-border-color: #b3b3b3; // Border color
+  -fx-border-radius: $border-radius; // Apply rounded corners to the button
+  -fx-background-radius: $border-radius; // Apply rounded corners to the background
+
+  &:hover // When the mouse hovers over the button
+  {
+    -fx-background-color: linear-gradient(to bottom, #f2f2f2, #d9d9d9); // Lighter background on hover
+  }
+}
+
+
+/* --- Reset Button --- */
+
+/**
+ * Reset button with a larger width and specific preferred size.
+ */
+.reset-button
+{
+  -fx-min-width: 250px; // Minimum width for the reset button
+  -fx-pref-width: 280px; // Preferred width for the reset button
+}
+
+
+/* --- Label Styles --- */
+
+/**
+ * Style for the username label with a medium font size and gray text color.
+ */
+#usernameLabel
+{
+  -fx-font-size: $font-size-medium; // Medium font size for the username label
+  -fx-text-fill: #444444; // Dark gray text color
+  -fx-padding: 1px; // Padding for the label
+}
+
+/**
+ * Title text style with a large font size and centered alignment.
+ */
+#titleText
+{
+  -fx-font-size: $font-size-large; // Large font size for the title
+  -fx-text-fill: #333333; // Dark text color
+  -fx-padding: 10px; // Padding for the title
+  -fx-border-color: transparent; // No border for the title
+  -fx-alignment: center; // Center-align the title
+}
+
+/**
+ * Text style for the choice text with medium font size and gray text color.
+ */
+#choiceText
+{
+  -fx-font-size: $font-size-medium; // Medium font size for the choice text
+  -fx-text-fill: #666666; // Light gray text color
+  -fx-background-color: transparent; // Transparent background
+  -fx-padding: 10px; // Padding around the choice text
+  -fx-border-color: transparent; // No border for the choice text
+  -fx-alignment: center; // Center-align the text
+}
+
+
+/* --- Difficulty Button Box --- */
+
+/**
+ * Container for the difficulty buttons, with light gray background, borders, and padding.
+ */
+#difficulty-button-box
+{
+  -fx-background-color: $light-gray; // Light gray background for the difficulty button box
+  -fx-border-color: $border-color; // Border color
+  -fx-border-width: 1px; // Border width
+  -fx-padding: 15px; // Padding inside the button box
+  -fx-spacing: 10px; // Spacing between buttons inside the box
+  -fx-alignment: center; // Center-align the buttons
+  -fx-border-radius: 10px; // Rounded corners for the button box
+}

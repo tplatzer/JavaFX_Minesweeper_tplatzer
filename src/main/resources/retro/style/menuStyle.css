@@ -1,102 +1,166 @@
-.root-container
-{
-    -fx-background-color: #c0c0c0;
-    -fx-spacing: 15px;
-    -fx-padding: 20px;
-    -fx-alignment: center;
+/**
+ * SCSS style definitions for the retro menu theme.
+ * This file defines the visual styles for the menu UI components, including buttons, labels,
+ * the root container, and other interface elements such as text fields, style, and mute buttons.
+ */
+/* --- General Variables --- */
+/**
+ * Light gray color used for background and various UI elements.
+ */
+/**
+ * Dark gray color used for borders and accent elements.
+ */
+/**
+ * Light border color used for UI elements with lighter backgrounds.
+ */
+/**
+ * Dark border color used for UI elements with darker backgrounds.
+ */
+/**
+ * Background color when a button or UI element is hovered.
+ */
+/**
+ * Background color when a button or UI element is pressed.
+ */
+/**
+ * Font family used for all text elements, set to "Courier New" with a monospace fallback.
+ */
+/**
+ * Large font size used for title and key texts.
+ */
+/**
+ * Medium font size used for general text elements.
+ */
+/**
+ * Middle font size used for buttons and other elements that require a slightly smaller font.
+ */
+/**
+ * Small font size used for minor text elements such as labels.
+ */
+/**
+ * Default font color used for most of the text elements.
+ */
+/* --- Root Container --- */
+/**
+ * The root container for the menu, defining the background color, padding, spacing, and alignment.
+ * This container holds all UI elements within the menu and provides the necessary layout.
+ */
+.root-container {
+  -fx-background-color: #c0c0c0;
+  -fx-spacing: 15px;
+  -fx-padding: 20px;
+  -fx-alignment: center;
 }
 
-.button
-{
-    -fx-font-family: "Courier New", monospace;
-    -fx-font-size: 20px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-border-radius: 0;
-    -fx-background-radius: 0;
-    -fx-alignment: center;
+/* --- Button Styles --- */
+/**
+ * General style for all buttons in the menu, including background color, padding, border, and effects.
+ * Includes hover and pressed states for interactive feedback.
+ */
+.button {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 18px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 10px 15px;
+  -fx-border-radius: 0;
+  -fx-background-radius: 0;
+  -fx-alignment: center;
+}
+.button:hover {
+  -fx-background-color: #d9d9d9;
+}
+.button:pressed {
+  -fx-background-color: #a6a6a6;
 }
 
-.button:hover
-{
-    -fx-background-color: #d9d9d9;
+/* --- Mute Button --- */
+/**
+ * Style for the mute button. This button has a smaller font size and changes background color when pressed or selected.
+ */
+.mute-button {
+  -fx-font-size: 16px;
+  -fx-padding: 5px 10px;
+}
+.mute-button:pressed, .mute-button.selected {
+  -fx-background-color: #a6a6a6;
+  -fx-border-color: #808080 #ffffff #ffffff #808080;
 }
 
-.button:pressed
-{
-    -fx-background-color: #a6a6a6;
+/* --- Style Button --- */
+/**
+ * Style for the style change button. This button allows users to change the UI style and has hover effects.
+ */
+.style-button {
+  -fx-font-size: 16px;
+  -fx-padding: 5px 10px;
+  -fx-min-width: 150px;
+}
+.style-button:hover {
+  -fx-background-color: #d9d9d9;
 }
 
-.mute-button
-{
-    -fx-font-size: 16px;
-    -fx-padding: 5px 10px;
+/* --- Reset Button --- */
+/**
+ * Style for the reset button. This button has a larger size to indicate its importance in the UI.
+ */
+.reset-button {
+  -fx-font-size: 18px;
+  -fx-min-width: 250px;
+  -fx-pref-width: 280px;
+  -fx-max-width: 300px;
 }
 
-.mute-button:pressed, .mute-button.selected
-{
-    -fx-background-color: #a6a6a6;
-    -fx-border-color: #808080 #ffffff #ffffff #808080;
+/* --- Label Styles --- */
+/**
+ * Style for the username label. It has a medium font size and padding.
+ */
+#usernameLabel {
+  -fx-font-size: 20px;
+  -fx-text-fill: #444444;
+  -fx-padding: 1px;
 }
 
-.style-button
-{
-    -fx-font-size: 16px;
-    -fx-padding: 5px 10px;
-    -fx-min-width: 150px;
+/**
+ * Style for the title text. The title text is larger and centered with a black background.
+ */
+#titleText {
+  -fx-font-size: 40px;
+  -fx-text-fill: red;
+  -fx-background-color: black;
+  -fx-padding: 10px;
+  -fx-border-color: black;
+  -fx-border-width: 2px;
+  -fx-alignment: center;
 }
 
-.style-button:hover
-{
-    -fx-background-color: #d9d9d9;
+/**
+ * Style for the choice text. This text is used for giving the user choices in the menu.
+ */
+#choiceText {
+  -fx-font-size: 20px;
+  -fx-text-fill: black;
+  -fx-background-color: #c0c0c0;
+  -fx-padding: 10px;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-alignment: center;
 }
 
-.reset-button
-{
-    -fx-font-size: 18px;
-    -fx-min-width: 250px;
-    -fx-pref-width: 280px;
-    -fx-max-width: 300px;
+/* --- Difficulty Button Box --- */
+/**
+ * Style for the box containing the difficulty buttons.
+ * It has a light gray background with borders, padding, and spacing for the buttons inside.
+ */
+#difficulty-button-box {
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #ffffff #808080 #808080 #ffffff;
+  -fx-border-width: 2px;
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-alignment: center;
 }
 
-#usernameLabel
-{
-    -fx-font-size: 20px;
-    -fx-text-fill: #444444;
-    -fx-padding: 1px;
-}
-
-#titleText
-{
-    -fx-font-size: 40px;
-    -fx-text-fill: red;
-    -fx-background-color: black;
-    -fx-padding: 10px;
-    -fx-border-color: #000000;
-    -fx-border-width: 2px;
-    -fx-alignment: center;
-}
-
-#choiceText
-{
-    -fx-font-size: 20px;
-    -fx-text-fill: black;
-    -fx-background-color: #c0c0c0;
-    -fx-padding: 10px;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-alignment: center;
-}
-
-#difficulty-button-box
-{
-    -fx-background-color: #c0c0c0;
-    -fx-border-color: #ffffff #808080 #808080 #ffffff;
-    -fx-border-width: 2px;
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
-    -fx-alignment: center;
-}
+/*# sourceMappingURL=menuStyle.css.map */

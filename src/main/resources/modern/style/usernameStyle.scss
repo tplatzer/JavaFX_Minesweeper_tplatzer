@@ -1,0 +1,157 @@
+/**
+ * SCSS style definitions for the username menu in the modern theme.
+ * This file defines the visual styles for the root container, text fields, buttons, and other UI elements
+ * related to the username menu.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Light gray color used for background elements.
+ */
+$light-gray: #e6e6e6;
+
+/**
+ * Primary color used for buttons and interactive elements.
+ */
+$primary-color: #0078d7;
+
+/**
+ * Primary hover color used when the user hovers over a button.
+ */
+$primary-hover: #005a9e;
+
+/**
+ * Primary pressed color used when the user presses a button.
+ */
+$primary-pressed: #00407a;
+
+/**
+ * Border color used for most UI elements like text fields and buttons.
+ */
+$border-color: #cccccc;
+
+/**
+ * Border radius applied to most UI elements to create rounded corners.
+ */
+$border-radius: 8px;
+
+/**
+ * Shadow color used to create subtle shadows for visual depth.
+ */
+$shadow-color: rgba(0, 0, 0, 0.15);
+
+/**
+ * Hover shadow color for buttons and focused elements to enhance interaction feedback.
+ */
+$shadow-hover: rgba(0, 120, 215, 0.2);
+
+/**
+ * Small font size used for text inside buttons, text fields, and labels.
+ */
+$font-size-small: 16px;
+
+
+/* --- Root Container --- */
+
+/**
+ * Style for the root container of the username menu.
+ * The container has a gradient background, rounded corners, padding, and a shadow effect.
+ */
+.root-container
+{
+  -fx-background-color: linear-gradient(to bottom, #ffffff, $light-gray); // Gradient background from white to light gray.
+  -fx-padding: 30px; // Padding around the container.
+  -fx-spacing: 20px; // Spacing between child elements.
+  -fx-alignment: center; // Center align the children.
+  -fx-border-radius: 10px; // Rounded corners for the container.
+  -fx-effect: dropshadow(gaussian, $shadow-color, 10, 0, 5, 5); // Shadow effect for depth.
+}
+
+
+/* --- Text Field --- */
+
+/**
+ * Style for the text field where the user enters their username.
+ * The text field has rounded corners, a border color, and a subtle shadow effect.
+ */
+.text-field
+{
+  -fx-font-size: $font-size-small; // Small font size for the text field.
+  -fx-text-fill: #333333; // Dark text color for contrast.
+  -fx-background-color: #ffffff; // White background for the text field.
+  -fx-border-color: $border-color; // Border color for the text field.
+  -fx-border-radius: $border-radius; // Rounded corners for the text field.
+  -fx-background-radius: $border-radius; // Background rounded corners.
+  -fx-padding: 10px; // Padding inside the text field for spacing.
+  -fx-min-width: 200px; // Minimum width for the text field.
+  -fx-max-width: 400px; // Maximum width for the text field.
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 2, 2); // Subtle shadow effect for depth.
+
+  &:focused
+  { // On focus, change the border color and apply a shadow effect.
+    -fx-border-color: $primary-color; // Set the border color to primary color when focused.
+    -fx-effect: dropshadow(gaussian, $shadow-hover, 10, 0, 5, 5); // Shadow with a hover effect.
+    -fx-background-radius: $border-radius; // Keep the rounded corners.
+  }
+}
+
+
+/* --- Button Styles --- */
+
+/**
+ * Style for the button, including font size, text color, background, and shadow effect.
+ * The button also has hover, pressed, and disabled states.
+ */
+.button
+{
+  -fx-font-size: $font-size-small; // Small font size for the button.
+  -fx-text-fill: #ffffff; // White text color for visibility.
+  -fx-background-color: $primary-color; // Primary color background for the button.
+  -fx-border-color: #005a9e; // Border color for the button.
+  -fx-border-width: 1px; // Border width for the button.
+  -fx-border-radius: $border-radius; // Rounded corners for the button.
+  -fx-padding: 10px 20px; // Padding for the button's text.
+  -fx-background-radius: $border-radius; // Rounded corners for the background.
+  -fx-effect: dropshadow(gaussian, $shadow-color, 8, 0, 4, 4); // Shadow effect for depth.
+
+  &:hover
+  { // On hover, change the background color.
+    -fx-background-color: $primary-hover;
+  }
+
+  &:pressed
+  { // On press, change the background color to the pressed state.
+    -fx-background-color: $primary-pressed;
+    -fx-effect: none; // Remove shadow effect when pressed.
+  }
+
+  &:disabled
+  { // Disabled state styling for the button.
+    -fx-background-color: #d6d6d6; // Light gray background for disabled state.
+    -fx-text-fill: #999999; // Dark gray text for disabled state.
+    -fx-border-color: $border-color; // Light gray border for disabled state.
+    -fx-effect: none; // No shadow effect for disabled state.
+  }
+}
+
+
+/* --- Return Button --- */
+
+/**
+ * Style for the return button, including font size, color, and hover effect.
+ */
+.return-button
+{
+  -fx-font-size: $font-size-small; // Small font size for the return button.
+  -fx-text-fill: $primary-color; // Primary color for the text.
+  -fx-background-color: transparent; // Transparent background for the return button.
+  -fx-border: none; // No border for the return button.
+  -fx-padding: 10px; // Padding inside the return button.
+
+  &:hover
+  { // On hover, change the text color and apply underline.
+    -fx-text-fill: $primary-hover; // Change the text color to the hover color.
+    -fx-underline: true; // Underline the text on hover.
+  }
+}

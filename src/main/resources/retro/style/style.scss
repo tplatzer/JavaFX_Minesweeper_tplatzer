@@ -1,0 +1,149 @@
+/**
+ * SCSS style definitions for the retro theme.
+ * This file contains the visual styles for the game, including buttons, labels, text fields,
+ * and other interface elements that make up the game interface.
+ */
+
+/* --- General Variables --- */
+
+/**
+ * Font family used for all text elements, set to "Courier New" with a monospace fallback.
+ */
+$font-family: "Courier New", monospace;
+
+/**
+ * Large font size used for the most prominent text elements in the game interface.
+ */
+$font-size-large: 20px;
+
+/**
+ * Primary background color for UI elements, set to a light gray shade.
+ */
+$background-color-primary: #c0c0c0;
+
+/**
+ * Light border color used for UI elements with light backgrounds.
+ */
+$border-color-light: #ffffff;
+
+/**
+ * Dark border color used for UI elements with dark backgrounds.
+ */
+$border-color-dark: #808080;
+
+/**
+ * Background color when a button or UI element is hovered.
+ */
+$background-color-hover: #d9d9d9;
+
+/**
+ * Background color when a button or UI element is pressed.
+ */
+$background-color-pressed: #a6a6a6;
+
+
+/* --- General Reset --- */
+
+/**
+ * Reset margins and paddings for all elements to ensure consistent styling across the UI.
+ */
+*
+{
+  -fx-margin: 0; // Remove margin for all elements.
+  -fx-padding: 0; // Remove padding for all elements.
+}
+
+
+/* --- Button Styles --- */
+
+/**
+ * General button style, defining the background, text size, padding, and border properties.
+ * Includes hover and pressed states for interactive feedback.
+ */
+.button
+{
+  -fx-font-family: $font-family; // Use the defined font-family for button text.
+  -fx-font-size: $font-size-large; // Large font size for the button text.
+  -fx-background-position: center; // Center the background image (if any).
+  -fx-background-radius: 10px; // Rounded corners for the button background.
+  -fx-background-repeat: no-repeat; // Prevent background from repeating.
+  -fx-background-size: contain; // Scale the background to fit the button.
+  -fx-border-radius: 10px; // Rounded borders for the button.
+  -fx-padding: 10px; // Padding inside the button.
+}
+
+
+/* --- Box Styles --- */
+
+/**
+ * Box container with padding for spacing between elements.
+ */
+.box
+{
+  -fx-padding: 10; // Padding inside the box container.
+}
+
+
+/* --- Text Styles --- */
+
+/**
+ * Base text style for all text elements, defining font family.
+ */
+.text
+{
+  -fx-font-family: $font-family; // Use the defined font-family for text.
+}
+
+
+/* --- Info Box Styles --- */
+
+/**
+ * Style for the info box, which contains game information such as time, flags, and score.
+ * It defines the background color, borders, padding, and spacing.
+ */
+.info-box
+{
+  -fx-background-color: $background-color-primary; // Light gray background for the info box.
+  -fx-border-color: $border-color-light $border-color-dark $border-color-dark $border-color-light; // Light and dark borders for the box.
+  -fx-border-width: 2px; // Border width around the info box.
+  -fx-padding: 5px; // Padding inside the info box.
+  -fx-spacing: 10px; // Spacing between elements inside the box.
+}
+
+
+/* --- Info Label Styles --- */
+
+/**
+ * Style for the info label, typically used for displaying information such as time or score.
+ * It has a large font size, red text color, black background, and borders.
+ */
+.info-label
+{
+  -fx-font-family: $font-family; // Use the defined font-family for info label text.
+  -fx-font-size: $font-size-large; // Large font size for the info label text.
+  -fx-text-fill: red; // Red text color for the info label.
+  -fx-background-color: black; // Black background for the info label.
+  -fx-padding: 2px; // Padding inside the info label.
+  -fx-border-color: black; // Black border color for the info label.
+  -fx-border-width: 2px; // Border width for the info label.
+  -fx-alignment: center-right; // Align text to the right within the label.
+}
+
+
+/* --- Time and Flag Label Styles --- */
+
+/**
+ * Style for the time label, ensuring a minimum width.
+ */
+.time-label
+{
+  -fx-min-width: 57px; // Minimum width for the time label.
+}
+
+/**
+ * Style for the flag label, ensuring a minimum width.
+ */
+.flag-label
+{
+  -fx-min-width: 45px; // Minimum width for the flag label.
+}
