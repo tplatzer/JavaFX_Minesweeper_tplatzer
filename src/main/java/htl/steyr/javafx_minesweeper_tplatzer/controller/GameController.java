@@ -9,9 +9,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -45,6 +44,11 @@ public class GameController extends Controller
      * The root {@link VBox} container for the game's UI elements.
      */
     private final VBox root = new VBox();
+
+    /**
+     * Menu bar containing the game and sound menus.
+     */
+    private MenuBar gameMenuBar;
 
     /**
      * Container for displaying game information such as the timer and remaining flags.
@@ -210,14 +214,14 @@ public class GameController extends Controller
         getRoot().setMaxSize(GameController.getMaxHBoxWidth(), GameController.getMaxHBoxHeight()); // Sets the maximum size of the window.
         getRoot().prefWidthProperty().bind(getStage().widthProperty()); // Binds the root's preferred width to the stage width.
         getRoot().prefHeightProperty().bind(getStage().heightProperty()); // Binds the root's preferred height to the stage height.
-        getRoot().getChildren().addAll(getGameInfoBox(), getGameField()); // Adds the game info box and game field to the root container.
+        getRoot().getChildren().addAll(getGameMenuBar(), getGameInfoBox(), getGameField()); // Adds the game info box and game field to the root container.
         getRoot().getStyleClass().add("root-container"); // Applies a CSS class to the root container.
         getRoot().getStylesheets().addAll(
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/style.css")).toExternalForm(),
                 Objects.requireNonNull(getClass().getResource("/" + getStyle() + "/style/gameStyle.css")).toExternalForm()); // Adds external stylesheets for the game.
 
         setGameScene(new Scene(getRoot())); // Creates a new scene with the configured root container.
-        switchScene(getStage(), getGameScene(), getDifficulty(), "Bomb-Disposal-Simulator"); // Switches to the game scene with the specified title.
+        switchScene(getStage(), getGameScene(), getDifficulty(), "Bomb-Disposal-Simulator", getStyle()); // Switches to the game scene with the specified title.
     }
 
     /**
@@ -245,6 +249,7 @@ public class GameController extends Controller
         stopTimer(); // Stops the game timer.
         stopBackgroundMusic(); // Stops the background music.
 
+        getGameMenuBar().setDisable(true);
         getRestartGameButton().setDisable(true); // Disables the restart button to prevent further interactions.
         for (Cell cell : getCells())
         {
@@ -421,14 +426,16 @@ public class GameController extends Controller
     }
 
     /**
-     * Switches from the current game to the main menu.
+     * Switches from the game scene to the main menu.
      * <p>
-     * This method creates a new instance of the {@code MenuController} with the current player's settings
-     * (username, style, and mute status) and starts the main menu scene.
+     * This method stops the background music and initializes a new {@link MenuController}
+     * to display the main menu. It transfers relevant user data such as username, style,
+     * and mute state to the menu controller.
      */
     private void switchToMenu()
     {
-        new MenuController(getUsername(), getStyle(), isMuted()).start(getStage()); // Starts the main menu with the current settings.
+        stopBackgroundMusic(); // Stops the currently playing background music.
+        new MenuController(getUsername(), getStyle(), isMuted()).start(getStage()); // Starts the menu controller with the current stage and user settings.
     }
 
     /**
@@ -452,15 +459,147 @@ public class GameController extends Controller
     }
 
     /**
-     * Initializes the user interface elements for the game.
+     * Initializes and configures the main user interface elements of the game.
      * <p>
-     * This method sets up the main components of the game's user interface, including
-     * the game information box (e.g., timer and flags) and the game field (grid of cells).
+     * This method sets up the game menu bar, the game information box, and the game field.
+     * These elements are essential components of the game's user interface.
      */
     private void initializeUserElements()
     {
-        initializeGameInfoBox(); // Sets up the game information box with elements like the timer and flag counter.
-        initializeGameField();   // Sets up the game field (grid of cells) for the current difficulty level.
+        initializeGameMenuBar(); // Initializes the menu bar with game-related options.
+        initializeGameInfoBox(); // Sets up the information box to display game-related statistics and controls.
+        initializeGameField(); // Configures the game field where the gameplay takes place.
+    }
+
+    /**
+     * Initializes and configures the game menu bar.
+     * <p>
+     * This method creates and sets up the menu bar with various options such as starting a new game,
+     * switching game difficulty, toggling sound effects, and exiting the game.
+     * It also includes separators for visual organization.
+     */
+    private void initializeGameMenuBar()
+    {
+        setGameMenuBar(new MenuBar()); // Creates a new menu bar for the game.
+
+        // Create the "Game" menu
+        Menu gameMenu = new Menu("Game");
+        ToggleGroup gameModeGroup = new ToggleGroup(); // Toggle group for mutually exclusive game mode selections.
+
+        // Define the game modes with radio menu items
+        Map<String, RadioMenuItem> gameModes = new HashMap<>();
+        gameModes.put("beginner", new RadioMenuItem("Beginner"));
+        gameModes.put("advanced", new RadioMenuItem("Advanced"));
+        gameModes.put("pro", new RadioMenuItem("Pro"));
+
+        // Create the "New" menu item for starting a new game
+        MenuItem newGame = new MenuItem("New");
+        newGame.setOnAction(e -> restartGame()); // Sets the action to restart the game when selected.
+        gameMenu.getItems().add(newGame);
+
+        // Create the "Back to Menu" menu item for returning to the main menu
+        MenuItem backToMenu = new MenuItem("Back to Menu");
+        backToMenu.setOnAction(e -> switchToMenu()); // Sets the action to switch to the main menu.
+        gameMenu.getItems().add(backToMenu);
+
+        // Add a separator for better visual organization
+        SeparatorMenuItem separator1 = new SeparatorMenuItem();
+        separator1.setDisable(true); // Disables interaction with the separator.
+        gameMenu.getItems().add(separator1);
+
+        // Add game mode options to the menu
+        gameModes.forEach((difficulty, menuItem) ->
+        {
+            menuItem.setToggleGroup(gameModeGroup); // Add the menu item to the toggle group.
+            menuItem.setSelected(difficulty.equalsIgnoreCase(getDifficulty())); // Selects the current game difficulty.
+            menuItem.setOnAction(e -> changeDifficulty(difficulty)); // Sets the action to change difficulty.
+            gameMenu.getItems().add(menuItem);
+        });
+
+        // Add another separator before other options
+        SeparatorMenuItem separator2 = new SeparatorMenuItem();
+        separator2.setDisable(true);
+        gameMenu.getItems().add(separator2);
+
+        // Create the "Leaderboard" menu item
+        MenuItem leaderboard = new MenuItem("Leaderboard");
+        leaderboard.setOnAction(e -> showLeaderboardWindow()); // Opens the leaderboard window when selected.
+        gameMenu.getItems().add(leaderboard);
+
+        // Add a separator before the exit option
+        SeparatorMenuItem separator3 = new SeparatorMenuItem();
+        separator3.setDisable(true);
+        gameMenu.getItems().add(separator3);
+
+        // Create the "Exit" menu item
+        MenuItem exit = new MenuItem("Exit");
+        exit.setOnAction(e -> getStage().close()); // Closes the game when selected.
+        gameMenu.getItems().add(exit);
+
+        // Create the "Sound" menu
+        Menu soundMenu = new Menu("Sound");
+        CheckMenuItem soundEffects = new CheckMenuItem("Sound Effects");
+        soundEffects.setSelected(!isMuted()); // Sets the initial state based on whether sound is muted.
+        soundEffects.setOnAction(e -> toggleSoundEffects(!soundEffects.isSelected())); // Toggles sound effects on or off.
+        soundMenu.getItems().add(soundEffects);
+
+        // Add the "Game" and "Sound" menus to the menu bar
+        getGameMenuBar().getMenus().addAll(gameMenu, soundMenu);
+    }
+
+    /**
+     * Changes the game's difficulty level and restarts the game.
+     * <p>
+     * This method updates the current difficulty level and triggers a game restart
+     * to apply the new difficulty setting.
+     *
+     * @param difficulty A {@link String} representing the desired difficulty level.
+     *                   Valid options include:
+     *                   <ul>
+     *                       <li><code>"beginner"</code>: Sets the game to beginner difficulty.</li>
+     *                       <li><code>"advanced"</code>: Sets the game to advanced difficulty.</li>
+     *                       <li><code>"pro"</code>: Sets the game to pro difficulty.</li>
+     *                   </ul>
+     */
+    private void changeDifficulty(String difficulty)
+    {
+        setDifficulty(difficulty); // Updates the game's difficulty setting.
+        restartGame(); // Restarts the game to apply the new difficulty.
+    }
+
+    /**
+     * Toggles the sound effects in the game based on the muted state.
+     * <p>
+     * This method enables or disables the background music and updates the muted state
+     * accordingly. When muted, the background music is stopped; otherwise, it starts playing.
+     *
+     * @param muted A boolean value indicating whether the sound effects should be muted.
+     *              <ul>
+     *                  <li><code>true</code>: Mutes the sound effects and stops the background music.</li>
+     *                  <li><code>false</code>: Enables sound effects and plays the background music.</li>
+     *              </ul>
+     */
+    private void toggleSoundEffects(boolean muted)
+    {
+        setMuted(muted); // Updates the muted state of the game.
+        if (muted)
+        {
+            stopBackgroundMusic(); // Stops the background music if muted is true.
+        } else
+        {
+            playBackgroundMusic("background-music", getStyle()); // Plays the background music if muted is false.
+        }
+    }
+
+    /**
+     * Displays the leaderboard window.
+     * <p>
+     * This method creates a new instance of {@link LeaderboardController}, passing the current style,
+     * and starts it to show the global leaderboard in a new window.
+     */
+    private void showLeaderboardWindow()
+    {
+        new LeaderboardController(getStyle()).start(); // Creates and starts the leaderboard window with the current style.
     }
 
     /**
@@ -1406,5 +1545,25 @@ public class GameController extends Controller
     public void setUsername(String username)
     {
         this.username = username;
+    }
+
+    /**
+     * Retrieves the menu bar for the game.
+     *
+     * @return The {@link MenuBar} instance containing the game and sound menus.
+     */
+    public MenuBar getGameMenuBar()
+    {
+        return gameMenuBar;
+    }
+
+    /**
+     * Sets the menu bar for the game.
+     *
+     * @param gameMenuBar The {@link MenuBar} instance to be assigned to the game.
+     */
+    public void setGameMenuBar(MenuBar gameMenuBar)
+    {
+        this.gameMenuBar = gameMenuBar;
     }
 }

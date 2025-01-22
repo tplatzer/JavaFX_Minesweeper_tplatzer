@@ -78,41 +78,49 @@ public class Controller
     }
 
     /**
-     * Switches the scene displayed on the specified {@link Stage} and adjusts the window size based on the game mode.
+     * Switches the scene of the given {@link Stage} to a new {@link Scene} while configuring
+     * the window dimensions and title based on the specified game mode and style.
      * <p>
-     * This method sets the new scene, calculates the appropriate window dimensions based on the selected game mode
-     * (e.g., "beginner", "advanced", "pro"), and updates the stage accordingly.
+     * This method adjusts the window's width and height dynamically based on the selected
+     * game mode (e.g., "beginner", "advanced", "pro") and applies specific offsets for the
+     * given style (e.g., "retro" or modern).
      *
-     * @param stage    The {@link Stage} to update.
-     * @param newScene The new {@link Scene} to display on the stage.
-     * @param gameMode The game mode that determines the size of the window (e.g., "beginner", "advanced", "pro").
-     * @param title    The title of the stage window.
-     * @throws IllegalArgumentException if an invalid game mode is provided.
+     * @param stage    The {@link Stage} whose scene will be switched.
+     * @param newScene The {@link Scene} to be displayed in the specified stage.
+     * @param gameMode The game mode that determines the dimensions of the window.
+     *                 Must be one of "beginner", "advanced", or "pro".
+     * @param title    The title to be set for the stage window.
+     * @param style    The style applied to the UI, affecting the window's height offset.
+     *                 Accepts "retro" for retro styles or other values for modern styles.
+     * @throws IllegalArgumentException If the specified game mode is invalid.
      */
-    protected void switchScene(Stage stage, Scene newScene, String gameMode, String title)
+    protected void switchScene(Stage stage, Scene newScene, String gameMode, String title, String style)
     {
         int windowWidth;
         int windowHeight;
         int buttonSize = 45; // The size of a single button in pixels.
 
-        // Determines the window dimensions based on the game mode.
+        // Calculate the base height, which adjusts for the style.
+        final int height = 16 * buttonSize + ((style.equals("retro")) ? 210 : 230);
+
+        // Determine the window's width and height based on the game mode.
         windowHeight = switch (gameMode) {
             case "beginner" -> {
                 windowWidth = 9 * buttonSize + 5; // Width for beginner mode.
-                yield 9 * buttonSize + 100; // Height for beginner mode.
+                yield 9 * buttonSize + ((style.equals("retro")) ? 160 : 190); // Height for beginner mode.
             }
             case "advanced" -> {
                 windowWidth = 16 * buttonSize + 50; // Width for advanced mode.
-                yield 16 * buttonSize + 150; // Height for advanced mode.
+                yield height; // Height for advanced mode.
             }
             case "pro" -> {
-                windowWidth = 30 * buttonSize + 50; // Width for pro mode.
-                yield 16 * buttonSize + 150; // Height for pro mode.
+                windowWidth = 30 * buttonSize + 50;
+                yield height; // Height for pro mode.
             }
             default -> throw new IllegalArgumentException("Invalid game mode: " + gameMode); // Handles invalid game modes.
         };
 
-        // Calls the other switchScene method with the calculated dimensions.
+        // Call the overloaded switchScene method with the calculated dimensions.
         switchScene(stage, newScene, title, windowHeight, windowWidth);
     }
 

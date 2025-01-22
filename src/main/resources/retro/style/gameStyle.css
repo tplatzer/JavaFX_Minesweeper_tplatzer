@@ -20,7 +20,20 @@
  * Background color for the entire game container.
  */
 /**
+ * Background color when a menu item or button is hovered over.
+ * This color is slightly darker than the primary background color.
+ */
+/**
  * Font family used throughout the UI for a retro look.
+ */
+/**
+ * Medium font size used for general text elements.
+ */
+/**
+ * Middle font size used for buttons and other elements that require a slightly smaller font.
+ */
+/**
+ * Small font size used for minor text elements such as labels.
  */
 /* --- Root Container --- */
 /**
@@ -31,6 +44,93 @@
   -fx-background-color: #c0c0c0;
   -fx-spacing: 10px;
   -fx-padding: 10px;
+}
+
+/* --- Menu Bar --- */
+/**
+ * Style for the menu bar at the top of the game.
+ * The menu bar has a light gray background, dark gray borders, and some padding.
+ * This style is consistent with the retro theme of the game.
+ */
+.menu-bar {
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #808080 #ffffff #ffffff #808080;
+  -fx-border-width: 3px;
+  -fx-padding: 5px;
+  -fx-spacing: 10px;
+}
+
+/**
+ * Style for the menu items within the menu bar.
+ * Menu items use the "Courier New" font and have padding for better clickability.
+ */
+.menu {
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
+  -fx-padding: 5px;
+}
+
+/**
+ * Style for individual menu items within the menu bar.
+ * Defines hover and selected states for better interactivity and visual feedback.
+ */
+.menu-item {
+  -fx-padding: 5px 10px 5px 10px;
+  /**
+   * Style for a selected menu item.
+   * Highlights the selected item with bold text, a dark gray background, and white text.
+   */
+  /**
+   * Style for a menu item when hovered over.
+   * Provides a slightly darker background to indicate interactivity.
+   */
+}
+.menu-item:selected {
+  -fx-font-weight: bold;
+  -fx-background-color: #808080;
+  -fx-text-fill: white;
+}
+.menu-item:hover {
+  -fx-background-color: #d9d9d9;
+  -fx-text-fill: black;
+}
+
+/**
+ * Style for the dropdown menu that contains menu items.
+ * Ensures proper spacing and alignment for checkmarks and text.
+ */
+.context-menu {
+  -fx-min-width: 100px;
+  -fx-pref-width: 170px;
+  -fx-max-width: 210px;
+  -fx-background-color: #c0c0c0;
+  -fx-border-color: #808080;
+  -fx-border-width: 2px;
+}
+
+/**
+ * Style for the separator in dropdown menus.
+ * Adds a bold and contrasting horizontal line to separate sections in the menu.
+ */
+.separator {
+  -fx-border-color: black;
+  -fx-border-width: 2px 0 2px 0;
+  -fx-background-color: transparent;
+}
+
+/**
+ * Style for individual menu items (including RadioMenuItem and CheckMenuItem).
+ * Aligns checkmarks and text with proper spacing.
+ * The checkmark remains aligned, while the text is indented.
+ */
+.radio-menu-item,
+.check-menu-item {
+  -fx-padding: 5px 10px;
+  -fx-alignment: center-left;
+  -fx-font-family: "Courier New", monospace;
+  -fx-font-size: 16px;
+  -fx-text-fill: black;
 }
 
 /* --- Game Info Box --- */

@@ -56,6 +56,11 @@ $button-pressed-background: #cccccc;
  */
 $font-family: "Arial", sans-serif;
 
+/**
+ * Small font size used for minor text elements such as labels.
+ */
+$font-size-small: 16px;
+
 
 /* --- Root Container --- */
 
@@ -71,6 +76,104 @@ $font-family: "Arial", sans-serif;
   -fx-border-width: 1px; // Border width
   -fx-border-radius: 10px; // Rounded corners for the container
 }
+
+
+/* --- Menu Bar --- */
+
+/**
+ * Style for the menu bar at the top of the game.
+ * The menu bar has a modern look with a light gradient background, subtle shadow, and rounded corners.
+ */
+.menu-bar
+{
+  -fx-background-color: $background-gradient; // Light gradient for a modern appearance.
+  -fx-border-color: $border-color; // Light gray border for separation.
+  -fx-border-width: 1px; // Thin border for a sleek look.
+  -fx-padding: 10px; // Padding inside the menu bar for spacing.
+  -fx-border-radius: $border-radius; // Rounded corners for the menu bar.
+  -fx-background-radius: $border-radius; // Rounded background for the menu bar.
+  -fx-effect: $shadow-effect; // Subtle shadow for a 3D effect.
+}
+
+/**
+ * Style for the menu items within the menu bar.
+ * Menu items have a clean, sans-serif font and proper padding for better clickability.
+ */
+.menu
+{
+  -fx-font-family: $font-family; // Modern sans-serif font.
+  -fx-font-size: $font-size-small; // Font size for menu items.
+  -fx-text-fill: #333333; // Dark gray text color for readability.
+  -fx-padding: 5px 10px; // Padding around menu items for better clickability.
+  -fx-border-radius: $border-radius; // Rounded corners for hover effects.
+}
+
+/**
+ * Style for individual menu items within the menu bar.
+ * Defines hover and selected states for better interactivity and visual feedback.
+ */
+.menu-item
+{
+  -fx-padding: 5px 10px 5px 10px; // Padding around the items for better spacing.
+
+  /**
+   * Style for a selected menu item.
+   * Highlights the selected item with a bold font, a light blue background, and white text.
+   */
+  &:selected
+  {
+    -fx-font-weight: bold; // Bold text to indicate the selected state.
+    -fx-background-color: #007acc; // Modern light blue background for the selected item.
+    -fx-text-fill: white; // White text color for contrast.
+    -fx-border-radius: $border-radius; // Rounded corners for the selected item.
+    -fx-background-radius: $border-radius; // Rounded corners for background.
+  }
+
+  /**
+   * Style for a menu item when hovered over.
+   * Changes the background to a light gray gradient and text to a darker shade for interactivity.
+   */
+  &:hover
+  {
+    -fx-background-color: $button-hover-background; // Light gray hover effect.
+    -fx-text-fill: #444444; // Slightly darker text color on hover.
+    -fx-border-radius: $border-radius; // Rounded corners for hover effect.
+    -fx-background-radius: $border-radius; // Rounded corners for background.
+  }
+}
+
+/**
+ * Style for the dropdown menu that contains menu items.
+ * Ensures proper spacing, alignment, and a modern shadow effect.
+ */
+.context-menu
+{
+  -fx-min-width: 100px; // Minimum width for the dropdown menu.
+  -fx-pref-width: 170px; // Preferred width for the dropdown menu.
+  -fx-max-width: 210px; // Maximum width for the dropdown menu.
+  -fx-background-color: $background-color-light; // Light background for the dropdown.
+  -fx-border-color: $border-color; // Light gray border for consistency.
+  -fx-border-width: 1px; // Thin border for a sleek look.
+  -fx-border-radius: $border-radius; // Rounded corners for the dropdown.
+  -fx-background-radius: $border-radius; // Rounded background for the dropdown.
+  -fx-effect: $shadow-effect; // Subtle shadow for a floating effect.
+}
+
+/**
+ * Style for individual menu items (including RadioMenuItem and CheckMenuItem).
+ * Aligns checkmarks and text with proper spacing and a modern look.
+ */
+.radio-menu-item,
+.check-menu-item
+{
+  -fx-padding: 5px 10px; // Padding for better spacing and alignment.
+  -fx-alignment: center-left; // Aligns the checkmark and text to the left.
+  -fx-font-family: $font-family; // Modern sans-serif font.
+  -fx-font-size: $font-size-small; // Font size for menu items.
+  -fx-text-fill: #333333; // Text color for a clean look.
+  -fx-border-radius: $border-radius; // Rounded corners for hover effects.
+}
+
 
 /* --- Game Info Box --- */
 
