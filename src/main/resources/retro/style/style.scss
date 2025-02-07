@@ -70,6 +70,18 @@ $background-color-pressed: #a6a6a6;
   -fx-background-size: contain; // Scale the background to fit the button.
   -fx-border-radius: 10px; // Rounded borders for the button.
   -fx-padding: 10px; // Padding inside the button.
+
+  /**
+   * Style for disabled buttons, including opacity and cursor settings.
+   * Disabled buttons have a lower opacity and a default cursor.
+   */
+  &:disabled
+  {
+    -fx-opacity: 1.0; // Full opacity for disabled buttons (no fading).
+    -fx-cursor: default; // Default cursor for disabled buttons.
+    -fx-background-radius: 0; // No rounded corners for disabled buttons.
+    -fx-border-radius: 0; // No border radius for disabled buttons.
+  }
 }
 
 

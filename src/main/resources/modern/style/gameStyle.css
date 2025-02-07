@@ -91,6 +91,11 @@
    * Style for a menu item when hovered over.
    * Changes the background to a light gray gradient and text to a darker shade for interactivity.
    */
+  /**
+   * Style for disabled menu items, ensuring they retain their original appearance
+   * while preventing user interaction.
+   * Disabled menu items have full opacity and a default cursor.
+   */
 }
 .menu-item:selected {
   -fx-font-weight: bold;
@@ -104,6 +109,12 @@
   -fx-text-fill: #444444;
   -fx-border-radius: 8px;
   -fx-background-radius: 8px;
+}
+.menu-item:disabled {
+  -fx-opacity: 1;
+  -fx-cursor: default;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
 }
 
 /**

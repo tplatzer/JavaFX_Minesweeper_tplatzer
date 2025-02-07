@@ -140,6 +140,19 @@ $font-size-small: 16px;
     -fx-border-radius: $border-radius; // Rounded corners for hover effect.
     -fx-background-radius: $border-radius; // Rounded corners for background.
   }
+
+  /**
+   * Style for disabled menu items, ensuring they retain their original appearance
+   * while preventing user interaction.
+   * Disabled menu items have full opacity and a default cursor.
+   */
+  &:disabled
+  {
+    -fx-opacity: 1.0; // Ensures the menu item retains its original color and is not grayed out.
+    -fx-cursor: default; // Uses the default cursor to indicate that the item is non-interactive.
+    -fx-background-radius: 0; // Removes any background rounding to maintain a consistent retro look.
+    -fx-border-radius: 0; // Ensures the border remains sharp and squared.
+  }
 }
 
 /**
@@ -158,6 +171,7 @@ $font-size-small: 16px;
   -fx-background-radius: $border-radius; // Rounded background for the dropdown.
   -fx-effect: $shadow-effect; // Subtle shadow for a floating effect.
 }
+
 
 /**
  * Style for individual menu items (including RadioMenuItem and CheckMenuItem).

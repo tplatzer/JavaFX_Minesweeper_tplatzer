@@ -48,6 +48,16 @@
   -fx-background-size: contain;
   -fx-border-radius: 10px;
   -fx-padding: 10px;
+  /**
+   * Style for disabled buttons, including opacity and cursor settings.
+   * Disabled buttons have a lower opacity and a default cursor.
+   */
+}
+.button:disabled {
+  -fx-opacity: 1;
+  -fx-cursor: default;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
 }
 
 /* --- Box Styles --- */

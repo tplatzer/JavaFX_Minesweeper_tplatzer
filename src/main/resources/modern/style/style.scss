@@ -83,6 +83,16 @@ $font-size-small: 16px;
     -fx-background-color: #cccccc;
     -fx-effect: none;
   }
+
+  /**
+   * Style for disabled buttons, including opacity and cursor settings.
+   * Disabled buttons have a lower opacity and a default cursor.
+   */
+  &:disabled
+  {
+    -fx-opacity: 1.0; // Full opacity for disabled buttons (no fading).
+    -fx-cursor: default; // Default cursor for disabled buttons.
+  }
 }
 
 
