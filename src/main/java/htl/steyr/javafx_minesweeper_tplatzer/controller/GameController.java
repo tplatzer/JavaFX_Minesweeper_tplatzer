@@ -249,7 +249,12 @@ public class GameController extends Controller
         stopTimer(); // Stops the game timer.
         stopBackgroundMusic(); // Stops the background music.
 
-        getGameMenuBar().setDisable(true);
+        for (int i = 0; i <= 6; i++)
+        {
+            getGameMenuBar().getMenus().getFirst().getItems().get(i).setDisable(true); // Disables the first six items in the "Game" menu to prevent further interactions.
+        }
+        getGameMenuBar().getMenus().get(1).getItems().getFirst().setDisable(true); // Disables the first item in the "Sound" menu to prevent toggling sound effects.
+
         getRestartGameButton().setDisable(true); // Disables the restart button to prevent further interactions.
         for (Cell cell : getCells())
         {

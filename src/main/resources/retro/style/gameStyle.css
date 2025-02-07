@@ -249,6 +249,19 @@
   -fx-border-radius: 0;
 }
 
+/* --- Disabled Menu Item --- */
+/**
+ * Style for disabled menu items, ensuring they retain their original appearance
+ * while preventing user interaction.
+ * Disabled menu items have full opacity and a default cursor.
+ */
+.menu-item:disabled {
+  -fx-opacity: 1;
+  -fx-cursor: default;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
+}
+
 /* --- Cell Number Color --- */
 /**
  * Color styles for different cell numbers, based on the number of adjacent bombs.
