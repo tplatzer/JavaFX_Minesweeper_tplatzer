@@ -12,6 +12,15 @@ import javafx.stage.Stage;
 public class App extends Application
 {
     /**
+     * Default constructor for the JavaFX application.
+     * <p>
+     * This constructor is required for JavaFX applications, as the {@code Application} class
+     * is instantiated by the JavaFX runtime. It does not perform any specific initialization
+     * but ensures that an explicit constructor is present for documentation purposes.
+     */
+    public App() {}
+
+    /**
      * The start method initializes and displays the main application window.
      *
      * @param stage The primary stage for this application, provided by the JavaFX runtime.

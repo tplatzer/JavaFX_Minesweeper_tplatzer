@@ -29,6 +29,15 @@ public class Controller
 
 
     /**
+     * Default constructor for the Controller class.
+     * <p>
+     * This constructor is required for JavaFX controllers, as they are often instantiated
+     * by the JavaFX runtime. It does not perform any specific initialization but ensures
+     * that an explicit constructor is present for documentation purposes.
+     */
+    public Controller() {}
+
+    /**
      * Initializes the given {@link Stage} with a specific style.
      * <p>
      * This method sets the application icon for the stage based on the provided visual style.
