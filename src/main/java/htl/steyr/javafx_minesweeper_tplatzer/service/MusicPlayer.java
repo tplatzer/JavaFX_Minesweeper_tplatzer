@@ -20,6 +20,15 @@ public class MusicPlayer
 
 
     /**
+     * Default constructor for the MusicPlayer class.
+     * <p>
+     * This constructor is required to ensure that an explicit constructor is present
+     * for documentation purposes. It initializes the audio playback system but does
+     * not start playback automatically.
+     */
+    public MusicPlayer() {}
+
+    /**
      * Plays a music file in a continuous loop.
      * <p>
      * The music file is loaded from the style-specific folder under {@code /sfx/}.

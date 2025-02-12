@@ -10,6 +10,15 @@ package htl.steyr.javafx_minesweeper_tplatzer.app;
 public class Launcher
 {
     /**
+     * Default constructor for the Launcher class.
+     * <p>
+     * This constructor is required to ensure that an explicit constructor is present
+     * for documentation purposes. The class serves as an entry point for the application
+     * and does not require specific initialization.
+     */
+    public Launcher() {}
+
+    /**
      * The entry point of the application.
      * <p>
      * This method delegates execution to the {@link App#main(String[])} method,

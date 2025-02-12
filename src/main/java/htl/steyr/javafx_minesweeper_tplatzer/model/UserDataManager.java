@@ -17,6 +17,16 @@ public class UserDataManager
      */
     private static final String FILE_NAME = "user_data.dat";
 
+
+    /**
+     * Default constructor for the UserDataManager class.
+     * <p>
+     * This constructor is required to ensure that an explicit constructor is present
+     * for documentation purposes. Since this class primarily provides static methods,
+     * no specific initialization is performed.
+     */
+    public UserDataManager() {}
+
     /**
      * Saves the given {@link UserData} object to a file.
      * <p>
