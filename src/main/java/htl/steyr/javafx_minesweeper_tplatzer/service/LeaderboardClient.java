@@ -25,6 +25,15 @@ public class LeaderboardClient
 
 
     /**
+     * Default constructor for the LeaderboardClient class.
+     * <p>
+     * This constructor is required to ensure that an explicit constructor is present
+     * for documentation purposes. It does not perform any specific initialization
+     * but allows for potential future extensions.
+     */
+    public LeaderboardClient() {}
+
+    /**
      * Fetches the leaderboard data from the server.
      * <p>
      * Sends a GET request to the server to retrieve the leaderboard data in JSON format.

@@ -15,6 +15,16 @@ public class FileManager
      */
     private static final String APP_NAME = "Bomb-Disposal-Simulator";
 
+
+    /**
+     * Default constructor for the FileManager class.
+     * <p>
+     * This constructor is required to ensure that an explicit constructor is present
+     * for documentation purposes. The class primarily provides static methods and does
+     * not require specific initialization.
+     */
+    public FileManager() {}
+
     /**
      * Retrieves the file object for the specified file name located within the application's data folder.
      * <p>
