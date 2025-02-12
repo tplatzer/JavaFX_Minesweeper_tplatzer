@@ -321,6 +321,7 @@ public class Cell
                     {
                         neighbor.setRevealed(true); // Mark the neighboring cell as revealed.
                         neighbor.getButton().setDisable(true); // Disable interaction with the cell's button.
+                        neighbor.getButton().setGraphic(null); // Remove any existing graphics to prevent leftover icons.
 
                         if (neighbor.getAdjacentBombs() == 0) // If the neighboring cell has no adjacent bombs:
                         {
